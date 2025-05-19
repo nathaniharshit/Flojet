@@ -2,11 +2,11 @@ import React from 'react';
 
 const ImageCarousel: React.FC = () => {
   const images = [
-    "1.jpeg",
-    "2.jpeg",
-    "3.jpeg",
-    "4.jpeg",
-    "5.jpeg",
+    "/images/1.jpeg",
+    "/images/2.jpeg",
+    "/images/3.jpeg",
+    "/images/4.jpeg",
+    "/images/5.jpeg",
   ];
 
   const [currentIndex, setCurrentIndex] = React.useState(0);
