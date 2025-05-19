@@ -2,11 +2,11 @@ import React from 'react';
 
 const ImageCarousel: React.FC = () => {
   const images = [
-    "/images/1.jpeg",
-    "/images/2.jpeg",
-    "/images/3.jpeg",
-    "/images/4.jpeg",
-    "/images/5.jpeg",
+    "https://github.com/nathaniharshit/Flojet/blob/main/images/1.jpeg?raw=true",
+    "https://github.com/nathaniharshit/Flojet/blob/main/images/2.jpeg?raw=true",
+    "https://github.com/nathaniharshit/Flojet/blob/main/images/3.jpeg?raw=true",
+    "https://github.com/nathaniharshit/Flojet/blob/main/images/4.jpeg?raw=true",
+    "https://github.com/nathaniharshit/Flojet/blob/main/images/5.jpeg?raw=true",
   ];
 
   const [currentIndex, setCurrentIndex] = React.useState(0);
