@@ -119,7 +119,7 @@ const Hero: React.FC = () => {
       {/* Image Column */}
       <div className="md:w-1/2 flex justify-center">
         <img
-          src="http://68.178.154.199/development/flojet/public/asset_front/images/why_choose_img.jpg"
+          src="https://github.com/nathaniharshit/Flojet/blob/main/images/why_choose_img.jpg?raw=true"
           alt="Why Choose Us"
           className="max-w-[650px] w-full h-auto"
         />
