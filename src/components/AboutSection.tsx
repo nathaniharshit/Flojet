@@ -15,7 +15,7 @@ const AboutPage: React.FC = () => {
     <main className="bg-gray-50 min-h-screen py-16 px-6 sm:px-12 md:px-20">
       
       {/* About Us */}
-      <section id="about" className="max-w-4xl mx-auto mb-20 scroll-mt-24">
+      <section id="about" className="max-w-4xl mx-auto mb-20 scroll-mt-32 mb-16">
         <h1 className="text-4xl font-extrabold text-gray-900 mb-4">About Us</h1>
         <div className="w-20 h-1 bg-red-500 rounded mb-6"></div>
         <p className="text-lg text-gray-700 leading-relaxed">
@@ -44,7 +44,7 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Background */}
-      <section id="background" className="max-w-4xl mx-auto mb-20 scroll-mt-24">
+      <section id="background" className="max-w-4xl mx-auto mb-20 scroll-mt-25">
         <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Background</h1>
         <div className="w-20 h-1 bg-red-500 rounded mb-6"></div>
         <p className="text-lg text-gray-700 leading-relaxed">
@@ -64,7 +64,7 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* We Are There For You */}
-      <section id="we-are-there-for-you" className="max-w-4xl mx-auto mb-20 scroll-mt-24">
+      <section id="we-are-there-for-you" className="max-w-4xl mx-auto mb-20 scroll-mt-32">
         <h1 className="text-4xl font-extrabold text-gray-900 mb-4">We are there for you</h1>
         <div className="w-20 h-1 bg-red-500 rounded mb-6"></div>
         <p className="text-lg text-gray-700 leading-relaxed">
@@ -77,7 +77,7 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Our Vision */}
-      <section id="our-vision" className="max-w-4xl mx-auto mb-20 scroll-mt-24">
+      <section id="our-vision" className="max-w-4xl mx-auto mb-20 scroll-mt-32">
     <h2 className="text-4xl font-extrabold text-gray-900 mb-4">Our Vision</h2>
     <div className="w-20 h-1 bg-red-500 rounded mb-6"></div>
 
@@ -120,7 +120,7 @@ const AboutPage: React.FC = () => {
           <ShieldCheck className="text-blue-600" size={28} aria-hidden="true" />
         </div>
         <p className="text-lg text-gray-700">
-          Build <span className="font-bold text-blue-600">Flojet®</span> brand equity and promote brand awareness
+          Build <span className="font-bold">Flojet®</span> brand equity and promote brand awareness
         </p>
       </div>
 
@@ -137,7 +137,7 @@ const AboutPage: React.FC = () => {
 </section>
 
       {/* Why Us */}
-      <section id="why-us" className="max-w-5xl mx-auto px-6 mb-24 scroll-mt-24">
+      <section id="why-us" className="max-w-5xl mx-auto px-6 mb-24 scroll-mt-32">
   <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Why Choose Us?</h1>
   <div className="w-20 h-1 bg-red-500 rounded mb-6"></div>
 
