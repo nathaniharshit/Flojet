@@ -1,5 +1,14 @@
 import React from 'react';
-import { Users, Briefcase, Heart, Eye, CheckCircle } from 'lucide-react';
+import { LifeBuoy, Settings, Zap, Truck, BadgeDollarSign, Factory } from 'lucide-react'; 
+import { TrendingUp, Users, Award, Store, ShieldCheck, Lightbulb } from 'lucide-react';
+
+<div className="flex items-start space-x-4 bg-white shadow-md p-6 rounded-xl hover:shadow-lg transition-shadow">
+  <Factory className="text-red-500 w-6 h-6 mt-1" />
+  <div>
+    <p className="font-bold text-gray-800">In-House Manufacturing Expertise</p>
+    <p>We manufacture our gaskets in-house using advanced machines and strict quality standards, ensuring precision and reliability in every product.</p>
+  </div>
+</div>
 
 const AboutPage: React.FC = () => {
   return (
@@ -8,7 +17,7 @@ const AboutPage: React.FC = () => {
       {/* About Us */}
       <section id="aboutus" className="max-w-4xl mx-auto mb-20 scroll-mt-24">
         <h1 className="text-4xl font-extrabold text-gray-900 mb-4">About Us</h1>
-        <div className="w-20 h-1 bg-primary rounded mb-6"></div>
+        <div className="w-20 h-1 bg-red-500 rounded mb-6"></div>
         <p className="text-lg text-gray-700 leading-relaxed">
           The company in the year 1996 went into manufacturing and a new mission was set, a mission fuelled by
           inspiration and established a wide-ranging pilot plant set-up on which every application is tried and studied
@@ -37,7 +46,7 @@ const AboutPage: React.FC = () => {
       {/* Background */}
       <section id="background" className="max-w-4xl mx-auto mb-20 scroll-mt-24">
         <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Background</h1>
-        <div className="w-20 h-1 bg-primary rounded mb-6"></div>
+        <div className="w-20 h-1 bg-red-500 rounded mb-6"></div>
         <p className="text-lg text-gray-700 leading-relaxed">
           Location: R.R. Engineers then was established in the year 1985 with limited activities of marketing maintenance
           products in South Gujarat only for In-situ Epoxy repair solution and asbestos free sealing products in a highly
@@ -57,7 +66,7 @@ const AboutPage: React.FC = () => {
       {/* We Are There For You */}
       <section id="we-are-there-for-you" className="max-w-4xl mx-auto mb-20 scroll-mt-24">
         <h1 className="text-4xl font-extrabold text-gray-900 mb-4">We are there for you</h1>
-        <div className="w-20 h-1 bg-primary rounded mb-6"></div>
+        <div className="w-20 h-1 bg-red-500 rounded mb-6"></div>
         <p className="text-lg text-gray-700 leading-relaxed">
           Flojet intrinsic strength is that it is the Company which offers after sales courteous visit services
           for products sold by it. Our Engineers, visit, studies and discusses problems faced in different
@@ -69,24 +78,119 @@ const AboutPage: React.FC = () => {
 
       {/* Our Vision */}
       <section id="our-vision" className="max-w-4xl mx-auto mb-20 scroll-mt-24">
-        <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Our Vision</h1>
-        <div className="w-20 h-1 bg-primary rounded mb-6"></div>
-        <img src="https://i.pinimg.com/736x/59/85/ed/5985ed956b8626bf5a1b3a8bc8b70f9a.jpg" alt="vision" />
-      </section>
+    <h2 className="text-4xl font-extrabold text-gray-900 mb-4">Our Vision</h2>
+    <div className="w-20 h-1 bg-red-500 rounded mb-6"></div>
+
+    <div className="grid md:grid-cols-2 gap-6">
+      {/* Goal 1 */}
+      <div className="group flex items-start gap-4 p-5 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100">
+        <div className="bg-blue-100 p-3 rounded-full w-12 h-12 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+          <TrendingUp className="text-blue-600" size={28} aria-hidden="true" />
+        </div>
+        <p className="text-lg text-gray-700">Increase market share</p>
+      </div>
+
+      {/* Goal 2 */}
+      <div className="group flex items-start gap-4 p-5 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100">
+        <div className="bg-blue-100 p-3 rounded-full w-12 h-12 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+          <Users className="text-blue-600" size={28} aria-hidden="true" />
+        </div>
+        <p className="text-lg text-gray-700">Actively participate in the growth of our business partners</p>
+      </div>
+
+      {/* Goal 3 */}
+      <div className="group flex items-start gap-4 p-5 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100">
+        <div className="bg-blue-100 p-3 rounded-full w-12 h-12 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+          <Award className="text-blue-600" size={28} aria-hidden="true" />
+        </div>
+        <p className="text-lg text-gray-700">Be the No. 1 manufacturing & marketing company in sealing systems</p>
+      </div>
+
+      {/* Goal 4 */}
+      <div className="group flex items-start gap-4 p-5 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100">
+        <div className="bg-blue-100 p-3 rounded-full w-12 h-12 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+          <Store className="text-blue-600" size={28} aria-hidden="true" />
+        </div>
+        <p className="text-lg text-gray-700">Expand dealer branches and stocking points</p>
+      </div>
+
+      {/* Goal 5 */}
+      <div className="group flex items-start gap-4 p-5 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100">
+        <div className="bg-blue-100 p-3 rounded-full w-12 h-12 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+          <ShieldCheck className="text-blue-600" size={28} aria-hidden="true" />
+        </div>
+        <p className="text-lg text-gray-700">
+          Build <span className="font-bold text-blue-600">Flojet®</span> brand equity and promote brand awareness
+        </p>
+      </div>
+
+      {/* Goal 6 */}
+      <div className="group flex items-start gap-4 p-5 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100">
+        <div className="bg-blue-100 p-3 rounded-full w-12 h-12 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+          <Lightbulb className="text-blue-600" size={28} aria-hidden="true" />
+        </div>
+        <p className="text-lg text-gray-700">
+          Introduce new products/services by innovative methods and vigorous R&amp;D
+        </p>
+      </div>
+    </div>
+</section>
 
       {/* Why Us */}
-      <section id="why-us" className="max-w-4xl mx-auto scroll-mt-24">
-        <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-          <CheckCircle className="text-primary" size={32} /> Why Choose Us?
-        </h2>
-        <ul className="list-disc list-inside text-gray-700 text-lg space-y-3">
-          <li>Over 30 years of trusted industry experience.</li>
-          <li>Certified quality and precision manufacturing.</li>
-          <li>Customer-first approach with personalized support.</li>
-          <li>Cutting-edge technology and sustainable practices.</li>
-          <li>Nationwide presence with 500+ satisfied clients.</li>
-        </ul>
-      </section>
+      <section id="why-us" className="max-w-5xl mx-auto px-6 mb-24 scroll-mt-24">
+  <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Why Choose Us?</h1>
+  <div className="w-20 h-1 bg-red-500 rounded mb-6"></div>
+
+  <div className="grid sm:grid-cols-2 gap-8 text-gray-700 text-lg">
+    <div className="flex items-start space-x-4 bg-white shadow-md p-6 rounded-xl hover:shadow-lg transition-shadow">
+      <LifeBuoy className="text-red-500 w-6 h-6 mt-1" />
+      <div>
+        <p className="font-bold text-gray-800">Technical Support</p>
+        <p>We provide technical selection from our extensive range of packing solutions.</p>
+      </div>
+    </div>
+
+    <div className="flex items-start space-x-4 bg-white shadow-md p-6 rounded-xl hover:shadow-lg transition-shadow">
+      <Settings className="text-red-500 w-6 h-6 mt-1" />
+      <div>
+        <p className="font-bold text-gray-800">Special Customizations</p>
+        <p>We design packing products and gaskets tailored to your application needs.</p>
+      </div>
+    </div>
+
+    <div className="flex items-start space-x-4 bg-white shadow-md p-6 rounded-xl hover:shadow-lg transition-shadow">
+      <Zap className="text-red-500 w-6 h-6 mt-1" />
+      <div>
+        <p className="font-bold text-gray-800">Emergency Support</p>
+        <p>We handle urgent orders and deliver personally whenever possible.</p>
+      </div>
+    </div>
+
+    <div className="flex items-start space-x-4 bg-white shadow-md p-6 rounded-xl hover:shadow-lg transition-shadow">
+      <Truck className="text-red-500 w-6 h-6 mt-1" />
+      <div>
+        <p className="font-bold text-gray-800">Smooth Delivery Process</p>
+        <p>Our strong courier partnerships ensure on-time delivery with ease.</p>
+      </div>
+    </div>
+
+    <div className="flex items-start space-x-4 bg-white shadow-md p-6 rounded-xl hover:shadow-lg transition-shadow">
+      <BadgeDollarSign className="text-red-500 w-6 h-6 mt-1" />
+      <div>
+        <p className="font-bold text-gray-800">Best Pricing</p>
+        <p>We offer competitive pricing and flexible annual contracts with fixed rates.</p>
+      </div>
+    </div>
+
+    <div className="flex items-start space-x-4 bg-white shadow-md p-6 rounded-xl hover:shadow-lg transition-shadow">
+      <Factory className="text-red-500 w-6 h-6 mt-1" />
+      <div>
+        <p className="font-bold text-gray-800">In-House Manufacturing Expertise</p>
+        <p>We manufacture our gaskets in-house using advanced machines and strict quality standards, ensuring precision and reliability in every product.</p>
+      </div>
+    </div>
+  </div>
+</section>
     </main>
   );
 };
