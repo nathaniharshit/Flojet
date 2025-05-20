@@ -76,27 +76,27 @@ const Header: React.FC = () => {
 
               {/* Dropdown */}
               <div className="absolute top-full left-0 mt-2 w-56 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transform translate-y-2 group-hover:translate-y-0 transition-opacity transition-transform duration-200 ease-in-out">
-                {[
-                  { href: '#aboutus', label: 'About Us', rounded: 'rounded-t-lg' },
-                  { href: '#background', label: 'Background' },
-                  { href: '#we-are-there-for-you', label: 'We are there for you' },
-                  { href: '#our-vision', label: 'Our Vision' },
-                  { href: '#why-us', label: 'Why us?', rounded: 'rounded-b-lg' },
-                ].map(({ href, label, rounded = '' }) => (
-                  <NavLink
-                    key={href}
-                    to={`/about${href}`}
-                    className={
-                      isExactHashMatch(href)
-                        ? `block px-4 py-3 text-primary font-bold bg-primary/10 ${rounded}`
-                        : `block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors ${rounded}`
-                    }
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {label}
-                  </NavLink>
-                ))}
-              </div>
+              {[
+                { href: 'about', label: 'About Us', rounded: 'rounded-t-lg' },
+                { href: 'background', label: 'Background' },
+                { href: 'we-are-there-for-you', label: 'We are there for you' },
+                { href: 'our-vision', label: 'Our Vision' },
+                { href: 'why-us', label: 'Why us?', rounded: 'rounded-b-lg' },
+              ].map(({ href, label, rounded = '' }) => (
+                <button
+                  key={href}
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    setIsAboutDropdownOpen(false);
+                    document.getElementById(href)?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className={`block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors w-full text-left ${rounded}`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+
             </div>
 
             <NavLink to="/products" className={navLinkClass} onClick={() => setIsMenuOpen(false)}>Products</NavLink>

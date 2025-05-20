@@ -15,7 +15,7 @@ const AboutPage: React.FC = () => {
     <main className="bg-gray-50 min-h-screen py-16 px-6 sm:px-12 md:px-20">
       
       {/* About Us */}
-      <section id="aboutus" className="max-w-4xl mx-auto mb-20 scroll-mt-24">
+      <section id="about" className="max-w-4xl mx-auto mb-20 scroll-mt-24">
         <h1 className="text-4xl font-extrabold text-gray-900 mb-4">About Us</h1>
         <div className="w-20 h-1 bg-red-500 rounded mb-6"></div>
         <p className="text-lg text-gray-700 leading-relaxed">
