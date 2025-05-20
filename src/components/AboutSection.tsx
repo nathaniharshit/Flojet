@@ -137,53 +137,71 @@ const AboutPage: React.FC = () => {
 </section>
 
       {/* Why Us */}
-      <section id="why-us" className="max-w-5xl mx-auto px-6 mb-24 scroll-mt-32">
-  <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Why Choose Us?</h1>
-  <div className="w-20 h-1 bg-red-500 rounded mb-6"></div>
+      <section id="why-us" className="max-w-4xl mx-auto mb-24 scroll-mt-32">
+      <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Why Us?</h1>
+      <div className="w-20 h-1 bg-red-500 rounded mb-6"></div>
 
-  <div className="grid sm:grid-cols-2 gap-8 text-gray-700 text-lg">
-    <div className="flex items-start space-x-4 bg-white shadow-md p-6 rounded-xl hover:shadow-lg transition-shadow">
-      <LifeBuoy className="text-red-500 w-6 h-6 mt-1" />
+  <div className="grid md:grid-cols-2 gap-6 text-gray-700">
+    {/* Card 1 */}
+    <div className="group flex items-start gap-4 p-5 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100">
+      <div className="bg-blue-100 p-3 rounded-full w-12 h-12 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+        <LifeBuoy className="text-blue-600" size={28} aria-hidden="true" />
+      </div>
       <div>
         <p className="font-bold text-gray-800">Technical Support</p>
         <p>We provide technical selection from our extensive range of packing solutions.</p>
       </div>
     </div>
 
-    <div className="flex items-start space-x-4 bg-white shadow-md p-6 rounded-xl hover:shadow-lg transition-shadow">
-      <Settings className="text-red-500 w-6 h-6 mt-1" />
+    {/* Card 2 */}
+    <div className="group flex items-start gap-4 p-5 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100">
+      <div className="bg-blue-100 p-3 rounded-full w-12 h-12 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+        <Settings className="text-blue-600" size={28} aria-hidden="true" />
+      </div>
       <div>
         <p className="font-bold text-gray-800">Special Customizations</p>
         <p>We design packing products and gaskets tailored to your application needs.</p>
       </div>
     </div>
 
-    <div className="flex items-start space-x-4 bg-white shadow-md p-6 rounded-xl hover:shadow-lg transition-shadow">
-      <Zap className="text-red-500 w-6 h-6 mt-1" />
+    {/* Card 3 */}
+    <div className="group flex items-start gap-4 p-5 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100">
+      <div className="bg-blue-100 p-3 rounded-full w-12 h-12 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+        <Zap className="text-blue-600" size={28} aria-hidden="true" />
+      </div>
       <div>
         <p className="font-bold text-gray-800">Emergency Support</p>
         <p>We handle urgent orders and deliver personally whenever possible.</p>
       </div>
     </div>
 
-    <div className="flex items-start space-x-4 bg-white shadow-md p-6 rounded-xl hover:shadow-lg transition-shadow">
-      <Truck className="text-red-500 w-6 h-6 mt-1" />
+    {/* Card 4 */}
+    <div className="group flex items-start gap-4 p-5 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100">
+      <div className="bg-blue-100 p-3 rounded-full w-12 h-12 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+        <Truck className="text-blue-600" size={28} aria-hidden="true" />
+      </div>
       <div>
         <p className="font-bold text-gray-800">Smooth Delivery Process</p>
         <p>Our strong courier partnerships ensure on-time delivery with ease.</p>
       </div>
     </div>
 
-    <div className="flex items-start space-x-4 bg-white shadow-md p-6 rounded-xl hover:shadow-lg transition-shadow">
-      <BadgeDollarSign className="text-red-500 w-6 h-6 mt-1" />
+    {/* Card 5 */}
+    <div className="group flex items-start gap-4 p-5 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100">
+      <div className="bg-blue-100 p-3 rounded-full w-12 h-12 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+        <BadgeDollarSign className="text-blue-600" size={28} aria-hidden="true" />
+      </div>
       <div>
         <p className="font-bold text-gray-800">Best Pricing</p>
         <p>We offer competitive pricing and flexible annual contracts with fixed rates.</p>
       </div>
     </div>
 
-    <div className="flex items-start space-x-4 bg-white shadow-md p-6 rounded-xl hover:shadow-lg transition-shadow">
-      <Factory className="text-red-500 w-6 h-6 mt-1" />
+    {/* Card 6 */}
+    <div className="group flex items-start gap-4 p-5 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100">
+      <div className="bg-blue-100 p-3 rounded-full w-12 h-12 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+        <Factory className="text-blue-600" size={28} aria-hidden="true" />
+      </div>
       <div>
         <p className="font-bold text-gray-800">In-House Manufacturing Expertise</p>
         <p>We manufacture our gaskets in-house using advanced machines and strict quality standards, ensuring precision and reliability in every product.</p>
@@ -191,6 +209,7 @@ const AboutPage: React.FC = () => {
     </div>
   </div>
 </section>
+
     </main>
   );
 };
