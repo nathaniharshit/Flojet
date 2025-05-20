@@ -1,138 +1,94 @@
 import React from 'react';
-import { CheckSquare, Factory, Hexagon } from 'lucide-react';
+import { Users, Briefcase, Heart, Eye, CheckCircle } from 'lucide-react';
 
-const features = [
-  {
-    icon: <Factory size={32} className="text-primary" />,
-    title: "State-of-the-Art Manufacturing",
-    desc: "Advanced manufacturing facilities ensure precision and consistent quality in every carbon gasket."
-  },
-  {
-    icon: <Hexagon size={32} className="text-primary" />,
-    title: "Engineering Excellence",
-    desc: "Each gasket is designed to meet exact specs, delivering optimal performance in industrial conditions."
-  },
-  {
-    icon: <CheckSquare size={32} className="text-primary" />,
-    title: "Quality Assurance",
-    desc: "Strict quality control ensures reliability and durability that exceeds industry benchmarks."
-  }
-];
-
-const stats = [
-  { label: "Years Experience", value: "30+" },
-  { label: "Clients across India", value: "500+" },
-  { label: "Customer Satisfaction", value: "99%" }
-];
-
-const AboutSection: React.FC = () => {
+const AboutPage: React.FC = () => {
   return (
-    <section id="about" className="section bg-gray-50 py-20">
-      <div className="container-custom px-4 sm:px-8">
+    <main className="bg-gray-50 min-h-screen py-16 px-6 sm:px-12 md:px-20">
+      
+      {/* About Us */}
+      <section id="aboutus" className="max-w-4xl mx-auto mb-20 scroll-mt-24">
+        <h1 className="text-4xl font-extrabold text-gray-900 mb-4">About Us</h1>
+        <div className="w-20 h-1 bg-primary rounded mb-6"></div>
+        <p className="text-lg text-gray-700 leading-relaxed">
+          The company in the year 1996 went into manufacturing and a new mission was set, a mission fuelled by
+          inspiration and established a wide-ranging pilot plant set-up on which every application is tried and studied
+          deeply. Each of the analysis is confirmed by technically qualified, experienced and committed professionals from
+          the particular key areas.
+          “Flojet®” products are being manufactured through the world’s best technology, most modern machines
+          developed with the help of research, applied science, specialized technical knowledge and innovative skilled
+          experienced technocrats, with firm belief in ‘Investment for the future’ by continuously upgrading facility.
+          Our own overseas staff carefully selects every product from the origin i.e. manufacturers where it is 
+          produced and is inspected through all the processes to ensure their quality before shipping. Company is always
+          engaged in buying good and new technology products and then developing and inspecting at every step which
+          make “FLOJET®”- A PRODUCT UNIQUE. Moreover, we believe that THIS SMALL MAINTENANCE PRODUCTS
+          needs to be dealt with the special care, if it needs to be HIGHLY RELIABLE AND DURABLE.
+   
+          We, at Flojet Engineers Pvt. Ltd., are actively engaged in R&amp;D to expand and upgrade the existing line
+          of sealing method in the Indian industries.
+          The moving force behind FEPL&#39;S success is its decentralized management philosophy. A profit center
+          approach to branch management, allows on the spot decision making, trained and experienced sales field force
+          and dedicated and committed employees.
+          Presently, “Flojet®” is supplying their products to more than 1000 Satisfied Customers in all Segments
+          such as Refinery, Petrochemicals, Chemicals, Dyes-Intermediates, Fertilizer, Pharmaceuticals, Engineering,
+          Food, Gas and Oil Extraction, Sugar, Steel, Pulp &amp; Paper, Power Generation, Marine etc.
+        </p>
+      </section>
 
-        {/* About Us */}
-        <div id="aboutus" className="text-center mb-20 fade-in">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">About Our Company</h2>
-          <div className="w-24 h-1 bg-primary mx-auto mb-6 rounded"></div>
-          <p className="max-w-3xl mx-auto text-lg text-gray-600">
-            Flojet® Engineers Pvt. Ltd. has been a pioneer in carbon gasket manufacturing for over 30 years. 
-            Our commitment to innovation, quality, and customer satisfaction has positioned us as a trusted leader in the industrial sealing industry.
-          </p>
-        </div>
+      {/* Background */}
+      <section id="background" className="max-w-4xl mx-auto mb-20 scroll-mt-24">
+        <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Background</h1>
+        <div className="w-20 h-1 bg-primary rounded mb-6"></div>
+        <p className="text-lg text-gray-700 leading-relaxed">
+          Location: R.R. Engineers then was established in the year 1985 with limited activities of marketing maintenance
+          products in South Gujarat only for In-situ Epoxy repair solution and asbestos free sealing products in a highly
+          Industrialized City known as Vadodara (Baroda) which is 400 kms south of Mumbai (Bombay) in very prosperous
+          Gujarat state located in west coast and central India.
+          In 1989 R.R Engineers was renamed as Flojet Engineers Pvt. Ltd with a vision of expanding the business
+          whole Gujarat state and solving all types of engineering maintenance problem.
 
-        {/* Background */}
-        <div id="background" className="grid md:grid-cols-3 gap-8 fade-in mb-20">
-          {features.map((item, index) => (
-            <div key={index} className="bg-white/60 backdrop-blur-sm p-8 rounded-2xl shadow-md hover:shadow-xl border border-gray-100 transition-shadow">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                {item.icon}
-              </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">{item.title}</h3>
-              <p className="text-gray-600">{item.desc}</p>
-            </div>
-          ))}
-        </div>
+          In 1995 Flojet further expanded their business in manufacturing sector with latest technology to
+          manufacture Four Track Square Braided Gland Packings at 31, Sardar Industrial Estate, Ajwa Road, Vadodara
+          and since past 25 years we have become one the biggest manufacturer for Asbestos free Gland Packing serving
+          more than 2000 clients all over India.
+          We are proud to have 90% retention of clients since 1985 inception of our business.
+        </p>
+      </section>
 
-        {/* We Are There For You */}
-        <div id="we-are-there-for-you" className="my-20 max-w-4xl mx-auto text-center fade-in">
-          <h3 className="text-3xl font-semibold text-gray-800 mb-6">We Are There For You</h3>
-          <p className="text-gray-700 text-lg leading-relaxed">
-            At Flojet®, we prioritize our customers by offering personalized support, timely delivery, and technical assistance throughout your purchase and beyond.
-            Our dedicated team ensures every project receives the attention and expertise it deserves.
-          </p>
-        </div>
+      {/* We Are There For You */}
+      <section id="we-are-there-for-you" className="max-w-4xl mx-auto mb-20 scroll-mt-24">
+        <h1 className="text-4xl font-extrabold text-gray-900 mb-4">We are there for you</h1>
+        <div className="w-20 h-1 bg-primary rounded mb-6"></div>
+        <p className="text-lg text-gray-700 leading-relaxed">
+          Flojet intrinsic strength is that it is the Company which offers after sales courteous visit services
+          for products sold by it. Our Engineers, visit, studies and discusses problems faced in different
+          application of sealing, which gives us in person feedback to upgrade our systems.
+          Apart from this we provide guidance and support for the product application by offering necessary
+          free trials to facilitate application.
+        </p>
+      </section>
 
-        {/* Our Vision */}
-        <div id="our-vision" className="my-20 max-w-4xl mx-auto text-center fade-in">
-          <h3 className="text-3xl font-semibold text-gray-800 mb-6">Our Vision</h3>
-          <p className="text-gray-700 text-lg leading-relaxed">
-            To be recognized as the leading manufacturer of high-performance sealing solutions by fostering innovation, sustainability, and customer satisfaction.
-            We strive to push the boundaries of technology while maintaining eco-friendly manufacturing practices.
-          </p>
-        </div>
+      {/* Our Vision */}
+      <section id="our-vision" className="max-w-4xl mx-auto mb-20 scroll-mt-24">
+        <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Our Vision</h1>
+        <div className="w-20 h-1 bg-primary rounded mb-6"></div>
+        <img src="https://i.pinimg.com/736x/59/85/ed/5985ed956b8626bf5a1b3a8bc8b70f9a.jpg" alt="vision" />
+      </section>
 
-        {/* Why Us */}
-        <div id="why-us" className="my-20 max-w-4xl mx-auto text-center fade-in">
-          <h3 className="text-3xl font-semibold text-gray-800 mb-6">Why Choose Us?</h3>
-          <ul className="list-disc list-inside text-gray-700 text-lg space-y-3">
-            <li>Over 30 years of industry experience delivering reliable sealing solutions.</li>
-            <li>Strict quality control and ISO certification.</li>
-            <li>Advanced manufacturing with precision engineering.</li>
-            <li>Committed to customer satisfaction with technical support.</li>
-            <li>Environmentally responsible and sustainable practices.</li>
-          </ul>
-        </div>
-
-        {/* Company Overview */}
-        <div id="overview" className="bg-white p-10 rounded-2xl shadow-lg fade-in mb-20">
-          <div className="grid md:grid-cols-2 gap-10 items-center">
-            <div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">Company Overview</h3>
-              <p className="text-gray-700 text-lg leading-relaxed">
-                <strong className="text-primary">Flojet® Engineers Pvt. Ltd.</strong> is an 
-                <span className="text-primary font-medium"> ISO-certified</span> leader in 
-                <span className="text-primary font-medium"> high-performance sealing systems</span>. 
-                With nearly <span className="text-primary font-semibold">three decades</span> of legacy, 
-                our products—ranging from Non-Asbestos Gland Packings to Pure PTFE Gaskets and Cold Welding Compounds—
-                are trusted across India.
-                <br /><br />
-                Our philosophy <strong className="text-primary">“Quality Leads to Trust”</strong> drives our mission to deliver 
-                consistent quality, technical support, and innovation.
-              </p>
-            </div>
-            <div className="h-72 bg-[url('https://i.pinimg.com/736x/be/1c/ff/be1cff5cc27026e555bfea382918c33c.jpg')] bg-cover bg-center rounded-xl shadow" />
-          </div>
-        </div>
-
-        {/* Commitment */}
-        <div id="commitment" className="bg-white p-10 rounded-2xl shadow-lg fade-in">
-          <div className="grid md:grid-cols-2 gap-10 items-center">
-            <div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">Our Commitment</h3>
-              <p className="text-gray-600 mb-4">
-                We deliver exceptional carbon gaskets that ensure superior sealing in varied industrial applications.
-              </p>
-              <p className="text-gray-600 mb-4">
-                Our commitment to innovation and quality has made us a trusted partner to 500+ clients nationwide.
-              </p>
-              <div className="flex flex-wrap gap-6 mt-6">
-                {stats.map((stat, idx) => (
-                  <div key={idx} className="flex items-center">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                      <span className="text-primary font-bold">{stat.value}</span>
-                    </div>
-                    <span className="ml-3 text-gray-700">{stat.label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="h-72 bg-[url('https://i.pinimg.com/736x/14/49/e8/1449e810733a9bbe2a7790033cacdc9a.jpg')] bg-cover bg-center rounded-xl shadow" />
-          </div>
-        </div>
-
-      </div>
-    </section>
+      {/* Why Us */}
+      <section id="why-us" className="max-w-4xl mx-auto scroll-mt-24">
+        <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+          <CheckCircle className="text-primary" size={32} /> Why Choose Us?
+        </h2>
+        <ul className="list-disc list-inside text-gray-700 text-lg space-y-3">
+          <li>Over 30 years of trusted industry experience.</li>
+          <li>Certified quality and precision manufacturing.</li>
+          <li>Customer-first approach with personalized support.</li>
+          <li>Cutting-edge technology and sustainable practices.</li>
+          <li>Nationwide presence with 500+ satisfied clients.</li>
+        </ul>
+      </section>
+    </main>
   );
 };
 
-export default AboutSection;
+export default AboutPage;
