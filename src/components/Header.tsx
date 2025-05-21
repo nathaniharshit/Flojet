@@ -47,13 +47,13 @@ const Header: React.FC = () => {
               <img
                 src="https://i.pinimg.com/736x/1a/a6/59/1aa659bf1e867faf95720744642ac133.jpg"
                 alt="Flojet Logo"
-                className="h-20 md:h-20 w-auto"
+                className="h-20 md:h-24 w-auto"
               />
             </NavLink>
 
             <div className="hidden md:flex items-center gap-4">
               <img src="https://github.com/nathaniharshit/Flojet/blob/main/images/msme.png?raw=true" alt="msme" className="h-20 w-auto" />
-              <img src="https://github.com/nathaniharshit/Flojet/blob/main/FLOJET.gif?raw=true" alt="globe" className="h-28 w-auto" />
+              <img src="https://github.com/nathaniharshit/Flojet/blob/main/FLOJET.gif?raw=true" alt="globe" className="h-36 w-auto" />
             </div>
           </div>
 
