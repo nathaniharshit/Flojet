@@ -22,6 +22,7 @@ const ContactSection: React.FC = () => {
   return (
     <section id="contact" className="section bg-gray-50">
       <div className="container-custom">
+        
         <div className="text-center mb-16 fade-in">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Contact Us</h2>
           <div className="w-24 h-1 bg-primary mx-auto mb-6 animate-scaleIn origin-left"></div>
