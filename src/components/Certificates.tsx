@@ -169,6 +169,57 @@ const Certificates: React.FC = () => {
           </Card>
         </div>
 
+        {/* Company Pan Card */}
+        <div className="max-w-4xl mx-auto">
+          <Card className="border-2 border-gray-200 hover:shadow-lg transition-all">
+            <CardContent className="p-6 md:p-8">
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                <div className="flex justify-center">
+                  <div className="relative">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-primary rounded-lg blur opacity-25"></div>
+                    <div className="relative bg-white rounded-lg overflow-hidden border-2 border-gray-100">
+                      <a href="https://drive.google.com/file/d/10SaWWM7CsyivU3_uXF1XU7auoekcOiJL/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+                        <img 
+                          src="https://media.assettype.com/outlookmoney/2024-12-07/3cguwiua/111121552.jpg.webp?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100" 
+                          alt="PAN" 
+                          className="w-full h-auto object-contain cursor-pointer"
+                        />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold mb-3">Company Pan Card</h3>
+                  <p className="text-gray-600 mb-4">
+  Our PAN (Permanent Account Number) Card is an essential tax identification document issued by the Income Tax Department of India. It uniquely identifies Flojet Engineers Pvt. Ltd. for all financial and tax-related activities, ensuring compliance with the law and facilitating transparent business transactions.
+</p>
+<ul className="mb-6 space-y-2">
+  <li className="flex items-start gap-2">
+    <ShieldCheck className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+    <span>Enables accurate filing of income tax returns and tax compliance</span>
+  </li>
+  <li className="flex items-start gap-2">
+    <ShieldCheck className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+    <span>Acts as a unique financial identity for the company</span>
+  </li>
+  <li className="flex items-start gap-2">
+    <ShieldCheck className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+    <span>Essential for banking, tax deduction, and financial transactions</span>
+  </li>
+</ul>
+
+                  <a href="https://drive.google.com/uc?export=download&id=10SaWWM7CsyivU3_uXF1XU7auoekcOiJL" download>
+                    <Button className="flex items-center gap-2">
+                      <Download className="h-4 w-4" />
+                      Download Certificate
+                    </Button>
+                  </a>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
       </div>
     </section>
   );

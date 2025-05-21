@@ -103,7 +103,7 @@ const ContactSection: React.FC = () => {
                   <div>
                     <h4 className="font-semibold text-gray-700">Email</h4>
                     <a href="mailto:sales@flojet21.com">
-                      <p className="text-gray-600 hover:text-red-500">sales@flojet21.com</p>
+                      <p className="text-gray-600 hover:text-blue-500">sales@flojet21.com</p>
                     </a>
                   </div>
                 </div>
