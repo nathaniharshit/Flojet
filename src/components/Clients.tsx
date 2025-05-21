@@ -31,6 +31,7 @@ const clientsList: Client[] = [
   { name: "Grasim Industries Limited", logo:"https://www.cms.adityabirla.com/uploads/Grasim_3042dd7b0c.webp"},
   { name: "TATA Chemicals Ltd", logo:"https://www.sanjanacryogenic.com/wp-content/uploads/2015/07/tata_logo.jpg"},
   { name: "NIRMA Limited", logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN-zi08uaxes6Exsc_yQCDb4wHj1KK_LCBFw&s"},
+  { name: "Pidilite Ltd", logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKf_qsZl1oFSGuqHUe1bNCQbKgNRHys0b-qQ&s"}
 ];
 
 const Clients: React.FC = () => {
