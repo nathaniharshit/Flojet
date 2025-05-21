@@ -1,5 +1,7 @@
 import React from 'react';
 import { MapPin, Phone, Mail } from 'lucide-react';
+import { motion } from 'framer-motion';
+
 
 const Footer: React.FC = () => {
   return (
@@ -22,6 +24,24 @@ const Footer: React.FC = () => {
               <h3 className="text-xl font-bold text-white mb-4">
                 Flojet Engineers Pvt Ltd
               </h3>
+              <div className="relative w-20 h-1 overflow-hidden mb-6">
+                <div
+                  className="absolute top-0 left-0 h-1 w-20 bg-red-500"
+                  style={{ animation: 'slideLine 4s linear infinite' }}
+                ></div>
+
+                <style>{`
+                  @keyframes slideLine {
+                    0% {
+                      transform: translateX(-100%);
+                    }
+                    100% {
+                      transform: translateX(100%);
+                    }
+                  }
+                `}</style>
+              </div>
+              
               <div className="space-y-3 text-sm">
                 <div className="flex items-start">
                   <MapPin className="w-5 h-5 mt-1 text-red-500 shrink-0" />
@@ -56,9 +76,26 @@ const Footer: React.FC = () => {
 
             {/* Products */}
             <div>
-              <h4 className="text-lg font-semibold text-white mb-4">
-                Products
-              </h4>
+            <h3 className="text-xl font-bold text-white mb-4">                
+              Products
+            </h3>
+            <div className="relative w-20 h-1 overflow-hidden mb-6">
+                <div
+                  className="absolute top-0 left-0 h-1 w-20 bg-red-500"
+                  style={{ animation: 'slideLine 4s linear infinite' }}
+                ></div>
+
+                <style>{`
+                  @keyframes slideLine {
+                    0% {
+                      transform: translateX(-100%);
+                    }
+                    100% {
+                      transform: translateX(100%);
+                    }
+                  }
+                `}</style>
+              </div>
               <ul className="space-y-2 text-sm">
                 <li>
                   <a href="#" className="hover:text-primary transition-colors">
@@ -90,7 +127,26 @@ const Footer: React.FC = () => {
 
             {/* Company Info */}
             <div>
-              <h4 className="text-lg font-semibold text-white mb-4">Company</h4>
+            <h3 className="text-xl font-bold text-white mb-4">
+              Company
+            </h3>
+            <div className="relative w-20 h-1 overflow-hidden mb-6">
+                <div
+                  className="absolute top-0 left-0 h-1 w-20 bg-red-500"
+                  style={{ animation: 'slideLine 4s linear infinite' }}
+                ></div>
+
+                <style>{`
+                  @keyframes slideLine {
+                    0% {
+                      transform: translateX(-100%);
+                    }
+                    100% {
+                      transform: translateX(100%);
+                    }
+                  }
+                `}</style>
+              </div>
               <ul className="space-y-2 text-sm">
                 <li>
                   <a href="#about" className="hover:text-primary transition-colors">
@@ -122,7 +178,26 @@ const Footer: React.FC = () => {
 
             {/* Embedded Map */}
             <div>
-              <h4 className="text-lg font-semibold text-white mb-4">Our Location</h4>
+            <h3 className="text-xl font-bold text-white mb-4">
+              Our Location
+            </h3>
+            <div className="relative w-20 h-1 overflow-hidden mb-6">
+                <div
+                  className="absolute top-0 left-0 h-1 w-20 bg-red-500"
+                  style={{ animation: 'slideLine 4s linear infinite' }}
+                ></div>
+
+                <style>{`
+                  @keyframes slideLine {
+                    0% {
+                      transform: translateX(-100%);
+                    }
+                    100% {
+                      transform: translateX(100%);
+                    }
+                  }
+                `}</style>
+              </div>
               <div className="rounded-md overflow-hidden shadow-md">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d842.6401162726459!2d73.23243271244249!3d22.31547672808382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fcf9ccd817a9f%3A0x26ad116ba404a026!2sFlojet%20Engineers%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1747251043459!5m2!1sen!2sin"
