@@ -16,7 +16,7 @@ interface Client {
 }
 
 const clientsList: Client[] = [
-  { name: "Ambuja Cement", logo: "https://i.pinimg.com/736x/91/01/f7/9101f7f86dc50bf8443d47be521da826.jpg" },
+  { name: "Ambuja Cement", logo: "https://www.ambujacement.com/Upload/Content_Files/ambuja-cement-giant.jpg" },
   { name: "Alembic", logo: "https://alembicpharmaceuticals.com/assets/img/Alembic-logo.webp"},
   { name: "ONGC", logo: "https://i.pinimg.com/736x/d2/86/cb/d286cb1186455a2f230623d445eb6955.jpg"},
   { name: "Bharat Petroleum", logo:"https://i.pinimg.com/736x/3e/9b/64/3e9b64f5b3265600431836556dd1ee7c.jpg"},
