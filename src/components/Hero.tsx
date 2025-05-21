@@ -1,6 +1,6 @@
 import React from 'react';
 import ImageCarousel from './ImageCarousel';
-import { ShieldCheck, Wrench, Award, Users, Check, CheckCircle } from 'lucide-react';
+import {CheckCircle } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
