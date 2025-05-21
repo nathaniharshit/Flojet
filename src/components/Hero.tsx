@@ -60,7 +60,7 @@ const Hero: React.FC = () => {
           {/* Image */}
           <div className="md:w-1/2 flex justify-center">
             <img
-              src="https://i.pinimg.com/736x/2c/15/fb/2c15fb02f1d63157950ea64209555942.jpg"
+              src="https://github.com/nathaniharshit/Flojet/blob/main/images/company_overview.jpg?raw=true"
               alt="Company Overview"
               className="rounded-xl shadow-lg max-w-[400px] w-full h-auto"
             />
