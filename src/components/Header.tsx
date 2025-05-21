@@ -53,7 +53,7 @@ const Header: React.FC = () => {
 
             <div className="hidden md:flex items-center gap-4">
               <img src="https://github.com/nathaniharshit/Flojet/blob/main/images/msme.png?raw=true" alt="msme" className="h-20 w-auto" />
-              <img src="https://i.pinimg.com/736x/03/55/14/0355149909327bf7ba59f77d8ac1e114.jpg" alt="globe" className="h-28 w-auto" />
+              <img src="https://github.com/nathaniharshit/Flojet/blob/main/FLOJET.gif?raw=true" alt="globe" className="h-28 w-auto" />
             </div>
           </div>
 
