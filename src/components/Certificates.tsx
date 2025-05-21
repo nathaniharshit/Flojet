@@ -9,6 +9,7 @@ const Certificates: React.FC = () => {
       <div className="container-custom">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Quality Certifications</h2>
+          <div className="w-24 h-1 bg-primary mx-auto mb-6 animate-scaleIn origin-left"></div>
           <div className="flex items-center justify-center gap-2 mb-4">
           </div>
           <p className="text-gray-600 max-w-2xl mx-auto">

@@ -62,7 +62,7 @@ const Clients: React.FC = () => {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ duration: 0.2, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
                   <Card className="border-2 border-gray-200 hover:border-primary transition-colors h-full">
