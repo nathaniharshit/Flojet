@@ -15,7 +15,7 @@ const AboutPage: React.FC = () => {
     <main className="bg-gray-50 min-h-screen py-16 px-6 sm:px-12 md:px-20">
       
       {/* About Us */}
-      <section id="about" className="max-w-4xl mx-auto mb-20 scroll-mt-32 mb-16">
+      <section id="about" className="max-w-4xl mx-auto mb-20 scroll-mt-64 mb-16">
         <h1 className="text-4xl font-extrabold text-gray-900 mb-4">About Us</h1>
         <div className="w-20 h-1 bg-red-500 rounded mb-6"></div>
         
@@ -45,7 +45,7 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Background */}
-      <section id="background" className="max-w-4xl mx-auto mb-20 scroll-mt-25">
+      <section id="background" className="max-w-4xl mx-auto mb-20 scroll-mt-64">
         <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Background</h1>
         <div className="w-20 h-1 bg-red-500 rounded mb-6"></div>
         <p className="text-lg text-gray-700 leading-relaxed">
@@ -65,7 +65,7 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* We Are There For You */}
-      <section id="we-are-there-for-you" className="max-w-4xl mx-auto mb-20 scroll-mt-32">
+      <section id="we-are-there-for-you" className="max-w-4xl mx-auto mb-20 scroll-mt-64">
         <h1 className="text-4xl font-extrabold text-gray-900 mb-4">We are there for you</h1>
         <div className="w-20 h-1 bg-red-500 rounded mb-6"></div>
         <p className="text-lg text-gray-700 leading-relaxed">
@@ -78,7 +78,7 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Our Vision */}
-      <section id="our-vision" className="max-w-4xl mx-auto mb-20 scroll-mt-32">
+      <section id="our-vision" className="max-w-4xl mx-auto mb-20 scroll-mt-64">
     <h2 className="text-4xl font-extrabold text-gray-900 mb-4">Our Vision</h2>
     <div className="w-20 h-1 bg-red-500 rounded mb-6"></div>
 
@@ -138,7 +138,7 @@ const AboutPage: React.FC = () => {
 </section>
 
       {/* Why Us */}
-      <section id="why-us" className="max-w-4xl mx-auto mb-24 scroll-mt-32">
+      <section id="why-us" className="max-w-4xl mx-auto mb-24 scroll-mt-64">
       <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Why Us?</h1>
       <div className="w-20 h-1 bg-red-500 rounded mb-6"></div>
 

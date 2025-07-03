@@ -27,39 +27,45 @@ const Header: React.FC = () => {
 
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     isActive
-      ? "text-white transition-colors px-4 py-2 rounded font-bold bg-gradient-to-r from-blue-500 to-purple-500"
-      : "hover:text-white transition-colors px-4 py-2 rounded";
+      ? "text-primary transition-colors px-2 py-1 rounded font-bold"
+      : "hover:text-primary transition-colors px-2 py-1 rounded";
 
   const mobileNavLinkClass = ({ isActive }: { isActive: boolean }) =>
     isActive
-      ? "block text-white transition-colors font-bold bg-gradient-to-r from-blue-500 to-purple-500"
-      : "block hover:text-white transition-colors";
+      ? "block text-primary transition-colors font-bold"
+      : "block hover:text-primary transition-colors";
 
   const isExactHashMatch = (hash: string) =>
     location.pathname + location.hash === `/about${hash}`;
 
   return (
     <>
-      <header className="py-4 px-4 md:px-8 bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg sticky top-0 z-50 border-b-0 relative animate-fadeInDown">
+      {/* Animated header entrance */}
+      <header className="py-4 px-4 md:px-8 bg-white/70 backdrop-blur-lg shadow-2xl sticky top-0 z-50 border-b-0 relative animate-fadeInDown">
+        {/* Gradient accent border */}
+        <div className="absolute left-0 right-0 bottom-0 h-1 bg-gradient-to-r from-primary via-pink-400 to-blue-400 opacity-80 rounded-b-xl pointer-events-none" />
         <div className="container-custom flex flex-col items-center md:items-start">
           <div className="w-full flex justify-between items-center mb-4">
             <NavLink to="/" className="flex-shrink-0 flex items-center gap-2" onClick={() => setIsMenuOpen(false)}>
               <img
-                src="https://your-logo-url.com/logo.png"
+                src="https://github.com/nathaniharshit/Flojet/blob/main/Flojet_Logo-removebg-preview.png?raw=true"
                 alt="Flojet Logo"
-                className="h-16 md:h-20 w-auto rounded-xl shadow-md"
+                className="h-20 md:h-28 w-auto rounded-xl border-primary/30"
               />
             </NavLink>
 
             <div className="hidden md:flex items-center gap-6">
-              <img src="https://your-image-url.com/image1.png" alt="msme" className="h-16 w-auto rounded-lg shadow" />
-              <img src="https://your-image-url.com/image2.gif" alt="globe" className="h-24 w-auto rounded-lg shadow" />
+              <img src="https://github.com/nathaniharshit/Flojet/blob/main/msme-removebg-preview.png?raw=true" alt="msme" className="h-24 w-auto" />
+              <img src="https://github.com/nathaniharshit/Flojet/blob/main/FLOJET.gif?raw=true" alt="globe" className="h-32 w-auto" />
             </div>
           </div>
 
-          <nav className="hidden md:flex justify-center gap-10 border-t pt-4 w-full relative font-semibold text-white">
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex justify-center gap-10 border-t pt-4 w-full relative font-semibold text-gray-700">
             <NavLink to="/" className={navLinkClass} onClick={() => setIsMenuOpen(false)}>
-              Home
+              <span className="relative after:block after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-red-500 after:transition-all after:duration-300 hover:after:w-full">
+                Home
+              </span>
             </NavLink>
 
             <div className="relative group" onMouseEnter={() => setIsAboutDropdownOpen(true)} onMouseLeave={() => setIsAboutDropdownOpen(false)}>
@@ -67,48 +73,56 @@ const Header: React.FC = () => {
                 to="/about"
                 className={({ isActive }) =>
                   isActive
-                    ? "flex items-center gap-1 px-2 py-1 text-white font-bold rounded cursor-pointer select-none"
-                    : "flex items-center gap-1 px-2 py-1 hover:text-white rounded cursor-pointer select-none"
+                    ? "flex items-center gap-1 px-2 py-1 text-primary font-bold rounded cursor-pointer select-none"
+                    : "flex items-center gap-1 px-2 py-1 hover:text-primary rounded cursor-pointer select-none"
                 }
                 onClick={() => setIsMenuOpen(false)}
               >
                 Company Profile <ChevronDown size={16} />
               </NavLink>
 
+              {/* Dropdown */}
               <div className="absolute top-full left-0 mt-2 w-56 bg-white/95 border border-gray-200 rounded-xl shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transform translate-y-2 group-hover:translate-y-0 transition-opacity transition-transform duration-200 ease-in-out backdrop-blur-md">
-                {[
-                  { href: 'about', label: 'About Us', rounded: 'rounded-t-lg' },
-                  { href: 'background', label: 'Background' },
-                  { href: 'we-are-there-for-you', label: 'We are there for you' },
-                  { href: 'our-vision', label: 'Our Vision' },
-                  { href: 'why-us', label: 'Why us?', rounded: 'rounded-b-lg' },
-                ].map(({ href, label, rounded = '' }) => (
-                  <button
-                    key={href}
-                    onClick={() => {
-                      setIsMenuOpen(false);
-                      setIsAboutDropdownOpen(false);
-                      document.getElementById(href)?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className={`block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors w-full text-left ${rounded}`}
-                  >
-                    {label}
-                  </button>
-                ))}
-              </div>
+              {[
+                { href: 'about', label: 'About Us', rounded: 'rounded-t-lg' },
+                { href: 'background', label: 'Background' },
+                { href: 'we-are-there-for-you', label: 'We are there for you' },
+                { href: 'our-vision', label: 'Our Vision' },
+                { href: 'why-us', label: 'Why us?', rounded: 'rounded-b-lg' },
+              ].map(({ href, label, rounded = '' }) => (
+                <button
+                  key={href}
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    setIsAboutDropdownOpen(false);
+                    document.getElementById(href)?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className={`block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors w-full text-left ${rounded}`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+
             </div>
 
             <NavLink to="/products" className={navLinkClass} onClick={() => setIsMenuOpen(false)}>
-              Products
+              <span className="relative after:block after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-red-500 after:transition-all after:duration-300 hover:after:w-full">
+                Products
+              </span>
             </NavLink>
             <NavLink to="/contact" className={navLinkClass} onClick={() => setIsMenuOpen(false)}>
-              Contact
+              <span className="relative after:block after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-red-500 after:transition-all after:duration-300 hover:after:w-full">
+                Contact
+              </span>
             </NavLink>
             <NavLink to="/certificates" className={navLinkClass} onClick={() => setIsMenuOpen(false)}>
-              Certificates
+              <span className="relative after:block after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-red-500 after:transition-all after:duration-300 hover:after:w-full">
+                Certificates
+              </span>
             </NavLink>
             <NavLink to="/contact" onClick={() => setIsMenuOpen(false)}>
-              <Button className="bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:from-purple-500 hover:to-blue-500 px-6 py-2 rounded-xl shadow-lg font-bold transition-all duration-200 border-0">
+              <Button className="bg-gradient-to-r from-red-500 via-blue-400 to-blue-300 text-white hover:from-blue-400 hover:to-red-500 px-6 py-2 rounded-xl shadow-lg font-bold transition-all duration-200 border-0">
                 Get a Quote
               </Button>
             </NavLink>
@@ -116,7 +130,7 @@ const Header: React.FC = () => {
 
           {/* Mobile Menu Toggle */}
           <div className="w-full flex justify-end md:hidden mt-2">
-            <button onClick={toggleMenu} aria-label="Toggle menu" className="text-white focus:outline-none">
+            <button onClick={toggleMenu} aria-label="Toggle menu" className="text-gray-700 focus:outline-none">
               {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
@@ -166,7 +180,7 @@ const Header: React.FC = () => {
               <NavLink to="/contact" onClick={() => setIsMenuOpen(false)} className={mobileNavLinkClass}>Contact</NavLink>
               <NavLink to="/certificates" onClick={() => setIsMenuOpen(false)} className={mobileNavLinkClass}>Certificates</NavLink>
               <NavLink to="/contact" onClick={() => setIsMenuOpen(false)}>
-                <Button className="bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:from-purple-500 hover:to-blue-500 w-full py-2 rounded-xl shadow-lg font-bold border-0">
+                <Button className="bg-gradient-to-r from-red-500 via-yellow-400 to-yellow-300 text-white hover:from-yellow-400 hover:to-red-500 w-full py-2 rounded-xl shadow-lg font-bold border-0">
                   Get a Quote
                 </Button>
               </NavLink>
@@ -175,11 +189,12 @@ const Header: React.FC = () => {
         </div>
       </header>
 
+      {/* Scroll to top button */}
       {showScrollTop && (
         <button
           onClick={scrollToTop}
           aria-label="Scroll to top"
-          className="fixed bottom-6 right-6 bg-gradient-to-br from-blue-500 to-purple-500 text-white p-3 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 border-0 animate-bounce"
+          className="fixed bottom-6 right-6 bg-gradient-to-br from-red-500 via-blue-400 to-blue-300 text-white p-3 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 border-0 animate-"
           style={{ zIndex: 1000 }}
         >
           <ArrowUp size={22} />
