@@ -18,6 +18,7 @@ const AboutPage: React.FC = () => {
       <section id="about" className="max-w-4xl mx-auto mb-20 scroll-mt-32 mb-16">
         <h1 className="text-4xl font-extrabold text-gray-900 mb-4">About Us</h1>
         <div className="w-20 h-1 bg-red-500 rounded mb-6"></div>
+        
         <p className="text-lg text-gray-700 leading-relaxed">
           The company in the year 1996 went into manufacturing and a new mission was set, a mission fuelled by
           inspiration and established a wide-ranging pilot plant set-up on which every application is tried and studied

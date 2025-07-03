@@ -51,8 +51,11 @@ const ImageCarousel: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-[500px] overflow-hidden shadow-xl">
-      <AnimatePresence custom={direction} mode="wait">
+    <div className="relative w-screen h-[500px] overflow-hidden shadow-2xl">
+      {/* Gradient overlay for better contrast */}
+      <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+
+      <AnimatePresence custom={direction} mode="sync">
         <motion.img
           key={images[currentIndex]}
           src={images[currentIndex]}
@@ -63,25 +66,45 @@ const ImageCarousel: React.FC = () => {
           animate="center"
           exit="exit"
           transition={{ duration: 0.6 }}
-          className="absolute inset-0 w-full h-full object-contain z-0"
+          className="absolute inset-0 w-full h-full object-cover z-0"
         />
       </AnimatePresence>
 
+      {/* Carousel navigation buttons */}
       <button
         onClick={prevSlide}
-        className="absolute top-1/2 left-4 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full z-10"
+        className="absolute top-1/2 left-6 -translate-y-1/2 bg-white/70 hover:bg-white/90 active:bg-white/80 text-black p-3 rounded-full shadow-lg z-20 transition-all duration-200 border border-black/10"
         aria-label="Previous Slide"
       >
-        ‹
+        <span className="text-2xl font-bold">&lsaquo;</span>
       </button>
 
       <button
         onClick={nextSlide}
-        className="absolute top-1/2 right-4 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full z-10"
+        className="absolute top-1/2 right-6 -translate-y-1/2 bg-white/70 hover:bg-white/90 active:bg-white/80 text-black p-3 rounded-full shadow-lg z-20 transition-all duration-200 border border-black/10"
         aria-label="Next Slide"
       >
-        ›
+        <span className="text-2xl font-bold">&rsaquo;</span>
       </button>
+
+      {/* Indicator dots */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+        {images.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => {
+              setDirection(idx > currentIndex ? 1 : -1);
+              setCurrentIndex(idx);
+            }}
+            className={`w-3 h-3 rounded-full border-2 border-white transition-all duration-300 ${
+              idx === currentIndex
+                ? 'bg-white scale-125 shadow-lg'
+                : 'bg-white/40 hover:bg-white/70'
+            }`}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
+      </div>
     </div>
   );
 };
