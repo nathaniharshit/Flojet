@@ -1,6 +1,7 @@
 import React from 'react';
 import { LifeBuoy, Settings, Zap, Truck, BadgeDollarSign, Factory } from 'lucide-react'; 
 import { TrendingUp, Users, Award, Store, ShieldCheck, Lightbulb } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 <div className="flex items-start space-x-4 bg-white shadow-md p-6 rounded-xl hover:shadow-lg transition-shadow">
   <Factory className="text-red-500 w-6 h-6 mt-1" />
@@ -15,9 +16,23 @@ const AboutPage: React.FC = () => {
     <main className="bg-gray-50 min-h-screen py-16 px-6 sm:px-12 md:px-20">
       
       {/* About Us */}
-      <section id="about" className="max-w-4xl mx-auto mb-20 scroll-mt-64 mb-16">
-        <h1 className="text-4xl font-extrabold text-gray-900 mb-4">About Us</h1>
-        <div className="w-20 h-1 bg-red-500 rounded mb-6"></div>
+      <section id="about" className="max-w-4xl mx-auto mb-20 scroll-mt-32 mb-16">
+        <motion.h1
+          className="text-4xl font-extrabold text-gray-900 mb-4"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          About Us
+        </motion.h1>
+        <motion.div
+          className="w-20 h-1 bg-red-500 rounded mb-6"
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+          viewport={{ once: true }}
+        />
         
         <p className="text-lg text-gray-700 leading-relaxed">
           The company in the year 1996 went into manufacturing and a new mission was set, a mission fuelled by
@@ -45,9 +60,23 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Background */}
-      <section id="background" className="max-w-4xl mx-auto mb-20 scroll-mt-64">
-        <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Background</h1>
-        <div className="w-20 h-1 bg-red-500 rounded mb-6"></div>
+      <section id="background" className="max-w-4xl mx-auto mb-20 scroll-mt-32">
+        <motion.h1
+          className="text-4xl font-extrabold text-gray-900 mb-4"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          Background
+        </motion.h1>
+        <motion.div
+          className="w-20 h-1 bg-red-500 rounded mb-6"
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+          viewport={{ once: true }}
+        />
         <p className="text-lg text-gray-700 leading-relaxed">
           Location: R.R. Engineers then was established in the year 1985 with limited activities of marketing maintenance
           products in South Gujarat only for In-situ Epoxy repair solution and asbestos free sealing products in a highly
@@ -65,9 +94,23 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* We Are There For You */}
-      <section id="we-are-there-for-you" className="max-w-4xl mx-auto mb-20 scroll-mt-64">
-        <h1 className="text-4xl font-extrabold text-gray-900 mb-4">We are there for you</h1>
-        <div className="w-20 h-1 bg-red-500 rounded mb-6"></div>
+      <section id="we-are-there-for-you" className="max-w-4xl mx-auto mb-20 scroll-mt-32">
+        <motion.h1
+          className="text-4xl font-extrabold text-gray-900 mb-4"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          We are there for you
+        </motion.h1>
+        <motion.div
+          className="w-20 h-1 bg-red-500 rounded mb-6"
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+          viewport={{ once: true }}
+        />
         <p className="text-lg text-gray-700 leading-relaxed">
           Flojet intrinsic strength is that it is the Company which offers after sales courteous visit services
           for products sold by it. Our Engineers, visit, studies and discusses problems faced in different
@@ -78,10 +121,23 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Our Vision */}
-      <section id="our-vision" className="max-w-4xl mx-auto mb-20 scroll-mt-64">
-    <h2 className="text-4xl font-extrabold text-gray-900 mb-4">Our Vision</h2>
-    <div className="w-20 h-1 bg-red-500 rounded mb-6"></div>
-
+      <section id="our-vision" className="max-w-4xl mx-auto mb-20 scroll-mt-32">
+    <motion.h2
+      className="text-4xl font-extrabold text-gray-900 mb-4"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+      viewport={{ once: true }}
+    >
+      Our Vision
+    </motion.h2>
+    <motion.div
+      className="w-20 h-1 bg-red-500 rounded mb-6"
+      initial={{ opacity: 0, x: -40 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+      viewport={{ once: true }}
+    />
     <div className="grid md:grid-cols-2 gap-6">
       {/* Goal 1 */}
       <div className="group flex items-start gap-4 p-5 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100">
@@ -138,10 +194,23 @@ const AboutPage: React.FC = () => {
 </section>
 
       {/* Why Us */}
-      <section id="why-us" className="max-w-4xl mx-auto mb-24 scroll-mt-64">
-      <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Why Us?</h1>
-      <div className="w-20 h-1 bg-red-500 rounded mb-6"></div>
-
+      <section id="why-us" className="max-w-4xl mx-auto mb-24 scroll-mt-32">
+      <motion.h1
+        className="text-4xl font-extrabold text-gray-900 mb-4"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        viewport={{ once: true }}
+      >
+        Why Us?
+      </motion.h1>
+      <motion.div
+        className="w-20 h-1 bg-red-500 rounded mb-6"
+        initial={{ opacity: 0, x: -40 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+        viewport={{ once: true }}
+      />
   <div className="grid md:grid-cols-2 gap-6 text-gray-700">
     {/* Card 1 */}
     <div className="group flex items-start gap-4 p-5 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100">

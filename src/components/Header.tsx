@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown, ChevronUp, ArrowUp } from "lucide-react";
 import { NavLink, useLocation } from 'react-router-dom';
 import DesktopNav from './DesktopNav';
+import { motion } from 'framer-motion';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -49,7 +50,13 @@ const Header: React.FC = () => {
   return (
     <>
       {/* Animated header entrance */}
-      <header ref={headerRef} className="py-4 px-4 md:px-8 bg-white shadow-2xl border-b-0 relative animate-fadeInDown">
+      <motion.header
+        ref={headerRef}
+        className="py-4 px-4 md:px-8 bg-white shadow-2xl border-b-0 relative"
+        initial={{ opacity: 0, y: -40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+      >
         {/* Gradient accent border */}
         <div className="absolute left-0 right-0 bottom-0 h-1 bg-gradient-to-r from-primary via-pink-400 to-blue-400 opacity-80 rounded-b-xl pointer-events-none" />
         <div className="container-custom flex flex-col items-center md:items-start">
@@ -127,7 +134,7 @@ const Header: React.FC = () => {
             </NavLink>
           </div>
         )}
-      </header>
+      </motion.header>
       {/* Desktop Nav - moved outside header for sticky to work globally */}
       <DesktopNav
         navLinkClass={navLinkClass}

@@ -52,7 +52,12 @@ const ImageCarousel: React.FC = () => {
   };
 
   return (
-    <div className="w-screen h-[500px] overflow-hidden shadow-2xl relative">
+    <motion.div
+      className="w-screen h-[500px] overflow-hidden shadow-2xl relative"
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+    >
       <AnimatePresence custom={direction} mode="sync">
         <motion.img
           key={images[currentIndex]}
@@ -106,7 +111,7 @@ const ImageCarousel: React.FC = () => {
           />
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

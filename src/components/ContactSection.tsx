@@ -3,10 +3,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
+import { motion } from 'framer-motion';
 
 // Importing icons
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaClock, FaEnvelopeOpen } from "react-icons/fa";
 import { Clock1, Clock10, Clock11Icon, EqualApproximatelyIcon, LucideClock6, LucideClock8, LucideClock9, Mail, MapPinCheck, MapPinnedIcon, MapPinPlusInside, PhoneIcon } from 'lucide-react';
+
+const underlineVariants = {
+  hidden: { scaleX: 0, opacity: 0 },
+  visible: { scaleX: 1, opacity: 1, transition: { duration: 0.6, ease: "easeOut" } }
+};
 
 const ContactSection: React.FC = () => {
   const { toast } = useToast();
@@ -20,21 +26,45 @@ const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="section bg-gray-50">
+    <motion.section
+      id="contact"
+      className="section bg-gray-50"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+      viewport={{ once: true }}
+    >
       <div className="container-custom">
-        
-        <div className="text-center mb-16 fade-in">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Contact Us</h2>
-          <div className="w-24 h-1 bg-primary mx-auto mb-6 animate-scaleIn origin-left"></div>
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">Contact Us</h2>
+          <motion.div
+            className="w-24 h-1 bg-red-600 mx-auto mb-6 origin-left"
+            variants={underlineVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          />
           <p className="max-w-3xl mx-auto text-lg text-gray-600">
             Have questions about our carbon gaskets or need a custom solution?
             Our engineering team is ready to assist you.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 fade-in">
+        <div className="grid md:grid-cols-2 gap-12">
           {/* Left Form */}
-          <div className="bg-white p-8 rounded-lg shadow-lg">
+          <motion.div
+            className="bg-white p-8 rounded-lg shadow-lg"
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
             <h3 className="text-2xl font-bold text-gray-800 mb-6">Send Us a Message</h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -73,10 +103,16 @@ const ContactSection: React.FC = () => {
                 Submit Inquiry
               </Button>
             </form>
-          </div>
+          </motion.div>
 
           {/* Right Info Section */}
-          <div className="space-y-8">
+          <motion.div
+            className="space-y-8"
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
             <div className="bg-white p-8 rounded-lg shadow-lg mb-8">
               <h3 className="text-2xl font-bold text-gray-800 mb-6">Get In Touch</h3>
               <div className="space-y-4">
@@ -122,7 +158,13 @@ const ContactSection: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-white p-8 rounded-lg shadow-lg">
+            <motion.div
+              className="bg-white p-8 rounded-lg shadow-lg"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
+              viewport={{ once: true }}
+            >
               <h3 className="text-2xl font-bold text-gray-800 mb-6">Request a Quote</h3>
               <p className="text-gray-600 mb-6">
                 Need a quick quote for your project? Our team will provide a detailed 
@@ -131,11 +173,11 @@ const ContactSection: React.FC = () => {
               <Button className="w-full bg-primary hover:bg-primary/90 text-white">
                 Request Quote
               </Button>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

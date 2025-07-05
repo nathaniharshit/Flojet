@@ -1,23 +1,56 @@
 import React from 'react';
 import ImageCarousel from './ImageCarousel';
-import {CheckCircle } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+const underlineVariants = {
+  hidden: { scaleX: 0, opacity: 0 },
+  visible: { scaleX: 1, opacity: 1, transition: { duration: 0.6, ease: "easeOut" } }
+};
 
 const Hero: React.FC = () => {
   return (
     <>
       {/* Image Carousel Section */}
-      <section className="py-8 bg-gray-100">
+      <motion.section
+        className="py-8 bg-gray-100"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        viewport={{ once: true }}
+      >
         <div className="container-custom px-4 md:px-8 flex justify-center">
           <ImageCarousel />
         </div>
-      </section>
+      </motion.section>
 
       {/* About Us Section */}
-      <section className="py-16 bg-gray-100 text-gray-800">
+      <motion.section
+        className="py-16 bg-gray-100 text-gray-800"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+        viewport={{ once: true }}
+      >
         <div className="container-custom px-4 md:px-8 flex flex-col md:flex-row items-center gap-12 max-w-6xl mx-auto">
           {/* Text */}
-          <div className="md:w-1/2">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">About Our Company</h2>
+          <motion.div
+            className="md:w-1/2"
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-2">About Our Company</h2>
+              <motion.div
+                className="w-20 h-1 bg-red-500 rounded mb-6 origin-left"
+                variants={underlineVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              />
+            </div>
             <p className="text-lg text-black-2000 mb-4">
               <span className="font-bold">"Flojet®"</span> – Trusted Excellence in 
               <span className="font-bold"> Sealing Solutions</span> for Over 
@@ -55,78 +88,119 @@ const Hero: React.FC = () => {
               <span className="font-bold"> precision</span>, and 
               <span className="font-bold"> reliability</span>.
             </p>
-          </div>
+          </motion.div>
 
           {/* Image */}
-          <div className="md:w-1/2 flex justify-center">
+          <motion.div
+            className="md:w-1/2 flex justify-center"
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
             <img
               src="https://github.com/nathaniharshit/Flojet/blob/main/images/company_overview.jpg?raw=true"
               alt="Company Overview"
               className="rounded-xl shadow-lg max-w-[400px] w-full h-auto"
             />
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
      {/* Why Choose Us Section */}
-<section className="py-16 bg-white-100 text-gray-800">
-  <div className="container-custom px-4 md:px-8 max-w-6xl mx-auto">
-    <h2 className="text-3xl md:text-4xl font-bold mb-10">Why Choose Us</h2>
+      <motion.section
+        className="py-16 bg-white-100 text-gray-800"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+        viewport={{ once: true }}
+      >
+        <div className="container-custom px-4 md:px-8 max-w-6xl mx-auto">
+          <div>
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold mb-2"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+              viewport={{ once: true }}
+            >
+              Why Choose Us
+            </motion.h2>
+            <motion.div
+              className="w-20 h-1 bg-red-500 rounded mb-10 origin-left"
+              variants={underlineVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            />
+          </div>
+          <div className="flex flex-col md:flex-row items-center gap-12">
+            {/* Points Column */}
+            <motion.div
+              className="md:w-1/2 space-y-6"
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+              viewport={{ once: true }}
+            >
+              <div className="flex items-start gap-4">
+                <CheckCircle className="w-6 h-6 text-red-600 shrink-0" />
+                <div>
+                  <h3 className="font-semibold text-xl">Technical Support:</h3>
+                  <p className="text-gray-600 text-l">
+                    We provide technical selection support from our wide range of products suitable for the application parameters.
+                  </p>
+                </div>
+              </div>
 
-    <div className="flex flex-col md:flex-row items-center gap-12">
-      {/* Points Column */}
-      <div className="md:w-1/2 space-y-6">
-      <div className="flex items-start gap-4">
-      <CheckCircle className="w-6 h-6 text-red-600 shrink-0" />
-      <div>
-            <h3 className="font-semibold text-xl">Technical Support:</h3>
-            <p className="text-gray-600 text-l">
-              We provide technical selection support from our wide range of products suitable for the application parameters.
-            </p>
+              <div className="flex items-start gap-4">
+                <CheckCircle className="w-6 h-6 text-red-600 shrink-0" />
+                <div>
+                  <h3 className="font-semibold text-xl">Special Customizations:</h3>
+                  <p className="text-gray-600 text-l">
+                    We specially design the Gland Packing and Gasketing products suitable to your application parameters.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <CheckCircle className="w-6 h-6 text-red-600 shrink-0" />
+                <div>
+                  <h3 className="font-semibold text-xl">Regular / Emergency Support:</h3>
+                  <p className="text-gray-600 text-l">
+                    We take orders to meet your regular / emergency requirements and ensure timely deliveries through the fastest courier service agencies or personal deliveries wherever possible.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <CheckCircle className="w-6 h-6 text-red-600 shrink-0" />
+                <div>
+                  <h3 className="font-semibold text-xl">Best Price Support:</h3>
+                  <p className="text-gray-600 text-l">
+                    We can work out special prices for specific requirements Or Even go for an annual contract and keep you supplying products when required with lock-in price.
+                  </p>
+                </div>
+              </div>      
+            </motion.div>
+
+            {/* Image Column */}
+            <motion.div
+              className="md:w-1/2 flex justify-center"
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+              viewport={{ once: true }}
+            >
+              <img
+                src="https://github.com/nathaniharshit/Flojet/blob/main/images/why_choose_img.jpg?raw=true"
+                alt="Why Choose Us"
+                className="max-w-[650px] w-full h-auto"
+              />
+            </motion.div>
           </div>
         </div>
-
-        <div className="flex items-start gap-4">
-        <CheckCircle className="w-6 h-6 text-red-600 shrink-0" />
-        <div>
-            <h3 className="font-semibold text-xl">Special Customizations:</h3>
-            <p className="text-gray-600 text-l">
-              We specially design the Gland Packing and Gasketing products suitable to your application parameters.
-            </p>
-          </div>
-        </div>
-
-        <div className="flex items-start gap-4">
-        <CheckCircle className="w-6 h-6 text-red-600 shrink-0" />
-        <div>
-            <h3 className="font-semibold text-xl">Regular / Emergency Support:</h3>
-            <p className="text-gray-600 text-l">
-              We take orders to meet your regular / emergency requirements and ensure timely deliveries through the fastest courier service agencies or personal deliveries wherever possible.            </p>
-          </div>
-        </div>
-
-        <div className="flex items-start gap-4">
-        <CheckCircle className="w-6 h-6 text-red-600 shrink-0" />
-        <div>
-            <h3 className="font-semibold text-xl">Best Price Support:</h3>
-            <p className="text-gray-600 text-l">
-              We can work out special prices for specific requirements Or Even go for an annual contract and keep you supplying products when required with lock-in price.            
-            </p>
-          </div>
-        </div>      
-      </div>
-
-      {/* Image Column */}
-      <div className="md:w-1/2 flex justify-center">
-        <img
-          src="https://github.com/nathaniharshit/Flojet/blob/main/images/why_choose_img.jpg?raw=true"
-          alt="Why Choose Us"
-          className="max-w-[650px] w-full h-auto"
-        />
-      </div>
-    </div>
-  </div>
-</section>
+      </motion.section>
     </>
   );
 };

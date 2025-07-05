@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import {
   Carousel,
@@ -16,7 +16,7 @@ interface Client {
 }
 
 const clientsList: Client[] = [
-  { name: "Ambuja Cement", logo: "https://www.ambujacement.com/Upload/Content_Files/ambuja-cement-giant.jpg" },
+  { name: "Ambuja Cement", logo: "https://upload.wikimedia.org/wikipedia/en/thumb/2/25/Ambuja_Cements.svg/1200px-Ambuja_Cements.svg.png" },
   { name: "Alembic", logo: "https://alembicpharmaceuticals.com/assets/img/Alembic-logo.webp"},
   { name: "ONGC", logo: "https://i.pinimg.com/736x/d2/86/cb/d286cb1186455a2f230623d445eb6955.jpg"},
   { name: "Bharat Petroleum", logo:"https://i.pinimg.com/736x/3e/9b/64/3e9b64f5b3265600431836556dd1ee7c.jpg"},
@@ -34,45 +34,88 @@ const clientsList: Client[] = [
   { name: "Pidilite Ltd", logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKf_qsZl1oFSGuqHUe1bNCQbKgNRHys0b-qQ&s"}
 ];
 
+const headingVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } }
+};
+
+const dividerVariants = {
+  hidden: { opacity: 0, x: -40 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7, delay: 0.2, ease: "easeOut" } }
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, scale: 0.95, y: 30 },
+  visible: (i: number) => ({
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { duration: 0.5, delay: i * 0.08, ease: "easeOut" }
+  })
+};
+
 const Clients: React.FC = () => {
+  const nextBtnRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextBtnRef.current?.click();
+    }, 2500); // Change slide every 2.5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="bg-gray-50 py-16">
       <motion.div
         className="container-custom"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
+        initial="hidden"
+        whileInView="visible"
         viewport={{ once: true }}
       >
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Trusted by Industry Leaders</h2>
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Users className="h-6 w-6 text-primary" />
-            <p className="text-xl text-gray-600">Our Valued Clients</p>
-          </div>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            We're proud to work with leading companies across various industries, 
-            providing high-quality gasketing solutions for critical applications.
-          </p>
+        <motion.h2
+          className="text-3xl md:text-4xl font-bold mb-4 text-center"
+          variants={headingVariants}
+        >
+          Trusted by Industry Leaders
+        </motion.h2>
+        <motion.div
+          className="w-20 h-1 bg-red-500 rounded mx-auto mb-6"
+          variants={dividerVariants}
+        />
+        <div className="flex items-center justify-center gap-2 mb-4">
+          <Users className="h-6 w-6 text-primary" />
+          <p className="text-xl text-gray-600">Our Valued Clients</p>
         </div>
+        <p className="text-gray-600 max-w-2xl mx-auto mb-8 text-center">
+          We're proud to work with leading companies across various industries, 
+          providing high-quality gasketing solutions for critical applications.
+        </p>
 
         <Carousel className="w-full max-w-5xl mx-auto" opts={{ loop: true }}>
           <CarouselContent>
             {clientsList.map((client, index) => (
               <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.2, delay: index * 0.1 }}
+                  custom={index}
+                  initial="hidden"
+                  whileInView="visible"
                   viewport={{ once: true }}
+                  variants={cardVariants}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="h-full"
                 >
-                  <Card className="border-2 border-gray-200 hover:border-primary transition-colors h-full">
+                  <Card className="border-2 border-gray-200 hover:border-primary transition-colors h-full bg-white/90 shadow-lg">
                     <CardContent className="flex flex-col items-center justify-center p-6 text-center h-full">
                       {client.logo ? (
-                        <img
+                        <motion.img
                           src={client.logo}
                           alt={`${client.name} logo`}
                           className="h-16 mb-4 object-contain"
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.5, delay: 0.1 * index }}
+                          viewport={{ once: true }}
                         />
                       ) : (
                         <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
@@ -87,8 +130,10 @@ const Clients: React.FC = () => {
             ))}
           </CarouselContent>
           <CarouselPrevious className="absolute left-[-2rem] top-1/2 -translate-y-1/2 z-10" />
-<CarouselNext className="absolute right-[-2rem] top-1/2 -translate-y-1/2 z-10" />
-
+          <CarouselNext
+            className="absolute right-[-2rem] top-1/2 -translate-y-1/2 z-10"
+            ref={nextBtnRef}
+          />
         </Carousel>
       </motion.div>
     </section>
