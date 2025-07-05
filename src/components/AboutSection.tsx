@@ -17,46 +17,64 @@ const AboutPage: React.FC = () => {
       
       {/* About Us */}
       <section id="about" className="max-w-4xl mx-auto mb-20 scroll-mt-32 mb-16">
-        <motion.h1
-          className="text-4xl font-extrabold text-gray-900 mb-4"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          viewport={{ once: true }}
-        >
-          About Us
-        </motion.h1>
-        <motion.div
-          className="w-20 h-1 bg-red-500 rounded mb-6"
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-          viewport={{ once: true }}
-        />
-        
-        <p className="text-lg text-gray-700 leading-relaxed">
-          The company in the year 1996 went into manufacturing and a new mission was set, a mission fuelled by
-          inspiration and established a wide-ranging pilot plant set-up on which every application is tried and studied
-          deeply. Each of the analysis is confirmed by technically qualified, experienced and committed professionals from
-          the particular key areas.
-          “Flojet®” products are being manufactured through the world’s best technology, most modern machines
-          developed with the help of research, applied science, specialized technical knowledge and innovative skilled
-          experienced technocrats, with firm belief in ‘Investment for the future’ by continuously upgrading facility.
-          Our own overseas staff carefully selects every product from the origin i.e. manufacturers where it is 
-          produced and is inspected through all the processes to ensure their quality before shipping. Company is always
-          engaged in buying good and new technology products and then developing and inspecting at every step which
-          make “FLOJET®”- A PRODUCT UNIQUE. Moreover, we believe that THIS SMALL MAINTENANCE PRODUCTS
-          needs to be dealt with the special care, if it needs to be HIGHLY RELIABLE AND DURABLE.
-   
-          We, at Flojet Engineers Pvt. Ltd., are actively engaged in R&amp;D to expand and upgrade the existing line
-          of sealing method in the Indian industries.
-          The moving force behind FEPL&#39;S success is its decentralized management philosophy. A profit center
-          approach to branch management, allows on the spot decision making, trained and experienced sales field force
-          and dedicated and committed employees.
-          Presently, “Flojet®” is supplying their products to more than 1000 Satisfied Customers in all Segments
-          such as Refinery, Petrochemicals, Chemicals, Dyes-Intermediates, Fertilizer, Pharmaceuticals, Engineering,
-          Food, Gas and Oil Extraction, Sugar, Steel, Pulp &amp; Paper, Power Generation, Marine etc.
-        </p>
+        <div className="flex flex-col md:flex-row items-center gap-8">
+          {/* Image on the left */}
+          <motion.div
+            className="md:w-1/3 w-full flex justify-center"
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
+            <img
+              src="https://github.com/nathaniharshit/Flojet/blob/main/Flojet%20Engineers%20Pvt.%20Ltd.%20-%20A%20Legacy%20of%20Innovation%20and%20Quality%20-%20visual%20selection.png?raw=true"
+              alt="Flojet Engineers Pvt Ltd"
+              className="rounded-xl shadow-lg max-w-[350px] w-full h-auto"
+            />
+          </motion.div>
+          {/* Text on the right */}
+          <div className="md:w-2/3 w-full">
+            <motion.h1
+              className="text-4xl font-extrabold text-gray-900 mb-4"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              viewport={{ once: true }}
+            >
+              About Us
+            </motion.h1>
+            <motion.div
+              className="w-20 h-1 bg-red-500 rounded mb-6"
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+              viewport={{ once: true }}
+            />
+            <p className="text-lg text-gray-700 leading-relaxed">
+              The company in the year 1996 went into manufacturing and a new mission was set, a mission fuelled by
+              inspiration and established a wide-ranging pilot plant set-up on which every application is tried and studied
+              deeply. Each of the analysis is confirmed by technically qualified, experienced and committed professionals from
+              the particular key areas.
+              “Flojet®” products are being manufactured through the world’s best technology, most modern machines
+              developed with the help of research, applied science, specialized technical knowledge and innovative skilled
+              experienced technocrats, with firm belief in ‘Investment for the future’ by continuously upgrading facility.
+              Our own overseas staff carefully selects every product from the origin i.e. manufacturers where it is 
+              produced and is inspected through all the processes to ensure their quality before shipping. Company is always
+              engaged in buying good and new technology products and then developing and inspecting at every step which
+              make “FLOJET®”- A PRODUCT UNIQUE. Moreover, we believe that THIS SMALL MAINTENANCE PRODUCTS
+              needs to be dealt with the special care, if it needs to be HIGHLY RELIABLE AND DURABLE.
+              <br />
+              We, at Flojet Engineers Pvt. Ltd., are actively engaged in R&amp;D to expand and upgrade the existing line
+              of sealing method in the Indian industries.
+              The moving force behind FEPL&#39;S success is its decentralized management philosophy. A profit center
+              approach to branch management, allows on the spot decision making, trained and experienced sales field force
+              and dedicated and committed employees.
+              Presently, “Flojet®” is supplying their products to more than 1000 Satisfied Customers in all Segments
+              such as Refinery, Petrochemicals, Chemicals, Dyes-Intermediates, Fertilizer, Pharmaceuticals, Engineering,
+              Food, Gas and Oil Extraction, Sugar, Steel, Pulp &amp; Paper, Power Generation, Marine etc.
+            </p>
+          </div>
+        </div>
       </section>
 
       {/* Background */}
