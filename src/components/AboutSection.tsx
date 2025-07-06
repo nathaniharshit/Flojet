@@ -25,38 +25,52 @@ const AboutSection: React.FC = () => {
           transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
           viewport={{ once: true }}
         />
-        <div className="grid md:grid-cols-3 gap-6 items-start">
-          <div className="md:col-span-2">
+        <div className="space-y-4">
+          {/* First section with text and image side by side */}
+          <div className="grid md:grid-cols-2 gap-8 items-start">
+            <div className="space-y-6">
+              <p className="text-lg text-gray-700 leading-relaxed">
+                The company in the year 1996 went into manufacturing and a new mission was set, a mission fuelled by
+                inspiration and established a wide-ranging pilot plant set-up on which every application is tried and studied
+                deeply. Each of the analysis is confirmed by technically qualified, experienced and committed professionals from
+                the particular key areas.
+              </p>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                "Flojet®" products are being manufactured through the world's best technology, most modern machines
+                developed with the help of research, applied science, specialized technical knowledge and innovative skilled
+                experienced technocrats, with firm belief in 'Investment for the future' by continuously upgrading facility.
+                Our own overseas staff carefully selects every product from the origin i.e. manufacturers where it is 
+                produced and is inspected through all the processes to ensure their quality before shipping.
+              </p>
+            </div>
+            <div className="flex justify-center">
+              <img
+                src="/Flojet Engineers Pvt. Ltd. - A Legacy of Innovation and Quality - visual selection.png"
+                alt="Flojet Engineers Pvt. Ltd. - A Legacy of Innovation and Quality"
+                className="w-full h-auto max-w-md opacity-90 transition-opacity duration-300 hover:opacity-100"
+              />
+            </div>
+          </div>
+          
+          {/* Remaining text in full width below the image */}
+          <div className="space-y-6">
             <p className="text-lg text-gray-700 leading-relaxed">
-              The company in the year 1996 went into manufacturing and a new mission was set, a mission fuelled by
-              inspiration and established a wide-ranging pilot plant set-up on which every application is tried and studied
-              deeply. Each of the analysis is confirmed by technically qualified, experienced and committed professionals from
-              the particular key areas.
-              “Flojet®” products are being manufactured through the world’s best technology, most modern machines
-              developed with the help of research, applied science, specialized technical knowledge and innovative skilled
-              experienced technocrats, with firm belief in ‘Investment for the future’ by continuously upgrading facility.
-              Our own overseas staff carefully selects every product from the origin i.e. manufacturers where it is 
-              produced and is inspected through all the processes to ensure their quality before shipping. Company is always
-              engaged in buying good and new technology products and then developing and inspecting at every step which
-              make “FLOJET®”- A PRODUCT UNIQUE. Moreover, we believe that THIS SMALL MAINTENANCE PRODUCTS
+              Company is always engaged in buying good and new technology products and then developing and inspecting at every step which
+              make "FLOJET®"- A PRODUCT UNIQUE. Moreover, we believe that THIS SMALL MAINTENANCE PRODUCTS
               needs to be dealt with the special care, if it needs to be HIGHLY RELIABLE AND DURABLE.
-              <br />
-              We, at Flojet Engineers Pvt. Ltd., are actively engaged in R&amp;D to expand and upgrade the existing line
+            </p>
+            <p className="text-lg text-gray-700 leading-relaxed">
+              We, at Flojet Engineers Pvt. Ltd., are actively engaged in R&D to expand and upgrade the existing line
               of sealing method in the Indian industries.
-              The moving force behind FEPL&#39;S success is its decentralized management philosophy. A profit center
+              The moving force behind FEPL'S success is its decentralized management philosophy. A profit center
               approach to branch management, allows on the spot decision making, trained and experienced sales field force
               and dedicated and committed employees.
-              Presently, “Flojet®” is supplying their products to more than 1000 Satisfied Customers in all Segments
-              such as Refinery, Petrochemicals, Chemicals, Dyes-Intermediates, Fertilizer, Pharmaceuticals, Engineering,
-              Food, Gas and Oil Extraction, Sugar, Steel, Pulp &amp; Paper, Power Generation, Marine etc.
             </p>
-          </div>
-          <div className="md:col-span-1 flex justify-center md:justify-end mt-6 md:mt-0">
-            <img
-              src="/Flojet Engineers Pvt. Ltd. - A Legacy of Innovation and Quality - visual selection.png"
-              alt="Flojet Engineers Pvt. Ltd. - A Legacy of Innovation and Quality"
-              className="rounded-lg shadow-lg object-cover w-full h-auto max-w-xs"
-            />
+            <p className="text-lg text-gray-700 leading-relaxed">
+              Presently, "Flojet®" is supplying their products to more than 1000 Satisfied Customers in all Segments
+              such as Refinery, Petrochemicals, Chemicals, Dyes-Intermediates, Fertilizer, Pharmaceuticals, Engineering,
+              Food, Gas and Oil Extraction, Sugar, Steel, Pulp & Paper, Power Generation, Marine etc.
+            </p>
           </div>
         </div>
       </section>
@@ -79,22 +93,25 @@ const AboutSection: React.FC = () => {
           transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
           viewport={{ once: true }}
         />
-        <div className="grid md:grid-cols-3 gap-6 items-start">
-          <div className="md:col-span-2">
-            <p className="text-lg text-gray-700 leading-relaxed">
+        <div className="relative">
+          <img
+            src="/Flojet Engineers Pvt. Ltd. - A Journey Through Time - visual selection.png"
+            alt="Flojet Engineers Pvt. Ltd. - A Journey Through Time"
+            className="float-right ml-8 mb-6 w-full h-auto max-w-md opacity-90 transition-opacity duration-300 hover:opacity-100 md:w-1/2 lg:w-2/5"
+          />
+          <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
+            <p>
               Location: R.R. Engineers then was established in the year 1985 with limited activities of marketing maintenance
               products in South Gujarat only for In-situ Epoxy repair solution and asbestos free sealing products in a highly
               Industrialized City known as Vadodara (Baroda) which is 400 kms south of Mumbai (Bombay) in very prosperous
-              Gujarat state located in west coast and central India. In 1989 R.R Engineers was renamed as Flojet Engineers Pvt. Ltd with a vision of expanding the business whole Gujarat state and solving all types of engineering maintenance problem.
+              Gujarat state located in west coast and central India.
+            </p>
+            <p>
+              In 1989 R.R Engineers was renamed as Flojet Engineers Pvt. Ltd with a vision of expanding the business whole Gujarat state and solving all types of engineering maintenance problem.
+            </p>
+            <p>
               In 1995 Flojet further expanded their business in manufacturing sector with latest technology to manufacture Four Track Square Braided Gland Packings at 31, Sardar Industrial Estate, Ajwa Road, Vadodara and since past 25 years we have become one the biggest manufacturer for Asbestos free Gland Packing serving more than 2000 clients all over India. We are proud to have 90% retention of clients since 1985 inception of our business.
             </p>
-          </div>
-          <div className="md:col-span-1 flex justify-center md:justify-end mt-6 md:mt-0">
-            <img
-              src="/Flojet Engineers Pvt. Ltd. - A Journey Through Time - visual selection.png"
-              alt="Flojet Engineers Pvt. Ltd. - A Journey Through Time"
-              className="rounded-lg shadow-lg object-cover w-full h-auto max-w-xs"
-            />
           </div>
         </div>
       </section>
