@@ -36,28 +36,25 @@ const ImageCarousel: React.FC = () => {
     enter: (dir: number) => ({
       x: dir > 0 ? 100 : -100,
       opacity: 0,
-      scale: 1.05,
+      scale: 0.95,
     }),
     center: {
       x: 0,
       opacity: 1,
       scale: 1,
-      transition: { duration: 0.7, ease: "easeOut" }
     },
     exit: (dir: number) => ({
       x: dir > 0 ? -100 : 100,
       opacity: 0,
-      scale: 1.05,
+      scale: 0.95,
     }),
   };
 
   return (
-    <motion.div
-      className="w-screen h-[500px] overflow-hidden shadow-2xl relative"
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-    >
+    <div className="relative w-screen h-[500px] overflow-hidden shadow-2xl">
+      {/* Gradient overlay for better contrast */}
+      <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+
       <AnimatePresence custom={direction} mode="sync">
         <motion.img
           key={images[currentIndex]}
@@ -68,50 +65,47 @@ const ImageCarousel: React.FC = () => {
           initial="enter"
           animate="center"
           exit="exit"
-          transition={{ duration: 0.7, ease: "easeInOut" }}
-          className="absolute inset-0 w-full h-full object-cover z-0 scale-105"
+          transition={{ duration: 0.6 }}
+          className="absolute inset-0 w-full h-full object-cover z-0"
         />
       </AnimatePresence>
 
-      <motion.button
+      {/* Carousel navigation buttons */}
+      <button
         onClick={prevSlide}
-        className="absolute top-1/2 left-8 -translate-y-1/2 bg-white/30 backdrop-blur-md hover:bg-blue-500/70 active:bg-blue-700/80 text-white p-4 rounded-full shadow-xl z-20 transition-all duration-200 border border-white/30"
+        className="absolute top-1/2 left-6 -translate-y-1/2 bg-white/70 hover:bg-white/90 active:bg-white/80 text-black p-3 rounded-full shadow-lg z-20 transition-all duration-200 border border-black/10"
         aria-label="Previous Slide"
-        whileHover={{ scale: 1.15 }}
-        whileTap={{ scale: 0.95 }}
       >
-        <span className="text-3xl font-bold drop-shadow-lg">&lsaquo;</span>
-      </motion.button>
+        <span className="text-2xl font-bold">&lsaquo;</span>
+      </button>
 
-      <motion.button
+      <button
         onClick={nextSlide}
-        className="absolute top-1/2 right-8 -translate-y-1/2 bg-white/30 backdrop-blur-md hover:bg-blue-500/70 active:bg-blue-700/80 text-white p-4 rounded-full shadow-xl z-20 transition-all duration-200 border border-white/30"
+        className="absolute top-1/2 right-6 -translate-y-1/2 bg-white/70 hover:bg-white/90 active:bg-white/80 text-black p-3 rounded-full shadow-lg z-20 transition-all duration-200 border border-black/10"
         aria-label="Next Slide"
-        whileHover={{ scale: 1.15 }}
-        whileTap={{ scale: 0.95 }}
       >
-        <span className="text-3xl font-bold drop-shadow-lg">&rsaquo;</span>
-      </motion.button>
+        <span className="text-2xl font-bold">&rsaquo;</span>
+      </button>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-4 z-20">
+      {/* Indicator dots */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-20">
         {images.map((_, idx) => (
-          <motion.button
+          <button
             key={idx}
             onClick={() => {
               setDirection(idx > currentIndex ? 1 : -1);
               setCurrentIndex(idx);
             }}
-            className={`w-5 h-5 rounded-full border-2 border-white shadow-lg transition-all duration-300 flex items-center justify-center ${
+            className={`w-3 h-3 rounded-full border-2 border-white transition-all duration-300 ${
               idx === currentIndex
-                ? 'bg-blue-500 scale-125 ring-4 ring-blue-300/40'
-                : 'bg-white/40 hover:bg-blue-400/70'
+                ? 'bg-white scale-125 shadow-lg'
+                : 'bg-white/40 hover:bg-white/70'
             }`}
             aria-label={`Go to slide ${idx + 1}`}
-            whileHover={{ scale: 1.2 }}
           />
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 };
 

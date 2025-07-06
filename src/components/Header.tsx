@@ -145,14 +145,14 @@ const Header: React.FC = () => {
 
       {/* Scroll to top button */}
       {showScrollTop && (
-        <button
+        <Button
           onClick={scrollToTop}
           aria-label="Scroll to top"
           className="fixed bottom-6 right-6 bg-gradient-to-br from-red-500 via-blue-400 to-blue-300 text-white p-3 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 border-0 animate-"
           style={{ zIndex: 1000 }}
         >
           <ArrowUp size={22} />
-        </button>
+        </Button>
       )}
     </>
   );
