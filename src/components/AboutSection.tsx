@@ -3,15 +3,7 @@ import { LifeBuoy, Settings, Zap, Truck, BadgeDollarSign, Factory } from 'lucide
 import { TrendingUp, Users, Award, Store, ShieldCheck, Lightbulb } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-<div className="flex items-start space-x-4 bg-white shadow-md p-6 rounded-xl hover:shadow-lg transition-shadow">
-  <Factory className="text-red-500 w-6 h-6 mt-1" />
-  <div>
-    <p className="font-bold text-gray-800">In-House Manufacturing Expertise</p>
-    <p>We manufacture our gaskets in-house using advanced machines and strict quality standards, ensuring precision and reliability in every product.</p>
-  </div>
-</div>
-
-const AboutPage: React.FC = () => {
+const AboutSection: React.FC = () => {
   return (
     <main className="bg-gray-50 min-h-screen py-16 px-6 sm:px-12 md:px-20">
       
@@ -284,4 +276,4 @@ const AboutPage: React.FC = () => {
   );
 };
 
-export default AboutPage;
+export default AboutSection;
