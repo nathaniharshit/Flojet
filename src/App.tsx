@@ -6,11 +6,14 @@ import Products from './pages/Products';
 import Features from './pages/Features';
 import Contact from './pages/Contact';
 import Certificates from './components/Certificates';
+import ScrollToTop from './components/ScrollToTop';
+
 
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         {/* Layout is parent route */}
         <Route path="/" element={<Layout />}>
