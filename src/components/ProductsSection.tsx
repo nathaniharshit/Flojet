@@ -617,7 +617,7 @@ const ProductsSection: React.FC = () => {
           ]
         }
       ],
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800"
+      image: "https://github.com/nathaniharshit/Flojet/blob/main/images/1.jpeg?raw=true"
     },
     {
       id: 2,
@@ -728,7 +728,7 @@ const ProductsSection: React.FC = () => {
           documentFile: "1667555727.pdf"
         }
       ],
-      image: "https://images.unsplash.com/photo-1590736969955-71cc94901144?q=80&w=800"
+      image: "https://github.com/nathaniharshit/Flojet/blob/main/images/2.jpeg?raw=true"
     },
     {
       id: 3,
@@ -846,7 +846,7 @@ const ProductsSection: React.FC = () => {
           documentFile: "1667295639.pdf"
         }
       ],
-      image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=800"
+      image: "https://github.com/nathaniharshit/Flojet/blob/main/images/3.jpeg?raw=true"
     },
     {
       id: 4,
@@ -980,7 +980,7 @@ const ProductsSection: React.FC = () => {
           documentFile: "1665040587.pdf"
         }
       ],
-      image: "https://images.unsplash.com/photo-1621905251918-48416bd8575a?q=80&w=800"
+      image: "https://github.com/nathaniharshit/Flojet/blob/main/images/4.jpeg?raw=true"
     }
   ];
 
