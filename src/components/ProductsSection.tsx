@@ -4,11 +4,37 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Link } from 'react-router-dom';
 import { CheckCircle, Award, Shield, Clock, ChevronDown, ChevronUp, FileText, X, Download } from 'lucide-react';
 
+// Add a class-based ErrorBoundary at the top of the file
+class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean; error: any }> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+  static getDerivedStateFromError(error: any) {
+    return { hasError: true, error };
+  }
+  componentDidCatch(error: any, errorInfo: any) {
+    // You can log errorInfo here if needed
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="p-8 bg-red-50 text-red-700 rounded-lg my-8">
+          <h2 className="text-2xl font-bold mb-2">Something went wrong.</h2>
+          <p>{this.state.error?.message || "An unexpected error occurred."}</p>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 const ProductsSection: React.FC = () => {
   const [currentScreen, setCurrentScreen] = useState<'main' | 'generations' | 'products' | 'regularProducts' | 'productDetail'>('main');
   const [selectedGeneration, setSelectedGeneration] = useState<number | null>(null);
   const [selectedProduct, setSelectedProduct] = useState<number | null>(null);
   const [selectedProductDetail, setSelectedProductDetail] = useState<any>(null);
+  const [productDetailParent, setProductDetailParent] = useState<'products' | 'regularProducts' | null>(null);
 
   const goToGenerations = () => {
     setCurrentScreen('generations');
@@ -24,17 +50,20 @@ const ProductsSection: React.FC = () => {
     setCurrentScreen('regularProducts');
   };
 
-  const goToProductDetail = (product: any) => {
+  const goToProductDetail = (product: any, parent: 'products' | 'regularProducts') => {
     setSelectedProductDetail(product);
+    setProductDetailParent(parent);
     setCurrentScreen('productDetail');
   };
 
   const goBack = () => {
     if (currentScreen === 'productDetail') {
-      if (selectedGeneration !== null) {
+      if (productDetailParent === 'products') {
         setCurrentScreen('products');
-      } else {
+      } else if (productDetailParent === 'regularProducts') {
         setCurrentScreen('regularProducts');
+      } else {
+        setCurrentScreen('main');
       }
     } else if (currentScreen === 'products') {
       setCurrentScreen('generations');
@@ -42,6 +71,7 @@ const ProductsSection: React.FC = () => {
       setCurrentScreen('main');
     }
   };
+
   const products = [
     {
       id: 1,
@@ -343,7 +373,6 @@ const ProductsSection: React.FC = () => {
                 pressure: "1200 PSI",
                 phValue: "0 to 14"
               },
-              documentFile: "1666068161.pdf"
             },
             {
               name: "FLOJET - Style-2 (EP.T.F.E I Aramid Packing)",
@@ -956,379 +985,365 @@ const ProductsSection: React.FC = () => {
   ];
 
   return (
-    <section id="products" className="section bg-white">
-      <div className="container-custom">
-        {/* Main Products Screen */}
-        {currentScreen === 'main' && (
-          <>
-            <div className="text-center mb-16 fade-in">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Flojet® Product Range</h2>
-              <div className="w-24 h-1 bg-red-500 mx-auto mb-6"></div>
-              <p className="max-w-3xl mx-auto text-lg text-gray-600">
-                Discover our four main product categories with comprehensive sub-products designed to meet 
-                diverse industrial sealing and repair requirements with over 35 years of engineering expertise.
-              </p>
-            </div>
+    <ErrorBoundary>
+      <section id="products" className="section bg-white">
+        <div className="container-custom">
+          {/* Main Products Screen */}
+          {currentScreen === 'main' && (
+            <>
+              <div className="text-center mb-16 fade-in">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Flojet® Product Range</h2>
+                <div className="w-24 h-1 bg-red-500 mx-auto mb-6"></div>
+                <p className="max-w-3xl mx-auto text-lg text-gray-600">
+                  Discover our four main product categories with comprehensive sub-products designed to meet 
+                  diverse industrial sealing and repair requirements with over 35 years of engineering expertise.
+                </p>
+              </div>
 
-            {/* Key Features Section */}
-            <div className="grid md:grid-cols-3 gap-8 mb-16 fade-in">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Award className="w-8 h-8 text-red-500" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">ISO Certified Quality</h3>
-                <p className="text-gray-600">All products meet international quality standards</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Shield className="w-8 h-8 text-red-500" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">35+ Years Experience</h3>
-                <p className="text-gray-600">Trusted by industries across India</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Clock className="w-8 h-8 text-red-500" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">Fast Delivery</h3>
-                <p className="text-gray-600">Quick turnaround times for all orders</p>
-              </div>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8 fade-in">
-              {products.map(product => (
-                <Card key={product.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                  <div className="h-48 overflow-hidden relative">
-                    <img 
-                      src={product.image} 
-                      alt={product.name} 
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              {/* Key Features Section */}
+              <div className="grid md:grid-cols-3 gap-8 mb-16 fade-in">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Award className="w-8 h-8 text-red-500" />
                   </div>
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold text-gray-800 mb-3">{product.name}</h3>
-                    <p className="text-gray-600 mb-4">{product.description}</p>
-                    
-                    {/* Main Features */}
-                    <div className="mb-4">
-                      <h4 className="text-sm font-semibold text-gray-800 mb-2">Key Features:</h4>
-                      <ul className="space-y-1">
-                        {product.features.slice(0, 3).map((feature, index) => (
-                          <li key={index} className="text-gray-700 flex items-start">
-                            <CheckCircle className="h-3 w-3 text-green-500 mr-2 mt-1 flex-shrink-0" />
-                            <span className="text-xs">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="flex gap-2">
-                      <Button asChild className="bg-red-500 hover:bg-red-600 text-white flex-1">
-                        <Link to="/contact">Get Quote</Link>
-                      </Button>
-                      <Button 
-                        variant="outline" 
-                        className="border-red-500 text-red-500 hover:bg-red-50"
-                        onClick={() => {
-                          if (product.hasGenerations) {
-                            goToGenerations();
-                          } else {
-                            // Handle regular products
-                            goToRegularProducts(product.id);
-                          }
-                        }}
-                      >
-                        {product.hasGenerations ? 'View Generations' : 'View Products'}
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </>
-        )}
-
-        {/* Generations Screen */}
-        {currentScreen === 'generations' && (
-          <div className="fade-in">
-            <div className="text-center mb-8">
-              <button
-                onClick={goBack}
-                className="mb-4 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium text-gray-700 transition-colors"
-              >
-                ← Back to Products
-              </button>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Non Asbestos Braided Gland Packing Generations</h2>
-              <div className="w-24 h-1 bg-red-500 mx-auto mb-6"></div>
-              <p className="max-w-3xl mx-auto text-lg text-gray-600">
-                Choose from our two generations of high-performance packing solutions
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              {products.find(p => p.id === 1)?.generations?.map((generation, genIndex) => (
-                <Card key={genIndex} className="overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                  <div className="h-32 bg-gradient-to-br from-red-500 to-red-600 relative">
-                    <div className="absolute inset-0 bg-black/10"></div>
-                    <div className="absolute bottom-4 left-4 text-white">
-                      <h4 className="text-xl font-bold">{generation.name}</h4>
-                      <p className="text-red-100 text-sm">{generation.count} Products Available</p>
-                    </div>
+                  <h3 className="text-xl font-semibold text-gray-800 mb-2">ISO Certified Quality</h3>
+                  <p className="text-gray-600">All products meet international quality standards</p>
+                </div>
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Shield className="w-8 h-8 text-red-500" />
                   </div>
-                  <CardContent className="p-6">
-                    <p className="text-gray-600 mb-4">{generation.description}</p>
-                    
-                    {/* Generation Features */}
-                    <div className="mb-4">
-                      <h5 className="text-sm font-semibold text-gray-800 mb-2">Featured Products:</h5>
-                      <ul className="space-y-1">
-                        {generation.subProducts.slice(0, 3).map((product, index) => (
-                          <li key={index} className="text-gray-700 flex items-start">
-                            <CheckCircle className="h-3 w-3 text-green-500 mr-2 mt-1 flex-shrink-0" />
-                            <span className="text-xs">{typeof product === 'string' ? product : product.name}</span>
-                          </li>
-                        ))}
-                      </ul>
+                  <h3 className="text-xl font-semibold text-gray-800 mb-2">35+ Years Experience</h3>
+                  <p className="text-gray-600">Trusted by industries across India</p>
+                </div>
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Clock className="w-8 h-8 text-red-500" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-800 mb-2">Fast Delivery</h3>
+                  <p className="text-gray-600">Quick turnaround times for all orders</p>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8 fade-in">
+                {products.map(product => (
+                  <Card key={product.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div className="h-48 overflow-hidden relative">
+                      <img 
+                        src={product.image} 
+                        alt={product.name} 
+                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                     </div>
-
-                    <div className="flex gap-2">
-                      <Button asChild className="bg-red-500 hover:bg-red-600 text-white flex-1">
-                        <Link to="/contact">Get Quote</Link>
-                      </Button>
-                      <Button 
-                        variant="outline" 
-                        className="border-red-500 text-red-500 hover:bg-red-50"
-                        onClick={() => goToProducts(genIndex)}
-                      >
-                        View All Products
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Products Screen */}
-        {currentScreen === 'products' && selectedGeneration !== null && (
-          <div className="fade-in">
-            <div className="text-center mb-8">
-              <button
-                onClick={goBack}
-                className="mb-4 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium text-gray-700 transition-colors"
-              >
-                ← Back to Generations
-              </button>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                {products.find(p => p.id === 1)?.generations?.[selectedGeneration]?.name} Products
-              </h2>
-              <div className="w-24 h-1 bg-red-500 mx-auto mb-6"></div>
-              <p className="max-w-3xl mx-auto text-lg text-gray-600">
-                {products.find(p => p.id === 1)?.generations?.[selectedGeneration]?.description}
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {products.find(p => p.id === 1)?.generations?.[selectedGeneration]?.subProducts.map((product, index) => (
-                <Card key={index} className="hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-                  <CardContent className="p-4">
-                    {typeof product === 'object' && product.image && (
-                      <div className="mb-3">
-
-
-                        <img 
-                          src={product.image} 
-                          alt={product.name}
-                          className="w-full h-32 object-cover rounded-lg"
-                        />
-                      </div>
-                    )}
-                    <div className="flex items-start mb-3">
-                      <span className="h-2 w-2 bg-red-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                      <h4 className="text-sm font-semibold text-gray-800">{typeof product === 'string' ? product : product.name}</h4>
-                    </div>
-                    <div className="flex gap-2">
-                      <Button asChild className="bg-red-500 hover:bg-red-600 text-white text-xs px-3 py-1 flex-1">
-                        <Link to="/contact">Get Quote</Link>
-                      </Button>
-                      <Button 
-                        variant="outline" 
-                        className="border-red-500 text-red-500 hover:bg-red-50 text-xs px-3 py-1"
-                        onClick={() => goToProductDetail(product)}
-                      >
-                        View Details
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Regular Products Screen */}
-        {currentScreen === 'regularProducts' && selectedProduct !== null && (
-          <div className="fade-in">
-            <div className="text-center mb-8">
-              <button
-                onClick={goBack}
-                className="mb-4 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium text-gray-700 transition-colors"
-              >
-                ← Back to Products
-              </button>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                {products.find(p => p.id === selectedProduct)?.name} - Product Range
-              </h2>
-              <div className="w-24 h-1 bg-red-500 mx-auto mb-6"></div>
-              <p className="max-w-3xl mx-auto text-lg text-gray-600">
-                {products.find(p => p.id === selectedProduct)?.description}
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              {products.find(p => p.id === selectedProduct)?.subProducts.map((product, index) => (
-                <Card key={index} className="hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-                  <CardContent className="p-6">
-                    {typeof product === 'object' && product.image && (
+                    <CardContent className="p-6">
+                      <h3 className="text-xl font-bold text-gray-800 mb-3">{product.name}</h3>
+                      <p className="text-gray-600 mb-4">{product.description}</p>
+                      
+                      {/* Main Features */}
                       <div className="mb-4">
-                        <img 
-                          src={product.image} 
-                          alt={product.name}
-                          className="w-full h-48 object-cover rounded-lg"
-                        />
+                        <h4 className="text-sm font-semibold text-gray-800 mb-2">Key Features:</h4>
+                        <ul className="space-y-1">
+                          {product.features.slice(0, 3).map((feature, index) => (
+                            <li key={index} className="text-gray-700 flex items-start">
+                              <CheckCircle className="h-3 w-3 text-green-500 mr-2 mt-1 flex-shrink-0" />
+                              <span className="text-xs">{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
-                    )}
-                    <div className="flex items-start mb-4">
-                      <span className="h-3 w-3 bg-red-500 rounded-full mr-3 mt-1 flex-shrink-0"></span>
-                      <h4 className="text-lg font-semibold text-gray-800">{typeof product === 'string' ? product : product.name}</h4>
-                    </div>
-                    <div className="flex gap-2">
-                      <Button asChild className="bg-red-500 hover:bg-red-600 text-white flex-1">
-                        <Link to="/contact">Get Quote</Link>
-                      </Button>
-                      <Button 
-                        variant="outline" 
-                        className="border-red-500 text-red-500 hover:bg-red-50"
-                        onClick={() => {
-                          console.log('Clicking on product:', product);
-                          goToProductDetail(product);
-                        }}
-                      >
-                        View Details
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        )}
 
-        {/* Product Detail Screen */}
-        {currentScreen === 'productDetail' && selectedProductDetail && (
-          <div className="fade-in">
-            <div className="text-center mb-8">
-              <button
-                onClick={goBack}
-                className="mb-4 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium text-gray-700 transition-colors"
-              >
-                ← Back to Products
-              </button>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                {selectedProductDetail.name}
-              </h2>
-              <div className="w-24 h-1 bg-red-500 mx-auto mb-6"></div>
-            </div>
-
-            <div className="grid lg:grid-cols-2 gap-8 mb-8">
-              {/* Product Image */}
-              <div className="flex justify-center items-start">
-                <img 
-                  src={selectedProductDetail.image} 
-                  alt={selectedProductDetail.name}
-                  className="w-full max-w-md h-auto rounded-lg shadow-lg object-cover"
-                  style={{ maxHeight: '400px' }}
-                />
+                      <div className="flex gap-2">
+                        <Button asChild className="bg-red-500 hover:bg-red-600 text-white flex-1">
+                          <Link to="/contact">Get Quote</Link>
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          className="border-red-500 text-red-500 hover:bg-red-50"
+                          onClick={() => {
+                            if (product.hasGenerations) {
+                              goToGenerations();
+                            } else {
+                              // Handle regular products
+                              goToRegularProducts(product.id);
+                            }
+                          }}
+                        >
+                          {product.hasGenerations ? 'View Generations' : 'View Products'}
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
               </div>
+            </>
+          )}
 
-              {/* Product Description */}
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-2xl font-bold text-red-600 mb-4">
-                    {selectedProductDetail.name}
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed">
-                    {selectedProductDetail.description}
+          {/* Generations Screen */}
+          {currentScreen === 'generations' && (
+            <div className="fade-in">
+              <div className="mb-8 flex flex-col items-start">
+                <button
+                  onClick={goBack}
+                  className="mb-4 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium text-gray-700 transition-colors"
+                >
+                  ← Back to Products
+                </button>
+                <div className="w-full text-center">
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Non Asbestos Braided Gland Packing Generations</h2>
+                  <div className="w-24 h-1 bg-red-500 mx-auto mb-6"></div>
+                  <p className="max-w-3xl mx-auto text-lg text-gray-600">
+                    Choose from our two generations of high-performance packing solutions
                   </p>
                 </div>
+              </div>
 
-                {/* Features Section */}
-                {selectedProductDetail.features && (
-                  <div>
-                    <h4 className="text-lg font-semibold text-red-600 mb-2">FEATURES :</h4>
-                    <ul className="space-y-2">
-                      {selectedProductDetail.features.map((feature: string, index: number) => (
-                        <li key={index} className="flex items-start">
-                          <span className="w-2 h-2 bg-red-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                          <span className="text-gray-700">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+              <div className="grid md:grid-cols-2 gap-8">
+                {(products.find(p => p.id === 1)?.generations ?? []).map((generation, genIndex) => (
+                  <Card key={genIndex} className="overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div className="h-32 bg-gradient-to-br from-red-500 to-red-600 relative">
+                      <div className="absolute inset-0 bg-black/10"></div>
+                      <div className="absolute bottom-4 left-4 text-white">
+                        <h4 className="text-xl font-bold">{generation.name}</h4>
+                        <p className="text-red-100 text-sm">{generation.count} Products Available</p>
+                      </div>
+                    </div>
+                    <CardContent className="p-6">
+                      <p className="text-gray-600 mb-4">{generation.description}</p>
+                      
+                      {/* Generation Features */}
+                      <div className="mb-4">
+                        <h5 className="text-sm font-semibold text-gray-800 mb-2">Featured Products:</h5>
+                        <ul className="space-y-1">
+                          {generation.subProducts.slice(0, 3).map((product, index) => (
+                            <li key={index} className="text-gray-700 flex items-start">
+                              <CheckCircle className="h-3 w-3 text-green-500 mr-2 mt-1 flex-shrink-0" />
+                              <span className="text-xs">{typeof product === 'string' ? product : product.name}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
 
-                {/* Characteristics Section */}
-                {selectedProductDetail.characteristics && (
-                  <div>
-                    <h4 className="text-lg font-semibold text-red-600 mb-2">CHARACTERISTICS :</h4>
-                    <ul className="space-y-2">
-                      {selectedProductDetail.characteristics.map((characteristic: string, index: number) => (
-                        <li key={index} className="flex items-start">
-                          <span className="text-red-600 mr-2 font-medium">{index + 1}.</span>
-                          <span className="text-gray-700">{characteristic}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+                      <div className="flex gap-2">
+                        <Button asChild className="bg-red-500 hover:bg-red-600 text-white flex-1">
+                          <Link to="/contact">Get Quote</Link>
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          className="border-red-500 text-red-500 hover:bg-red-50"
+                          onClick={() => goToProducts(genIndex)}
+                        >
+                          View All Products
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
 
-                {/* Applications Section */}
-                {selectedProductDetail.applications && (
+          {/* Products Screen */}
+          {currentScreen === 'products' && selectedGeneration !== null && (
+            <div className="fade-in">
+              <div className="mb-8 flex flex-col items-start">
+                <button
+                  onClick={goBack}
+                  className="mb-4 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium text-gray-700 transition-colors"
+                >
+                  ← Back to Generations
+                </button>
+                <div className="w-full text-center">
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    {products.find(p => p.id === 1)?.generations?.[selectedGeneration]?.name} Products
+                  </h2>
+                  <div className="w-24 h-1 bg-red-500 mx-auto mb-6"></div>
+                  <p className="max-w-3xl mx-auto text-lg text-gray-600">
+                    {products.find(p => p.id === 1)?.generations?.[selectedGeneration]?.description}
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {(products.find(p => p.id === 1)?.generations?.[selectedGeneration]?.subProducts ?? []).map((product, index) => (
+                  <Card key={index} className="hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                    <CardContent className="p-4">
+                      {typeof product === 'object' && product.image && (
+                        <div className="mb-3">
+                          <img 
+                            src={product.image} 
+                            alt={product.name}
+                            className="w-full h-32 object-cover rounded-lg"
+                          />
+                        </div>
+                      )}
+                      <div className="flex items-start mb-3">
+                        <span className="h-2 w-2 bg-red-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                        <h4 className="text-sm font-semibold text-gray-800">{typeof product === 'string' ? product : product.name}</h4>
+                      </div>
+                      <div className="flex gap-2">
+                        <Button asChild className="bg-red-500 hover:bg-red-600 text-white text-xs px-3 py-1 flex-1">
+                          <Link to="/contact">Get Quote</Link>
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          className="border-red-500 text-red-500 hover:bg-red-50 text-xs px-3 py-1"
+                          onClick={() => {
+                            if (typeof product === 'object' && product !== null) {
+                              goToProductDetail(product, 'products');
+                            }
+                          }}
+                        >
+                          View Details
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Regular Products Screen */}
+          {currentScreen === 'regularProducts' && selectedProduct !== null && (
+            <div className="fade-in">
+              <div className="mb-8 flex flex-col items-start">
+                <button
+                  onClick={goBack}
+                  className="mb-4 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium text-gray-700 transition-colors"
+                >
+                  ← Back to Products
+                </button>
+                <div className="w-full text-center">
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    {products.find(p => p.id === selectedProduct)?.name} - Product Range
+                  </h2>
+                  <div className="w-24 h-1 bg-red-500 mx-auto mb-6"></div>
+                  <p className="max-w-3xl mx-auto text-lg text-gray-600">
+                    {products.find(p => p.id === selectedProduct)?.description}
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                {(products.find(p => p.id === selectedProduct)?.subProducts ?? []).map((product, index) => (
+                  <Card key={index} className="hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                    <CardContent className="p-6">
+                      {typeof product === 'object' && product.image && (
+                        <div className="mb-4">
+                          <img 
+                            src={product.image} 
+                            alt={product.name}
+                            className="w-full h-48 object-cover rounded-lg"
+                          />
+                        </div>
+                      )}
+                      <div className="flex items-start mb-4">
+                        <span className="h-3 w-3 bg-red-500 rounded-full mr-3 mt-1 flex-shrink-0"></span>
+                        <h4 className="text-lg font-semibold text-gray-800">{typeof product === 'string' ? product : product.name}</h4>
+                      </div>
+                      <div className="flex gap-2">
+                        <Button asChild className="bg-red-500 hover:bg-red-600 text-white flex-1">
+                          <Link to="/contact">Get Quote</Link>
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          className="border-red-500 text-red-500 hover:bg-red-50"
+                          onClick={() => {
+                            console.log('Clicking on product:', product);
+                            if (typeof product === 'object' && product !== null) {
+                              goToProductDetail(product, 'regularProducts');
+                            }
+                          }}
+                        >
+                          View Details
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Product Detail Screen */}
+          {currentScreen === 'productDetail' && selectedProductDetail && typeof selectedProductDetail === 'object' ? (
+            <div className="fade-in">
+              <div className="mb-8 flex flex-col items-start">
+                <button
+                  onClick={goBack}
+                  className="mb-4 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium text-gray-700 transition-colors"
+                >
+                  ← Back to Products
+                </button>
+                <div className="w-full text-center">
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    {selectedProductDetail.name}
+                  </h2>
+                  <div className="w-24 h-1 bg-red-500 mx-auto mb-6"></div>
+                </div>
+              </div>
+
+              <div className="grid lg:grid-cols-2 gap-8 mb-8">
+                {/* Product Image */}
+                <div className="flex justify-center items-start">
+                  <img 
+                    src={selectedProductDetail.image} 
+                    alt={selectedProductDetail.name}
+                    className="w-full max-w-md h-auto rounded-lg shadow-lg object-cover"
+                    style={{ maxHeight: '400px' }}
+                  />
+                </div>
+
+                {/* Product Description */}
+                <div className="space-y-6">
                   <div>
-                    <h4 className="text-lg font-semibold text-red-600 mb-2">APPLICATIONS :</h4>
-                    {Array.isArray(selectedProductDetail.applications) ? (
-                      <ul className="space-y-2">
-                        {selectedProductDetail.applications.map((application: string, index: number) => (
-                          <li key={index} className="flex items-start">
-                            <span className="w-2 h-2 bg-red-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                            <span className="text-gray-700">{application}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <div className="space-y-4">
+                    <h3 className="text-2xl font-bold text-red-600 mb-4">
+                      {selectedProductDetail.name}
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      {selectedProductDetail.description}
+                    </p>
+                    {/* General Properties Table for any product with properties */}
+                    {selectedProductDetail.properties &&
+                      (selectedProductDetail.properties.description ||
+                        selectedProductDetail.properties.temperature ||
+                        selectedProductDetail.properties.pressure ||
+                        selectedProductDetail.properties.phValue) && (
+                      <div className="my-6">
+                        <h3 className="text-xl font-bold text-red-600 mb-2">PROPERTIES</h3>
                         <div className="overflow-x-auto">
-                          <table className="w-full border-collapse border border-gray-300">
+                          <table className="w-full bg-white border border-gray-200 rounded-lg shadow-sm">
                             <thead>
-                              <tr className="bg-gray-100">
-                                <th className="border border-gray-300 px-3 py-2 text-left text-sm font-medium text-gray-700">PRODUCT</th>
-                                <th className="border border-gray-300 px-3 py-2 text-left text-sm font-medium text-gray-700">COMPOUND</th>
-                                <th className="border border-gray-300 px-3 py-2 text-left text-sm font-medium text-gray-700">RECOMMENDED APPLICATIONS</th>
+                              <tr className="bg-gray-50">
+                                {selectedProductDetail.properties.description && (
+                                  <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">Description</th>
+                                )}
+                                {selectedProductDetail.properties.temperature && (
+                                  <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">Temperature</th>
+                                )}
+                                {selectedProductDetail.properties.pressure && (
+                                  <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">Pressure</th>
+                                )}
+                                {selectedProductDetail.properties.phValue && (
+                                  <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">pH Value</th>
+                                )}
                               </tr>
                             </thead>
                             <tbody>
                               <tr>
-                                <td className="border border-gray-300 px-3 py-2 text-sm text-gray-700 font-medium">
-                                  {selectedProductDetail.applications.product}
-                                </td>
-                                <td className="border border-gray-300 px-3 py-2 text-sm text-gray-700">
-                                  {selectedProductDetail.applications.compound}
-                                </td>
-                                <td className="border border-gray-300 px-3 py-2 text-sm text-gray-700">
-                                  {selectedProductDetail.applications.recommendedApplications}
-                                </td>
+                                {selectedProductDetail.properties.description && (
+                                  <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.description}</td>
+                                )}
+                                {selectedProductDetail.properties.temperature && (
+                                  <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.temperature}</td>
+                                )}
+                                {selectedProductDetail.properties.pressure && (
+                                  <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.pressure}</td>
+                                )}
+                                {selectedProductDetail.properties.phValue && (
+                                  <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.phValue}</td>
+                                )}
                               </tr>
                             </tbody>
                           </table>
@@ -1336,465 +1351,526 @@ const ProductsSection: React.FC = () => {
                       </div>
                     )}
                   </div>
-                )}
 
-                {/* Accessories Section */}
-                {selectedProductDetail.accessories && (
-                  <div>
-                    <h4 className="text-lg font-semibold text-red-600 mb-4">ACCESSORIES FOR USE WITH FLOJET METAL COMPOUNDS</h4>
-                    <div className="space-y-4">
-                      {selectedProductDetail.accessories.map((accessory: any, index: number) => (
-                        <div key={index} className="border-l-4 border-red-500 pl-4">
-                          <h5 className="font-semibold text-gray-800 mb-2">
-                            - {accessory.name}:
-                          </h5>
-                          <p className="text-gray-700">{accessory.description}</p>
-                        </div>
-                      ))}
+                  {/* Features Section */}
+                  {Array.isArray(selectedProductDetail.features) && (
+                    <div>
+                      <h4 className="text-lg font-semibold text-red-600 mb-2">FEATURES :</h4>
+                      <ul className="space-y-2">
+                        {selectedProductDetail.features.map((feature: string, index: number) => (
+                          <li key={index} className="flex items-start">
+                            <span className="w-2 h-2 bg-red-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                            <span className="text-gray-700">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                  </div>
-                )}
+                  )}
 
-                {/* Composition for Expanded Graphite Products */}
-                {selectedProductDetail.composition && (
-                  <div>
-                    <h4 className="text-lg font-semibold text-red-600 mb-2">COMPOSITION</h4>
-                    <p className="text-gray-700 leading-relaxed">
-                      {selectedProductDetail.composition}
-                    </p>
-                  </div>
-                )}
-
-                {/* Availability for Expanded Graphite Products */}
-                {selectedProductDetail.availability && (
-                  <div>
-                    <h4 className="text-lg font-semibold text-red-600 mb-2">AVAILABILITY</h4>
-                    <div className="space-y-3">
-                      {/* For sheet products */}
-                      {selectedProductDetail.availability.sheetSize && (
-                        <>
-                          <p className="text-gray-700">
-                            <span className="font-medium">Sheets Size:</span> {selectedProductDetail.availability.sheetSize}
-                          </p>
-                          <p className="text-gray-700">
-                            <span className="font-medium">Thickness:</span> {selectedProductDetail.availability.thickness}
-                          </p>
-                          {selectedProductDetail.availability.note && (
-                            <p className="text-gray-700 italic">{selectedProductDetail.availability.note}</p>
-                          )}
-                        </>
-                      )}
-                      
-                      {/* For tape products */}
-                      {selectedProductDetail.availability.plainTapes && (
-                        <>
-                          <div className="mb-3">
-                            <p className="text-gray-700"><span className="font-medium">PLAIN TAPES:</span> {selectedProductDetail.availability.plainTapes}</p>
-                          </div>
-                          <div className="mb-3">
-                            <p className="text-gray-700"><span className="font-medium">CORRUGATED TAPES:</span> {selectedProductDetail.availability.corrugatedTapes}</p>
-                          </div>
-                          <div className="mb-3">
-                            <p className="text-gray-700 leading-relaxed">{selectedProductDetail.availability.installation}</p>
-                          </div>
-                          <div className="mb-3">
-                            <p className="text-gray-700"><span className="font-medium">SELF-ADHESIVE CORRUGATED TAPES:</span> {selectedProductDetail.availability.selfAdhesive}</p>
-                          </div>
-                        </>
-                      )}
+                  {/* Characteristics Section */}
+                  {Array.isArray(selectedProductDetail.characteristics) && (
+                    <div>
+                      <h4 className="text-lg font-semibold text-red-600 mb-2">CHARACTERISTICS :</h4>
+                      <ul className="space-y-2">
+                        {selectedProductDetail.characteristics.map((characteristic: string, index: number) => (
+                          <li key={index} className="flex items-start">
+                            <span className="text-red-600 mr-2 font-medium">{index + 1}.</span>
+                            <span className="text-gray-700">{characteristic}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                  </div>
-                )}
+                  )}
 
-                {/* Available Sizes for PTFE Sheet Products */}
-                {selectedProductDetail.availableSizes && (
-                  <div>
-                    <h4 className="text-lg font-semibold text-red-600 mb-2">AVAILABLE SIZES</h4>
-                    <div className="overflow-x-auto">
-                      <table className="w-full bg-white border border-gray-200 rounded-lg shadow-sm">
-                        <thead>
-                          <tr className="bg-gray-50">
-                            <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">Sheet Thickness</th>
-                            <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">Sheet Size</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {selectedProductDetail.availableSizes.map((item: any, index: number) => (
-                            <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : ''}>
-                              <td className="px-4 py-3 text-gray-700 border-b font-medium">{item.thickness}</td>
-                              <td className="px-4 py-3 text-gray-700 border-b">{item.sheetSize}</td>
-                            </tr>
+                  {/* Applications Section */}
+                  {Array.isArray(selectedProductDetail.applications) && (
+                    <div>
+                      <h4 className="text-lg font-semibold text-red-600 mb-2">APPLICATIONS :</h4>
+                      {Array.isArray(selectedProductDetail.applications) ? (
+                        <ul className="space-y-2">
+                          {selectedProductDetail.applications.map((application: string, index: number) => (
+                            <li key={index} className="flex items-start">
+                              <span className="w-2 h-2 bg-red-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                              <span className="text-gray-700">{application}</span>
+                            </li>
                           ))}
-                        </tbody>
-                      </table>
+                        </ul>
+                      ) : (
+                        <div className="space-y-4">
+                          <div className="overflow-x-auto">
+                            <table className="w-full border-collapse border border-gray-300">
+                              <thead>
+                                <tr className="bg-gray-100">
+                                  <th className="border border-gray-300 px-3 py-2 text-left text-sm font-medium text-gray-700">PRODUCT</th>
+                                  <th className="border border-gray-300 px-3 py-2 text-left text-sm font-medium text-gray-700">COMPOUND</th>
+                                  <th className="border border-gray-300 px-3 py-2 text-left text-sm font-medium text-gray-700">RECOMMENDED APPLICATIONS</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td className="border border-gray-300 px-3 py-2 text-sm text-gray-700 font-medium">
+                                    {selectedProductDetail.applications.product}
+                                  </td>
+                                  <td className="border border-gray-300 px-3 py-2 text-sm text-gray-700">
+                                    {selectedProductDetail.applications.compound}
+                                  </td>
+                                  <td className="border border-gray-300 px-3 py-2 text-sm text-gray-700">
+                                    {selectedProductDetail.applications.recommendedApplications}
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  </div>
-                )}
+                  )}
 
-                {/* Working Temperature for PTFE Stem Packing */}
-                {selectedProductDetail.workingTemp && (
-                  <div>
-                    <h4 className="text-lg font-semibold text-red-600 mb-2">WORKING TEMP</h4>
-                    <p className="text-gray-700">{selectedProductDetail.workingTemp}</p>
-                  </div>
-                )}
+                  {/* Accessories Section */}
+                  {Array.isArray(selectedProductDetail.accessories) && (
+                    <div>
+                      <h4 className="text-lg font-semibold text-red-600 mb-4">ACCESSORIES FOR USE WITH FLOJET METAL COMPOUNDS</h4>
+                      <div className="space-y-4">
+                        {selectedProductDetail.accessories.map((accessory: any, index: number) => (
+                          <div key={index} className="border-l-4 border-red-500 pl-4">
+                            <h5 className="font-semibold text-gray-800 mb-2">
+                              - {accessory.name}:
+                            </h5>
+                            <p className="text-gray-700">{accessory.description}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
 
-                {/* Document File */}
-                {selectedProductDetail.documentFile && (
-                  <div className="bg-gray-50 p-4 rounded-lg">
-                    <h4 className="text-lg font-semibold text-red-600 mb-2">DOCUMENT FILE</h4>
-                    <a 
-                      href={`http://68.178.154.199/development/flojet/public/asset_admin/product_pdf/${selectedProductDetail.documentFile}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors"
-                    >
-                      <FileText className="w-4 h-4 mr-2" />
-                      {selectedProductDetail.documentFile}
-                      <Download className="w-4 h-4 ml-2" />
-                    </a>
-                  </div>
-                )}
-              </div>
-            </div>
+                  {/* Composition for Expanded Graphite Products */}
+                  {selectedProductDetail.composition && (
+                    <div>
+                      <h4 className="text-lg font-semibold text-red-600 mb-2">COMPOSITION</h4>
+                      <p className="text-gray-700 leading-relaxed">
+                        {selectedProductDetail.composition}
+                      </p>
+                    </div>
+                  )}
 
-            {/* Size Chart for PTFE Products */}
-            {selectedProductDetail.sizeChart && (
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-red-600 mb-4">
-                  {selectedProductDetail.sizeChart[0].valveSize ? 'VALVE SIZE CHART' : 'NOMINAL SIZES CHART'}
-                </h3>
-                {!selectedProductDetail.sizeChart[0].valveSize && (
-                  <p className="text-gray-700 mb-4">Width(MM) X Thickness(MM)</p>
-                )}
-                
-                <div className="overflow-x-auto">
-                  <table className="w-full bg-white border border-gray-200 rounded-lg shadow-sm">
-                    <thead>
-                      <tr className="bg-gray-50">
-                        {selectedProductDetail.sizeChart[0].valveSize ? (
+                  {/* Availability for Expanded Graphite Products */}
+                  {selectedProductDetail.availability && (
+                    <div>
+                      <h4 className="text-lg font-semibold text-red-600 mb-2">AVAILABILITY</h4>
+                      <div className="space-y-3">
+                        {/* For sheet products */}
+                        {selectedProductDetail.availability.sheetSize && (
                           <>
-                            <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">VALVE SIZE</th>
-                            <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">MET. PER SPOOL</th>
-                            <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">RECOMMENDED SIZES FOR STEM PACKING</th>
-                          </>
-                        ) : (
-                          <>
-                            <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">Nominal Sizes (In MM) Met/Spool W x T</th>
-                            <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">Dimensions (Width x Thickness)</th>
-                            <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">Suitable for Flanges</th>
+                            <p className="text-gray-700">
+                              <span className="font-medium">Sheets Size:</span> {selectedProductDetail.availability.sheetSize}
+                            </p>
+                            <p className="text-gray-700">
+                              <span className="font-medium">Thickness:</span> {selectedProductDetail.availability.thickness}
+                            </p>
+                            {selectedProductDetail.availability.note && (
+                              <p className="text-gray-700 italic">{selectedProductDetail.availability.note}</p>
+                            )}
                           </>
                         )}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {selectedProductDetail.sizeChart.map((item: any, index: number) => (
-                        <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : ''}>
-                          {item.valveSize ? (
+                        
+                        {/* For tape products */}
+                        {selectedProductDetail.availability.plainTapes && (
+                          <>
+                            <div className="mb-3">
+                              <p className="text-gray-700"><span className="font-medium">PLAIN TAPES:</span> {selectedProductDetail.availability.plainTapes}</p>
+                            </div>
+                            <div className="mb-3">
+                              <p className="text-gray-700"><span className="font-medium">CORRUGATED TAPES:</span> {selectedProductDetail.availability.corrugatedTapes}</p>
+                            </div>
+                            <div className="mb-3">
+                              <p className="text-gray-700 leading-relaxed">{selectedProductDetail.availability.installation}</p>
+                            </div>
+                            <div className="mb-3">
+                              <p className="text-gray-700"><span className="font-medium">SELF-ADHESIVE CORRUGATED TAPES:</span> {selectedProductDetail.availability.selfAdhesive}</p>
+                            </div>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Available Sizes for PTFE Sheet Products */}
+                  {Array.isArray(selectedProductDetail.availableSizes) && (
+                    <div>
+                      <h4 className="text-lg font-semibold text-red-600 mb-2">AVAILABLE SIZES</h4>
+                      <div className="overflow-x-auto">
+                        <table className="w-full bg-white border border-gray-200 rounded-lg shadow-sm">
+                          <thead>
+                            <tr className="bg-gray-50">
+                              <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">Sheet Thickness</th>
+                              <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">Sheet Size</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {selectedProductDetail.availableSizes.map((item: any, index: number) => (
+                              <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : ''}>
+                                <td className="px-4 py-3 text-gray-700 border-b font-medium">{item.thickness}</td>
+                                <td className="px-4 py-3 text-gray-700 border-b">{item.sheetSize}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Working Temperature for PTFE Stem Packing */}
+                  {selectedProductDetail.workingTemp && (
+                    <div>
+                      <h4 className="text-lg font-semibold text-red-600 mb-2">WORKING TEMP</h4>
+                      <p className="text-gray-700">{selectedProductDetail.workingTemp}</p>
+                    </div>
+                  )}
+
+                </div>
+              </div>
+
+              {/* Size Chart for PTFE Products */}
+              {Array.isArray(selectedProductDetail.sizeChart) && selectedProductDetail.sizeChart.length > 0 && (
+                <div className="mb-8">
+                  <h3 className="text-2xl font-bold text-red-600 mb-4">
+                    {selectedProductDetail.sizeChart[0].valveSize ? 'VALVE SIZE CHART' : 'NOMINAL SIZES CHART'}
+                  </h3>
+                  {!selectedProductDetail.sizeChart[0].valveSize && (
+                    <p className="text-gray-700 mb-4">Width(MM) X Thickness(MM)</p>
+                  )}
+                  
+                  <div className="overflow-x-auto">
+                    <table className="w-full bg-white border border-gray-200 rounded-lg shadow-sm">
+                      <thead>
+                        <tr className="bg-gray-50">
+                          {selectedProductDetail.sizeChart[0].valveSize ? (
                             <>
-                              <td className="px-4 py-3 text-gray-700 border-b font-medium">{item.valveSize}</td>
-                              <td className="px-4 py-3 text-gray-700 border-b">{item.metPerSpool}</td>
-                              <td className="px-4 py-3 text-gray-700 border-b">{item.recommendedSizes}</td>
+                              <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">VALVE SIZE</th>
+                              <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">MET. PER SPOOL</th>
+                              <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">RECOMMENDED SIZES FOR STEM PACKING</th>
                             </>
                           ) : (
                             <>
-                              <td className="px-4 py-3 text-gray-700 border-b font-medium">{item.size}</td>
-                              <td className="px-4 py-3 text-gray-700 border-b">{item.dimensions}</td>
-                              <td className="px-4 py-3 text-gray-700 border-b">{item.suitableFor}</td>
+                              <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">Nominal Sizes (In MM) Met/Spool W x T</th>
+                              <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">Dimensions (Width x Thickness)</th>
+                              <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">Suitable for Flanges</th>
                             </>
                           )}
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {selectedProductDetail.sizeChart.map((item: any, index: number) => (
+                          <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : ''}>
+                            {item.valveSize ? (
+                              <>
+                                <td className="px-4 py-3 text-gray-700 border-b font-medium">{item.valveSize}</td>
+                                <td className="px-4 py-3 text-gray-700 border-b">{item.metPerSpool}</td>
+                                <td className="px-4 py-3 text-gray-700 border-b">{item.recommendedSizes}</td>
+                              </>
+                            ) : (
+                              <>
+                                <td className="px-4 py-3 text-gray-700 border-b font-medium">{item.size}</td>
+                                <td className="px-4 py-3 text-gray-700 border-b">{item.dimensions}</td>
+                                <td className="px-4 py-3 text-gray-700 border-b">{item.suitableFor}</td>
+                              </>
+                            )}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  {selectedProductDetail.note && (
+                    <p className="text-sm text-gray-600 mt-2">
+                      {selectedProductDetail.note}
+                    </p>
+                  )}
+                  {!selectedProductDetail.note && !selectedProductDetail.sizeChart[0].valveSize && (
+                    <p className="text-sm text-gray-600 mt-2">
+                      * In case of non-Standard flanges and NB diameter over 24" or 300mm, the joint sealant size must be between 1/3 & 2 of the flange contact width.
+                    </p>
+                  )}
                 </div>
-                {selectedProductDetail.note && (
-                  <p className="text-sm text-gray-600 mt-2">
-                    {selectedProductDetail.note}
-                  </p>
-                )}
-                {!selectedProductDetail.note && !selectedProductDetail.sizeChart[0].valveSize && (
-                  <p className="text-sm text-gray-600 mt-2">
-                    * In case of non-Standard flanges and NB diameter over 24" or 300mm, the joint sealant size must be between 1/3 & 2 of the flange contact width.
-                  </p>
-                )}
-              </div>
-            )}
+              )}
 
-            {/* Installation Instructions for PTFE Products */}
-            {selectedProductDetail.installation && (
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-red-600 mb-4">
-                  INSTALLATION INSTRUCTIONS
-                </h3>
-                <p className="text-gray-700 mb-4">
-                  The unique features of flojet joint sealant make it easier to handle & install with ease in labor, cutting & applying.
-                </p>
-                
-                <div className="space-y-3">
-                  {selectedProductDetail.installation.map((step: string, index: number) => (
-                    <div key={index} className="flex items-start">
-                      <div className="w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0 text-sm font-medium">
-                        {index + 1}
+              {/* Installation Instructions for PTFE Products */}
+              {Array.isArray(selectedProductDetail.installation) && (
+                <div className="mb-8">
+                  <h3 className="text-2xl font-bold text-red-600 mb-4">
+                    INSTALLATION INSTRUCTIONS
+                  </h3>
+                  <p className="text-gray-700 mb-4">
+                    The unique features of flojet joint sealant make it easier to handle & install with ease in labor, cutting & applying.
+                  </p>
+                  
+                  <div className="space-y-3">
+                    {selectedProductDetail.installation.map((step: string, index: number) => (
+                      <div key={index} className="flex items-start">
+                        <div className="w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0 text-sm font-medium">
+                          {index + 1}
+                        </div>
+                        <p className="text-gray-700 leading-relaxed">{step}</p>
                       </div>
-                      <p className="text-gray-700 leading-relaxed">{step}</p>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            {/* Properties for PTFE Products */}
-            {selectedProductDetail.properties && selectedProductDetail.properties.flangeLoad && (
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-red-600 mb-4">
-                  PROPERTIES
-                </h3>
-                
-                <div className="overflow-x-auto">
-                  <table className="w-full bg-white border border-gray-200 rounded-lg shadow-sm">
-                    <thead>
-                      <tr className="bg-gray-50">
-                        <th className="px-4 py-3 text-center font-semibold text-gray-700 border-b">Flange Load</th>
-                        <th className="px-4 py-3 text-center font-semibold text-gray-700 border-b">Pressure</th>
-                        <th className="px-4 py-3 text-center font-semibold text-gray-700 border-b">Density</th>
-                        <th className="px-4 py-3 text-center font-semibold text-gray-700 border-b">Temp. Res</th>
-                        <th className="px-4 py-3 text-center font-semibold text-gray-700 border-b">pH Value</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td className="px-4 py-3 text-center text-gray-700 border-b">{selectedProductDetail.properties.flangeLoad}</td>
-                        <td className="px-4 py-3 text-center text-gray-700 border-b">{selectedProductDetail.properties.pressure}</td>
-                        <td className="px-4 py-3 text-center text-gray-700 border-b">{selectedProductDetail.properties.density}</td>
-                        <td className="px-4 py-3 text-center text-gray-700 border-b">{selectedProductDetail.properties.temperature}</td>
-                        <td className="px-4 py-3 text-center text-gray-700 border-b">{selectedProductDetail.properties.phValue}</td>
-                      </tr>
-                    </tbody>
-                  </table>
+              {/* Properties for PTFE Products */}
+              {selectedProductDetail.properties && selectedProductDetail.properties.flangeLoad && (
+                <div className="mb-8">
+                  <h3 className="text-2xl font-bold text-red-600 mb-4">
+                    PROPERTIES
+                  </h3>
+                  
+                  <div className="overflow-x-auto">
+                    <table className="w-full bg-white border border-gray-200 rounded-lg shadow-sm">
+                      <thead>
+                        <tr className="bg-gray-50">
+                          <th className="px-4 py-3 text-center font-semibold text-gray-700 border-b">Flange Load</th>
+                          <th className="px-4 py-3 text-center font-semibold text-gray-700 border-b">Pressure</th>
+                          <th className="px-4 py-3 text-center font-semibold text-gray-700 border-b">Density</th>
+                          <th className="px-4 py-3 text-center font-semibold text-gray-700 border-b">Temp. Res</th>
+                          <th className="px-4 py-3 text-center font-semibold text-gray-700 border-b">pH Value</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td className="px-4 py-3 text-center text-gray-700 border-b">{selectedProductDetail.properties.flangeLoad}</td>
+                          <td className="px-4 py-3 text-center text-gray-700 border-b">{selectedProductDetail.properties.pressure}</td>
+                          <td className="px-4 py-3 text-center text-gray-700 border-b">{selectedProductDetail.properties.density}</td>
+                          <td className="px-4 py-3 text-center text-gray-700 border-b">{selectedProductDetail.properties.temperature}</td>
+                          <td className="px-4 py-3 text-center text-gray-700 border-b">{selectedProductDetail.properties.phValue}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            {/* Detailed Properties for Expanded Graphite Products */}
-            {selectedProductDetail.properties && selectedProductDetail.properties.purity && (
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-red-600 mb-4">
-                  PROPERTIES
-                </h3>
-                
-                <div className="overflow-x-auto">
-                  <table className="w-full bg-white border border-gray-200 rounded-lg shadow-sm">
-                    <tbody>
-                      <tr className="bg-gray-50">
-                        <td className="px-4 py-3 font-semibold text-gray-700 border-b">PURITY</td>
-                        <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.purity}</td>
-                      </tr>
-                      <tr>
-                        <td className="px-4 py-3 font-semibold text-gray-700 border-b">TEMPERATURE RANGE</td>
-                        <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.temperatureRange}</td>
-                      </tr>
-                      <tr className="bg-gray-50">
-                        <td className="px-4 py-3 font-semibold text-gray-700 border-b">OPERATING PRESSURE</td>
-                        <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.operatingPressure}</td>
-                      </tr>
-                      <tr>
-                        <td className="px-4 py-3 font-semibold text-gray-700 border-b">pH VALUE</td>
-                        <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.phValue}</td>
-                      </tr>
-                      <tr className="bg-gray-50">
-                        <td className="px-4 py-3 font-semibold text-gray-700 border-b">LEACHABLE CHLORIDE</td>
-                        <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.leachableChloride}</td>
-                      </tr>
-                      <tr>
-                        <td className="px-4 py-3 font-semibold text-gray-700 border-b">TENSILE STRENGTH</td>
-                        <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.tensileStrength}</td>
-                      </tr>
-                      <tr className="bg-gray-50">
-                        <td className="px-4 py-3 font-semibold text-gray-700 border-b">LEACHABLE FLUORIDE</td>
-                        <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.leachableFluoride}</td>
-                      </tr>
-                      <tr>
-                        <td className="px-4 py-3 font-semibold text-gray-700 border-b">THERMAL CONDUCTIVITY</td>
-                        <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.thermalConductivity}</td>
-                      </tr>
-                      <tr className="bg-gray-50">
-                        <td className="px-4 py-3 font-semibold text-gray-700 border-b">ELECTRICAL RESISTANCE</td>
-                        <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.electricalResistance}</td>
-                      </tr>
-                    </tbody>
-                  </table>
+              {/* Detailed Properties for Expanded Graphite Products */}
+              {selectedProductDetail.properties && selectedProductDetail.properties.purity && (
+                <div className="mb-8">
+                  <h3 className="text-2xl font-bold text-red-600 mb-4">
+                    PROPERTIES
+                  </h3>
+                  
+                  <div className="overflow-x-auto">
+                    <table className="w-full bg-white border border-gray-200 rounded-lg shadow-sm">
+                      <tbody>
+                        <tr className="bg-gray-50">
+                          <td className="px-4 py-3 font-semibold text-gray-700 border-b">PURITY</td>
+                          <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.purity}</td>
+                        </tr>
+                        <tr>
+                          <td className="px-4 py-3 font-semibold text-gray-700 border-b">TEMPERATURE RANGE</td>
+                          <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.temperatureRange}</td>
+                        </tr>
+                        <tr className="bg-gray-50">
+                          <td className="px-4 py-3 font-semibold text-gray-700 border-b">OPERATING PRESSURE</td>
+                          <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.operatingPressure}</td>
+                        </tr>
+                        <tr>
+                          <td className="px-4 py-3 font-semibold text-gray-700 border-b">pH VALUE</td>
+                          <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.phValue}</td>
+                        </tr>
+                        <tr className="bg-gray-50">
+                          <td className="px-4 py-3 font-semibold text-gray-700 border-b">LEACHABLE CHLORIDE</td>
+                          <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.leachableChloride}</td>
+                        </tr>
+                        <tr>
+                          <td className="px-4 py-3 font-semibold text-gray-700 border-b">TENSILE STRENGTH</td>
+                          <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.tensileStrength}</td>
+                        </tr>
+                        <tr className="bg-gray-50">
+                          <td className="px-4 py-3 font-semibold text-gray-700 border-b">LEACHABLE FLUORIDE</td>
+                          <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.leachableFluoride}</td>
+                        </tr>
+                        <tr>
+                          <td className="px-4 py-3 font-semibold text-gray-700 border-b">THERMAL CONDUCTIVITY</td>
+                          <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.thermalConductivity}</td>
+                        </tr>
+                        <tr className="bg-gray-50">
+                          <td className="px-4 py-3 font-semibold text-gray-700 border-b">ELECTRICAL RESISTANCE</td>
+                          <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.electricalResistance}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            {/* Advantages for Expanded Graphite Products */}
-            {selectedProductDetail.advantages && (
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-red-600 mb-4">
-                  ADVANTAGES
-                </h3>
-                
-                <div className="grid md:grid-cols-2 gap-4">
-                  {selectedProductDetail.advantages.map((advantage: string, index: number) => (
-                    <div key={index} className="flex items-start">
-                      <div className="w-2 h-2 bg-red-500 rounded-full mr-3 mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-700">{advantage}</span>
-                    </div>
-                  ))}
+              {/* Advantages for Expanded Graphite Products */}
+              {Array.isArray(selectedProductDetail.advantages) && (
+                <div className="mb-8">
+                  <h3 className="text-2xl font-bold text-red-600 mb-4">
+                    ADVANTAGES
+                  </h3>
+                  
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {selectedProductDetail.advantages.map((advantage: string, index: number) => (
+                      <div key={index} className="flex items-start">
+                        <div className="w-2 h-2 bg-red-500 rounded-full mr-3 mt-2 flex-shrink-0"></div>
+                        <span className="text-gray-700">{advantage}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            {/* Charts Section */}
-            {selectedProductDetail.dimensionChart && (
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-red-600 mb-4">
-                  CHART FOR METERS PER KG(+_5%)
-                </h3>
-                <p className="text-gray-700 mb-4">DIMENSION IN SQUARE BRAIDED MM</p>
-                
-                <div className="overflow-x-auto">
-                  <table className="w-full bg-white border border-gray-200 rounded-lg shadow-sm">
-                    <thead>
-                      <tr className="bg-gray-50">
-                        <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">FLOJET STYLE</th>
-                        {selectedProductDetail.dimensionChart.map((item: any, index: number) => (
-                          <th key={index} className="px-4 py-3 text-center font-semibold text-gray-700 border-b">
-                            {item.size}
-                          </th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td className="px-4 py-3 font-medium text-gray-700 border-b">TA</td>
-                        {selectedProductDetail.dimensionChart.map((item: any, index: number) => (
-                          <td key={index} className="px-4 py-3 text-center text-gray-700 border-b">
-                            {item.metersPerKg}
-                          </td>
-                        ))}
-                      </tr>
-                    </tbody>
-                  </table>
+              {/* Charts Section */}
+              {Array.isArray(selectedProductDetail.dimensionChart) && (
+                <div className="mb-8">
+                  <h3 className="text-2xl font-bold text-red-600 mb-4">
+                    CHART FOR METERS PER KG(+_5%)
+                  </h3>
+                  <p className="text-gray-700 mb-4">DIMENSION IN SQUARE BRAIDED MM</p>
+                  
+                  <div className="overflow-x-auto">
+                    <table className="w-full bg-white border border-gray-200 rounded-lg shadow-sm">
+                      <thead>
+                        <tr className="bg-gray-50">
+                          <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">FLOJET STYLE</th>
+                          {selectedProductDetail.dimensionChart.map((item: any, index: number) => (
+                            <th key={index} className="px-4 py-3 text-center font-semibold text-gray-700 border-b">
+                              {item.size}
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td className="px-4 py-3 font-medium text-gray-700 border-b">TA</td>
+                          {selectedProductDetail.dimensionChart.map((item: any, index: number) => (
+                            <td key={index} className="px-4 py-3 text-center text-gray-700 border-b">
+                              {item.metersPerKg}
+                            </td>
+                          ))}
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            {/* Properties Chart */}
-            {selectedProductDetail.properties && (
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-red-600 mb-4">
-                  PROPERTIES CHART
-                </h3>
-                
-                <div className="overflow-x-auto">
-                  <table className="w-full bg-white border border-gray-200 rounded-lg shadow-sm">
-                    <thead>
-                      <tr className="bg-gray-50">
-                        <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">FLOJET STYLE</th>
-                        <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">DESCRIPTION</th>
-                        <th className="px-4 py-3 text-center font-semibold text-gray-700 border-b">TEMP DEG)</th>
-                        {selectedProductDetail.properties.speed && (
-                          <th className="px-4 py-3 text-center font-semibold text-gray-700 border-b">SPEED(M/S)</th>
+              {/* Properties Chart */}
+              {selectedProductDetail.properties && Array.isArray(selectedProductDetail.dimensionChart) && (
+                <div className="mb-8">
+                  <h3 className="text-2xl font-bold text-red-600 mb-4">
+                    PROPERTIES CHART
+                  </h3>
+                  
+                  <div className="overflow-x-auto">
+                    <table className="w-full bg-white border border-gray-200 rounded-lg shadow-sm">
+                      <thead>
+                        <tr className="bg-gray-50">
+                          <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">FLOJET STYLE</th>
+                          <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">DESCRIPTION</th>
+                          <th className="px-4 py-3 text-center font-semibold text-gray-700 border-b">TEMP DEG)</th>
+                          {selectedProductDetail.properties.speed && (
+                            <th className="px-4 py-3 text-center font-semibold text-gray-700 border-b">SPEED(M/S)</th>
+                          )}
+                          <th className="px-4 py-3 text-center font-semibold text-gray-700 border-b">PRESSURE(PSI)</th>
+                          <th className="px-4 py-3 text-center font-semibold text-gray-700 border-b">pH VALUE</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td className="px-4 py-3 font-medium text-gray-700 border-b">TA</td>
+                          {selectedProductDetail.dimensionChart.map((item: any, index: number) => (
+                            <td key={index} className="px-4 py-3 text-center text-gray-700 border-b">
+                              {item.metersPerKg}
+                            </td>
+                          ))}
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
+
+              {/* Properties Chart for Epoxy Compounds */}
+              {selectedProductDetail.properties && selectedProductDetail.properties.adhesionTensileStrength && (
+                <div className="mb-8">
+                  <h3 className="text-2xl font-bold text-red-600 mb-4">
+                    PROPERTIES
+                  </h3>
+                  
+                  <div className="overflow-x-auto">
+                    <table className="w-full bg-white border border-gray-200 rounded-lg shadow-sm">
+                      <tbody>
+                        {selectedProductDetail.properties.compressiveStrength && (
+                          <tr className="bg-gray-50">
+                            <td className="px-4 py-3 font-semibold text-red-600 border-b">Compressive Strength</td>
+                            <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.compressiveStrength}</td>
+                          </tr>
                         )}
-                        <th className="px-4 py-3 text-center font-semibold text-gray-700 border-b">PRESSURE(PSI)</th>
-                        <th className="px-4 py-3 text-center font-semibold text-gray-700 border-b">pH VALUE</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td className="px-4 py-3 font-medium text-gray-700 border-b">TA</td>
-                        {selectedProductDetail.dimensionChart.map((item: any, index: number) => (
-                          <td key={index} className="px-4 py-3 text-center text-gray-700 border-b">
-                            {item.metersPerKg}
-                          </td>
-                        ))}
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            )}
-
-            {/* Properties Chart for Epoxy Compounds */}
-            {selectedProductDetail.properties && selectedProductDetail.properties.adhesionTensileStrength && (
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-red-600 mb-4">
-                  PROPERTIES
-                </h3>
-                
-                <div className="overflow-x-auto">
-                  <table className="w-full bg-white border border-gray-200 rounded-lg shadow-sm">
-                    <tbody>
-                      {selectedProductDetail.properties.compressiveStrength && (
-                        <tr className="bg-gray-50">
-                          <td className="px-4 py-3 font-semibold text-red-600 border-b">Compressive Strength</td>
-                          <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.compressiveStrength}</td>
+                        <tr className={selectedProductDetail.properties.compressiveStrength ? "" : "bg-gray-50"}>
+                          <td className="px-4 py-3 font-semibold text-red-600 border-b">Adhesion Tensile Strength</td>
+                          <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.adhesionTensileStrength}</td>
                         </tr>
-                      )}
-                      <tr className={selectedProductDetail.properties.compressiveStrength ? "" : "bg-gray-50"}>
-                        <td className="px-4 py-3 font-semibold text-red-600 border-b">Adhesion Tensile Strength</td>
-                        <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.adhesionTensileStrength}</td>
-                      </tr>
-                      <tr className={selectedProductDetail.properties.compressiveStrength ? "bg-gray-50" : ""}>
-                        <td className="px-4 py-3 font-semibold text-red-600 border-b">Temperature Resistance</td>
-                        <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.temperatureResistance}</td>
-                      </tr>
-                      <tr className={selectedProductDetail.properties.compressiveStrength ? "" : "bg-gray-50"}>
-                        <td className="px-4 py-3 font-semibold text-red-600 border-b">Working Time</td>
-                        <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.workingTime}</td>
-                      </tr>
-                      {selectedProductDetail.properties.fullLoad && (
                         <tr className={selectedProductDetail.properties.compressiveStrength ? "bg-gray-50" : ""}>
-                          <td className="px-4 py-3 font-semibold text-red-600 border-b">Full Load</td>
-                          <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.fullLoad}</td>
+                          <td className="px-4 py-3 font-semibold text-red-600 border-b">Temperature Resistance</td>
+                          <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.temperatureResistance}</td>
                         </tr>
-                      )}
-                      {selectedProductDetail.properties.color && (
-                        <tr className="bg-gray-50">
-                          <td className="px-4 py-3 font-semibold text-red-600 border-b">Color</td>
-                          <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.color}</td>
+                        <tr className={selectedProductDetail.properties.compressiveStrength ? "" : "bg-gray-50"}>
+                          <td className="px-4 py-3 font-semibold text-red-600 border-b">Working Time</td>
+                          <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.workingTime}</td>
                         </tr>
-                      )}
-                      {selectedProductDetail.properties.packing && (
-                        <tr className="bg-gray-50">
-                          <td className="px-4 py-3 font-semibold text-red-600 border-b">Packing</td>
-                          <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.packing}</td>
-                        </tr>
-                      )}
-                    </tbody>
-                  </table>
+                        {selectedProductDetail.properties.fullLoad && (
+                          <tr className={selectedProductDetail.properties.compressiveStrength ? "bg-gray-50" : ""}>
+                            <td className="px-4 py-3 font-semibold text-red-600 border-b">Full Load</td>
+                            <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.fullLoad}</td>
+                          </tr>
+                        )}
+                        {selectedProductDetail.properties.color && (
+                          <tr className="bg-gray-50">
+                            <td className="px-4 py-3 font-semibold text-red-600 border-b">Color</td>
+                            <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.color}</td>
+                          </tr>
+                        )}
+                        {selectedProductDetail.properties.packing && (
+                          <tr className="bg-gray-50">
+                            <td className="px-4 py-3 font-semibold text-red-600 border-b">Packing</td>
+                            <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.packing}</td>
+                          </tr>
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
-        )}
+              )}
 
-        {/* Custom Sealing Solutions Section */}
-        <div className="py-16 bg-gray-50">
-          <div className="max-w-4xl mx-auto text-center">
-            <h3 className="text-2xl md:text-3xl font-bold text-red-600 mb-4">
-              Custom Sealing Solutions
-            </h3>
-            <p className="text-gray-700 mb-6 max-w-2xl mx-auto">
-              With over 35 years of expertise, we specialize in creating custom sealing solutions 
-              tailored to your specific industrial requirements. Our engineering team works closely 
-              with you to develop the perfect sealing solution.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 mb-6">
-              <span className="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700">Custom Design</span>
-              <span className="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700">Material Selection</span>
-              <span className="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700">Technical Support</span>
-              <span className="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700">Quality Assurance</span>
+            </div>
+          ) : null}
+
+          {/* Custom Sealing Solutions Section */}
+          <div className="py-16 bg-gray-50">
+            <div className="max-w-4xl mx-auto text-center">
+              <h3 className="text-2xl md:text-3xl font-bold text-red-600 mb-4">
+                Custom Sealing Solutions
+              </h3>
+              <p className="text-gray-700 mb-6 max-w-2xl mx-auto">
+                With over 35 years of expertise, we specialize in creating custom sealing solutions 
+                tailored to your specific industrial requirements. Our engineering team works closely 
+                with you to develop the perfect sealing solution.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4 mb-6">
+                <span className="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700">Custom Design</span>
+                <span className="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700">Material Selection</span>
+                <span className="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700">Technical Support</span>
+                <span className="bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700">Quality Assurance</span>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <Button asChild className="bg-red-500 hover:bg-red-600 text-white px-8 py-3 text-lg">
+                <Link to="/contact">Contact Our Engineering Team</Link>
+              </Button>
             </div>
           </div>
-          <Button asChild className="bg-red-500 hover:bg-red-600 text-white px-8 py-3 text-lg">
-            <Link to="/contact">Contact Our Engineering Team</Link>
-          </Button>
         </div>
-      </div>
-    </section>
+      </section>
+    </ErrorBoundary>
   );
 };
 
