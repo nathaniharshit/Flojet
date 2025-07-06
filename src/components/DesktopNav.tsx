@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -12,6 +12,7 @@ interface DesktopNavProps {
 
 const DesktopNav: React.FC<DesktopNavProps> = ({ navLinkClass, isAboutDropdownOpen, setIsAboutDropdownOpen, setIsMenuOpen }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const isExactHashMatch = (hash: string) =>
     location.pathname + location.hash === `/about${hash}`;
@@ -60,7 +61,7 @@ const DesktopNav: React.FC<DesktopNavProps> = ({ navLinkClass, isAboutDropdownOp
                 if (location.pathname === '/about') {
                   document.getElementById(href)?.scrollIntoView({ behavior: 'smooth' });
                 } else {
-                  window.location.href = `/about#${href}`;
+                  navigate(`/about#${href}`);
                 }
               }}
               className={`block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors w-full text-left ${rounded}`}
