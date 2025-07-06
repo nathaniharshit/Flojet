@@ -85,7 +85,7 @@ const ContactSection: React.FC = () => {
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="phone" className="text-sm font-medium text-gray-700">Phone</label>
-                  <Input id="phone" placeholder="Enter your phone" className="border-gray-300 focus:border-primary focus:ring focus:ring-primary/20" />
+                  <Input id="phone" placeholder="Enter your phone" required className="border-gray-300 focus:border-primary focus:ring focus:ring-primary/20" />
                 </div>
               </div>
 
