@@ -26,6 +26,7 @@ const ContactSection: React.FC = () => {
     message: ''
   });
   const [loading, setLoading] = React.useState(false);
+  const [showSuccess, setShowSuccess] = React.useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -49,10 +50,11 @@ const ContactSection: React.FC = () => {
         'TjwH1BCqxyO9RGqpw' // replace with your EmailJS public key
       );
       toast({
-        title: 'Inquiry Sent Successfully',
+        title: 'Inquiry Sent Successfully!',
         description: 'Thank you for your inquiry. Our team will contact you shortly.',
       });
       setFormData({ name: '', company: '', email: '', phone: '', subject: '', message: '' });
+      setShowSuccess(true);
     } catch (err) {
       toast({
         title: 'Error',
@@ -141,6 +143,11 @@ const ContactSection: React.FC = () => {
               <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-white" disabled={loading}>
                 {loading ? 'Sending...' : 'Submit Inquiry'}
               </Button>
+              {showSuccess && (
+                <div className="mt-2 text-green-600 text-center font-semibold animate-fade-in">
+                  Inquiry Sent Successfully
+                </div>
+              )}
             </form>
           </motion.div>
 
