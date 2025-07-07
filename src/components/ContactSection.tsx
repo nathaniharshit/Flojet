@@ -76,15 +76,22 @@ const ContactSection: React.FC = () => {
   return (
     <motion.section
       id="contact"
-      className="section bg-gradient-to-br from-blue-50 via-white to-pink-100 relative overflow-hidden min-h-screen"
+      className="section bg-gradient-to-br from-blue-100 via-pink-50 to-yellow-100 relative overflow-hidden min-h-screen"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
+      transition={{ duration: 0.7, ease: 'easeOut' }}
       viewport={{ once: true }}
     >
-      {/* Decorative background shapes */}
+      {/* Decorative background shapes and image */}
       <div className="absolute -top-32 -left-32 w-96 h-96 bg-pink-200 rounded-full opacity-30 blur-2xl z-0" />
       <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-blue-200 rounded-full opacity-30 blur-2xl z-0" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-br from-blue-200 via-pink-100 to-yellow-100 rounded-full opacity-20 blur-3xl z-0" />
+      <img
+        src="/images/cityscape.jpg"
+        alt="Cityscape background"
+        className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none select-none z-0"
+        aria-hidden="true"
+      />
       <div className="container-custom relative z-10">
         <motion.div
           className="text-center mb-16"
