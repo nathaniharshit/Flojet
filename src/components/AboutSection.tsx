@@ -29,7 +29,7 @@ const AboutSection: React.FC = () => {
           {/* First section with text and image side by side */}
           <div className="grid md:grid-cols-2 gap-8 items-start">
             <div className="space-y-6">
-              <p className="text-lg text-gray-700 leading-relaxed">
+              <p className="text-lg text-gray-700 text-justify tect-center leading-relaxed">
                 The company in the year 1996 went into manufacturing and a new mission was set, a mission fuelled by
                 inspiration and established a wide-ranging pilot plant set-up on which every application is tried and studied
                 deeply. Each of the analysis is confirmed by technically qualified, experienced and committed professionals from
@@ -45,7 +45,7 @@ const AboutSection: React.FC = () => {
             </div>
             <div className="flex justify-center">
               <img
-                src="/Flojet Engineers Pvt. Ltd. - A Legacy of Innovation and Quality - visual selection.png"
+                src="https://github.com/nathaniharshit/Flojet/blob/main/Flojet%20Engineers%20Pvt.%20Ltd.%20-%20A%20Legacy%20of%20Innovation%20and%20Quality%20-%20visual%20selection.png?raw=true"
                 alt="Flojet Engineers Pvt. Ltd. - A Legacy of Innovation and Quality"
                 className="w-full h-auto max-w-md opacity-90 transition-opacity duration-300 hover:opacity-100"
               />
@@ -95,7 +95,7 @@ const AboutSection: React.FC = () => {
         />
         <div className="relative">
           <img
-            src="/Flojet Engineers Pvt. Ltd. - A Journey Through Time - visual selection.png"
+            src="https://github.com/nathaniharshit/Flojet/blob/main/Flojet%20Engineers%20Pvt.%20Ltd.%20-%20A%20Journey%20Through%20Time%20-%20visual%20selection.png?raw=true"
             alt="Flojet Engineers Pvt. Ltd. - A Journey Through Time"
             className="float-right ml-8 mb-6 w-full h-auto max-w-md opacity-90 transition-opacity duration-300 hover:opacity-100 md:w-1/2 lg:w-2/5"
           />
