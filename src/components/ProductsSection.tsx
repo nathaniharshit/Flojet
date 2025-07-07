@@ -35,19 +35,36 @@ const ProductsSection: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<number | null>(null);
   const [selectedProductDetail, setSelectedProductDetail] = useState<any>(null);
   const [productDetailParent, setProductDetailParent] = useState<'products' | 'regularProducts' | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  // Helper to simulate reload and scroll to top
+  const simulateReloadAndScroll = (callback: () => void) => {
+    setLoading(true);
+    setTimeout(() => {
+      callback();
+      setLoading(false);
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 10);
+    }, 400);
+  };
 
   const goToGenerations = () => {
-    setCurrentScreen('generations');
+    simulateReloadAndScroll(() => setCurrentScreen('generations'));
   };
 
   const goToProducts = (genIndex: number) => {
-    setSelectedGeneration(genIndex);
-    setCurrentScreen('products');
+    simulateReloadAndScroll(() => {
+      setSelectedGeneration(genIndex);
+      setCurrentScreen('products');
+    });
   };
 
   const goToRegularProducts = (productId: number) => {
-    setSelectedProduct(productId);
-    setCurrentScreen('regularProducts');
+    simulateReloadAndScroll(() => {
+      setSelectedProduct(productId);
+      setCurrentScreen('regularProducts');
+    });
   };
 
   const goToProductDetail = (product: any, parent: 'products' | 'regularProducts') => {
@@ -983,6 +1000,15 @@ const ProductsSection: React.FC = () => {
       image: "https://github.com/nathaniharshit/Flojet/blob/main/images/4.jpeg?raw=true"
     }
   ];
+
+  // Render loading overlay
+  if (loading) {
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-70 transition-opacity duration-300">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-red-500 border-solid"></div>
+      </div>
+    );
+  }
 
   return (
     <ErrorBoundary>
