@@ -45,7 +45,7 @@ const DesktopNav: React.FC<DesktopNavProps> = ({ navLinkClass, isAboutDropdownOp
           Company Profile <ChevronDown size={16} />
         </NavLink>
         {/* Dropdown */}
-        <div className="absolute top-full left-0 mt-0.5 w-56 bg-white/95 border border-gray-200 rounded-xl shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transform translate-y-0.5 group-hover:translate-y-0 transition-opacity transition-transform duration-200 ease-in-out backdrop-blur-md">
+        <div className="absolute top-full left-1 mt-0 w-56 bg-white/95 border border-gray-200 rounded-xl shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transform translate-y-0.5 group-hover:translate-y-0 transition-opacity transition-transform duration-200 ease-in-out backdrop-blur-md z-50">
           {[
             { href: 'about', label: 'About Us', rounded: 'rounded-t-lg' },
             { href: 'background', label: 'Background' },

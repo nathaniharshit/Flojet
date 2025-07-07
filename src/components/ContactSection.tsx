@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { motion } from 'framer-motion';
+import emailjs from 'emailjs-com';
 
 // Importing icons
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaClock, FaEnvelopeOpen } from "react-icons/fa";
@@ -16,13 +17,51 @@ const underlineVariants = {
 
 const ContactSection: React.FC = () => {
   const { toast } = useToast();
+  const [formData, setFormData] = React.useState({
+    name: '',
+    company: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  });
+  const [loading, setLoading] = React.useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message Sent",
-      description: "Thank you for your inquiry. Our team will contact you shortly.",
-    });
+    setLoading(true);
+    try {
+      await emailjs.send(
+        'service_x49jz37', // replace with your EmailJS service ID
+        'template_9aatqxl', // replace with your EmailJS template ID
+        {
+          name: formData.name,
+          company: formData.company,
+          email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          message: formData.message
+        },
+        'TjwH1BCqxyO9RGqpw' // replace with your EmailJS public key
+      );
+      toast({
+        title: 'Inquiry Sent Successfully',
+        description: 'Thank you for your inquiry. Our team will contact you shortly.',
+      });
+      setFormData({ name: '', company: '', email: '', phone: '', subject: '', message: '' });
+    } catch (err) {
+      toast({
+        title: 'Error',
+        description: 'Failed to send your inquiry. Please try again later.',
+        variant: 'destructive',
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -70,37 +109,37 @@ const ContactSection: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium text-gray-700">Full Name</label>
-                  <Input id="name" placeholder="Enter your full name" required className="border-gray-300 focus:border-primary focus:ring focus:ring-primary/20" />
+                  <Input id="name" value={formData.name} onChange={handleChange} placeholder="Enter your full name" required className="border-gray-300 focus:border-primary focus:ring focus:ring-primary/20" />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="company" className="text-sm font-medium text-gray-700">Company</label>
-                  <Input id="company" placeholder="Your Company" required className="border-gray-300 focus:border-primary focus:ring focus:ring-primary/20" />
+                  <Input id="company" value={formData.company} onChange={handleChange} placeholder="Your Company" required className="border-gray-300 focus:border-primary focus:ring focus:ring-primary/20" />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label htmlFor="email" className="text-sm font-medium text-gray-700">Email</label>
-                  <Input id="email" type="email" placeholder="Enter email address" required className="border-gray-300 focus:border-primary focus:ring focus:ring-primary/20" />
+                  <Input id="email" type="email" value={formData.email} onChange={handleChange} placeholder="Enter email address" required className="border-gray-300 focus:border-primary focus:ring focus:ring-primary/20" />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="phone" className="text-sm font-medium text-gray-700">Phone</label>
-                  <Input id="phone" placeholder="Enter your phone" required className="border-gray-300 focus:border-primary focus:ring focus:ring-primary/20" />
+                  <Input id="phone" value={formData.phone} onChange={handleChange} placeholder="Enter your phone" required className="border-gray-300 focus:border-primary focus:ring focus:ring-primary/20" />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <label htmlFor="subject" className="text-sm font-medium text-gray-700">Subject</label>
-                <Input id="subject" placeholder="Inquiry about Carbon Gaskets" required className="border-gray-300 focus:border-primary focus:ring focus:ring-primary/20" />
+                <Input id="subject" value={formData.subject} onChange={handleChange} placeholder="Inquiry about Carbon Gaskets" required className="border-gray-300 focus:border-primary focus:ring focus:ring-primary/20" />
               </div>
 
               <div className="space-y-2">
                 <label htmlFor="message" className="text-sm font-medium text-gray-700">Message</label>
-                <Textarea id="message" placeholder="Please provide details about your requirements" required className="min-h-32 border-gray-300 focus:border-primary focus:ring focus:ring-primary/20" />
+                <Textarea id="message" value={formData.message} onChange={handleChange} placeholder="Please provide details about your requirements" required className="min-h-32 border-gray-300 focus:border-primary focus:ring focus:ring-primary/20" />
               </div>
 
-              <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-white">
-                Submit Inquiry
+              <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-white" disabled={loading}>
+                {loading ? 'Sending...' : 'Submit Inquiry'}
               </Button>
             </form>
           </motion.div>
