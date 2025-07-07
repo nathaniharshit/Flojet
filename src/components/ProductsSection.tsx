@@ -68,9 +68,11 @@ const ProductsSection: React.FC = () => {
   };
 
   const goToProductDetail = (product: any, parent: 'products' | 'regularProducts') => {
-    setSelectedProductDetail(product);
-    setProductDetailParent(parent);
-    setCurrentScreen('productDetail');
+    simulateReloadAndScroll(() => {
+      setSelectedProductDetail(product);
+      setProductDetailParent(parent);
+      setCurrentScreen('productDetail');
+    });
   };
 
   const goBack = () => {
