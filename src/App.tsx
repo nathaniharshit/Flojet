@@ -7,6 +7,7 @@ import Features from './pages/Features';
 import Contact from './pages/Contact';
 import Certificates from './components/Certificates';
 import ScrollToTop from './components/ScrollToTop';
+import ProductsSection from './components/ProductsSection';
 
 
 
@@ -21,6 +22,7 @@ function App() {
           <Route index element={<Home />} />            {/* default route "/" */}
           <Route path="about" element={<About />} />
           <Route path="products" element={<Products />} />
+          <Route path="products/*" element={<ProductsSection />} />
           <Route path="features" element={<Features />} />
           <Route path="contact" element={<Contact />} />
           <Route path="certificates" element={<Certificates />} />

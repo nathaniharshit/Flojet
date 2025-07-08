@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation, useParams } from 'react-router-dom';
 import { CheckCircle, Award, Shield, Clock, ChevronDown, ChevronUp, FileText, X, Download } from 'lucide-react';
 
 // Add a class-based ErrorBoundary at the top of the file
@@ -37,6 +37,52 @@ const ProductsSection: React.FC = () => {
   const [productDetailParent, setProductDetailParent] = useState<'products' | 'regularProducts' | null>(null);
   const [loading, setLoading] = useState(false);
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Sync UI state with URL
+  useEffect(() => {
+    const path = location.pathname.replace(/\/+$/, ''); // Remove trailing slash
+    if (path === '/products') {
+      setCurrentScreen('main');
+      setSelectedGeneration(null);
+      setSelectedProduct(null);
+      setSelectedProductDetail(null);
+    } else if (path === '/products/generations') {
+      setCurrentScreen('generations');
+      setSelectedGeneration(null);
+      setSelectedProduct(null);
+      setSelectedProductDetail(null);
+    } else if (path.startsWith('/products/products/')) {
+      const genIndex = parseInt(path.split('/products/products/')[1]);
+      setSelectedGeneration(genIndex);
+      setCurrentScreen('products');
+      setSelectedProduct(null);
+      setSelectedProductDetail(null);
+    } else if (path.startsWith('/products/regular/')) {
+      const prodIndex = parseInt(path.split('/products/regular/')[1]);
+      setSelectedProduct(prodIndex);
+      setCurrentScreen('regularProducts');
+      setSelectedGeneration(null);
+      setSelectedProductDetail(null);
+    } else if (path.startsWith('/products/detail/')) {
+      // For demo: use encoded index/id, not full object
+      const [type, idx] = path.split('/products/detail/')[1].split('-');
+      if (type === 'gen' && selectedGeneration !== null) {
+        const product = products[0].generations?.[selectedGeneration]?.subProducts?.[parseInt(idx)];
+        setSelectedProductDetail(product);
+        setProductDetailParent('products');
+        setCurrentScreen('productDetail');
+      } else if (type === 'reg' && selectedProduct !== null) {
+        const product = products.find(p => p.id === selectedProduct)?.subProducts?.[parseInt(idx)];
+        setSelectedProductDetail(product);
+        setProductDetailParent('regularProducts');
+        setCurrentScreen('productDetail');
+      }
+    }
+    // eslint-disable-next-line
+  }, [location.pathname]);
+
   // Helper to simulate reload and scroll to top
   const simulateReloadAndScroll = (callback: () => void) => {
     setLoading(true);
@@ -49,46 +95,33 @@ const ProductsSection: React.FC = () => {
     }, 400);
   };
 
+  // Navigation helpers that push to history
   const goToGenerations = () => {
-    simulateReloadAndScroll(() => setCurrentScreen('generations'));
+    navigate('/products/generations');
   };
 
   const goToProducts = (genIndex: number) => {
-    simulateReloadAndScroll(() => {
-      setSelectedGeneration(genIndex);
-      setCurrentScreen('products');
-    });
+    navigate(`/products/products/${genIndex}`);
   };
 
   const goToRegularProducts = (productId: number) => {
-    simulateReloadAndScroll(() => {
-      setSelectedProduct(productId);
-      setCurrentScreen('regularProducts');
-    });
+    navigate(`/products/regular/${productId}`);
   };
 
   const goToProductDetail = (product: any, parent: 'products' | 'regularProducts') => {
-    simulateReloadAndScroll(() => {
-      setSelectedProductDetail(product);
-      setProductDetailParent(parent);
-      setCurrentScreen('productDetail');
-    });
+    if (parent === 'products' && selectedGeneration !== null) {
+      const idx = products[0].generations[selectedGeneration].subProducts.findIndex((p: any) => p.name === product.name);
+      navigate(`/products/detail/gen-${idx}`);
+      setProductDetailParent('products');
+    } else if (parent === 'regularProducts' && selectedProduct !== null) {
+      const idx = products.find(p => p.id === selectedProduct)?.subProducts.findIndex((p: any) => p.name === product.name);
+      navigate(`/products/detail/reg-${idx}`);
+      setProductDetailParent('regularProducts');
+    }
   };
 
   const goBack = () => {
-    if (currentScreen === 'productDetail') {
-      if (productDetailParent === 'products') {
-        setCurrentScreen('products');
-      } else if (productDetailParent === 'regularProducts') {
-        setCurrentScreen('regularProducts');
-      } else {
-        setCurrentScreen('main');
-      }
-    } else if (currentScreen === 'products') {
-      setCurrentScreen('generations');
-    } else if (currentScreen === 'generations' || currentScreen === 'regularProducts') {
-      setCurrentScreen('main');
-    }
+    navigate(-1); // Go back in browser history
   };
 
   const products = [
@@ -1055,18 +1088,18 @@ const ProductsSection: React.FC = () => {
 
               <div className="grid md:grid-cols-2 gap-8 fade-in">
                 {products.map(product => (
-                  <Card key={product.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                    <div className="h-48 overflow-hidden relative">
+                  <Card key={product.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col">
+                    <div className="relative w-full h-64 bg-gray-100 overflow-hidden">
                       <img 
                         src={product.image} 
                         alt={product.name} 
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                        className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-110"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
                     </div>
-                    <CardContent className="p-6">
+                    <CardContent className="p-6 flex-1 flex flex-col">
                       <h3 className="text-xl font-bold text-gray-800 mb-3">{product.name}</h3>
-                      <p className="text-gray-600 mb-4">{product.description}</p>
+                      <p className="text-gray-600 mb-4 flex-1">{product.description}</p>
                       
                       {/* Main Features */}
                       <div className="mb-4">
@@ -1081,7 +1114,7 @@ const ProductsSection: React.FC = () => {
                         </ul>
                       </div>
 
-                      <div className="flex gap-2">
+                      <div className="flex gap-2 mt-auto">
                         <Button asChild className="bg-red-500 hover:bg-red-600 text-white flex-1">
                           <Link to="/contact">Get Quote</Link>
                         </Button>
