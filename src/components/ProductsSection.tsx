@@ -132,7 +132,7 @@ const ProductsSection: React.FC = () => {
       features: [
         "100% Non-asbestos materials", 
         "Excellent chemical resistance", 
-        "Temperature range: -200°C to 280°C", 
+        "Temperature range: -200°C to 1200°C", 
         "Available in ropes and rings",
         "Various cross-sections available",
         "Suitable for steam, water, and chemical applications"
@@ -1262,6 +1262,46 @@ const ProductsSection: React.FC = () => {
                   </Card>
                 ))}
               </div>
+
+              {/* Quick Links Section */}
+              <div className="mt-12 bg-gray-50 p-6 rounded-lg shadow-md">
+                <h3 className="text-2xl font-bold text-gray-800 mb-4 text-center">Quick Links to Other Products</h3>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {/* Links to other generations */}
+                  {(products.find(p => p.id === 1)?.generations ?? []).map((generation, genIndex) => (
+                    genIndex !== selectedGeneration && (
+                      <button
+                        key={genIndex}
+                        onClick={() => {
+                          setSelectedGeneration(genIndex);
+                          setCurrentScreen('products');
+                        }}
+                        className="block bg-white p-4 rounded-lg shadow hover:shadow-lg transition-all border border-gray-200 hover:border-primary"
+                      >
+                        <h4 className="text-lg font-semibold text-gray-800">{generation.name}</h4>
+                        <p className="text-sm text-gray-600">{generation.description}</p>
+                      </button>
+                    )
+                  ))}
+
+                  {/* Links to other product categories */}
+                  {products
+                    .filter((product) => product.id !== 1) // Exclude the current product category
+                    .map((product) => (
+                      <button
+                        key={product.id}
+                        onClick={() => {
+                          setSelectedProduct(product.id);
+                          setCurrentScreen('regularProducts');
+                        }}
+                        className="block bg-white p-4 rounded-lg shadow hover:shadow-lg transition-all border border-gray-200 hover:border-primary"
+                      >
+                        <h4 className="text-lg font-semibold text-gray-800">{product.name}</h4>
+                        <p className="text-sm text-gray-600">{product.description}</p>
+                      </button>
+                    ))}
+                </div>
+              </div>
             </div>
           )}
 
@@ -1323,6 +1363,44 @@ const ProductsSection: React.FC = () => {
                     </CardContent>
                   </Card>
                 ))}
+              </div>
+
+              {/* Quick Links Section */}
+              <div className="mt-12 bg-gray-50 p-6 rounded-lg shadow-md">
+                <h3 className="text-2xl font-bold text-gray-800 mb-4 text-center">Quick Links to Other Products</h3>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {/* Links to generations */}
+                  {(products.find(p => p.id === 1)?.generations ?? []).map((generation, genIndex) => (
+                    <button
+                      key={genIndex}
+                      onClick={() => {
+                        setSelectedGeneration(genIndex);
+                        setCurrentScreen('products');
+                      }}
+                      className="block bg-white p-4 rounded-lg shadow hover:shadow-lg transition-all border border-gray-200 hover:border-primary"
+                    >
+                      <h4 className="text-lg font-semibold text-gray-800">{generation.name}</h4>
+                      <p className="text-sm text-gray-600">{generation.description}</p>
+                    </button>
+                  ))}
+
+                  {/* Links to other product categories */}
+                  {products
+                    .filter((product) => product.id !== selectedProduct) // Exclude the current product category
+                    .map((product) => (
+                      <button
+                        key={product.id}
+                        onClick={() => {
+                          setSelectedProduct(product.id);
+                          setCurrentScreen('regularProducts');
+                        }}
+                        className="block bg-white p-4 rounded-lg shadow hover:shadow-lg transition-all border border-gray-200 hover:border-primary"
+                      >
+                        <h4 className="text-lg font-semibold text-gray-800">{product.name}</h4>
+                        <p className="text-sm text-gray-600">{product.description}</p>
+                      </button>
+                    ))}
+                </div>
               </div>
             </div>
           )}
@@ -1808,94 +1886,6 @@ const ProductsSection: React.FC = () => {
                             </td>
                           ))}
                         </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              )}
-
-              {/* Properties Chart */}
-              {selectedProductDetail.properties && Array.isArray(selectedProductDetail.dimensionChart) && (
-                <div className="mb-8">
-                  <h3 className="text-2xl font-bold text-red-600 mb-4">
-                    PROPERTIES CHART
-                  </h3>
-                  
-                  <div className="overflow-x-auto">
-                    <table className="w-full bg-white border border-gray-200 rounded-lg shadow-sm">
-                      <thead>
-                        <tr className="bg-gray-50">
-                          <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">FLOJET STYLE</th>
-                          <th className="px-4 py-3 text-left font-semibold text-gray-700 border-b">DESCRIPTION</th>
-                          <th className="px-4 py-3 text-center font-semibold text-gray-700 border-b">TEMP DEG)</th>
-                          {selectedProductDetail.properties.speed && (
-                            <th className="px-4 py-3 text-center font-semibold text-gray-700 border-b">SPEED(M/S)</th>
-                          )}
-                          <th className="px-4 py-3 text-center font-semibold text-gray-700 border-b">PRESSURE(PSI)</th>
-                          <th className="px-4 py-3 text-center font-semibold text-gray-700 border-b">pH VALUE</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td className="px-4 py-3 font-medium text-gray-700 border-b">TA</td>
-                          {selectedProductDetail.dimensionChart.map((item: any, index: number) => (
-                            <td key={index} className="px-4 py-3 text-center text-gray-700 border-b">
-                              {item.metersPerKg}
-                            </td>
-                          ))}
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              )}
-
-              {/* Properties Chart for Epoxy Compounds */}
-              {selectedProductDetail.properties && selectedProductDetail.properties.adhesionTensileStrength && (
-                <div className="mb-8">
-                  <h3 className="text-2xl font-bold text-red-600 mb-4">
-                    PROPERTIES
-                  </h3>
-                  
-                  <div className="overflow-x-auto">
-                    <table className="w-full bg-white border border-gray-200 rounded-lg shadow-sm">
-                      <tbody>
-                        {selectedProductDetail.properties.compressiveStrength && (
-                          <tr className="bg-gray-50">
-                            <td className="px-4 py-3 font-semibold text-red-600 border-b">Compressive Strength</td>
-                            <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.compressiveStrength}</td>
-                          </tr>
-                        )}
-                        <tr className={selectedProductDetail.properties.compressiveStrength ? "" : "bg-gray-50"}>
-                          <td className="px-4 py-3 font-semibold text-red-600 border-b">Adhesion Tensile Strength</td>
-                          <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.adhesionTensileStrength}</td>
-                        </tr>
-                        <tr className={selectedProductDetail.properties.compressiveStrength ? "bg-gray-50" : ""}>
-                          <td className="px-4 py-3 font-semibold text-red-600 border-b">Temperature Resistance</td>
-                          <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.temperatureResistance}</td>
-                        </tr>
-                        <tr className={selectedProductDetail.properties.compressiveStrength ? "" : "bg-gray-50"}>
-                          <td className="px-4 py-3 font-semibold text-red-600 border-b">Working Time</td>
-                          <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.workingTime}</td>
-                        </tr>
-                        {selectedProductDetail.properties.fullLoad && (
-                          <tr className={selectedProductDetail.properties.compressiveStrength ? "bg-gray-50" : ""}>
-                            <td className="px-4 py-3 font-semibold text-red-600 border-b">Full Load</td>
-                            <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.fullLoad}</td>
-                          </tr>
-                        )}
-                        {selectedProductDetail.properties.color && (
-                          <tr className="bg-gray-50">
-                            <td className="px-4 py-3 font-semibold text-red-600 border-b">Color</td>
-                            <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.color}</td>
-                          </tr>
-                        )}
-                        {selectedProductDetail.properties.packing && (
-                          <tr className="bg-gray-50">
-                            <td className="px-4 py-3 font-semibold text-red-600 border-b">Packing</td>
-                            <td className="px-4 py-3 text-gray-700 border-b">{selectedProductDetail.properties.packing}</td>
-                          </tr>
-                        )}
                       </tbody>
                     </table>
                   </div>
