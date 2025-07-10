@@ -87,7 +87,7 @@ const DesktopNav: React.FC<DesktopNavProps> = ({ navLinkClass, isAboutDropdownOp
         </span>
       </NavLink>
       <NavLink to="/contact" onClick={() => setIsMenuOpen(false)}>
-        <Button className="bg-gradient-to-r from-red-500 via-blue-400 to-blue-300 text-white hover:from-blue-400 hover:to-red-500 px-6 py-2 rounded-xl shadow-lg font-bold transition-all duration-200 border-0">
+        <Button className="bg-blue-500 text-white hover:from-blue-400 hover:to-red-500 px-6 py-2 rounded-xl shadow-lg font-bold transition-all duration-200 border-0">
           Get a Quote
         </Button>
       </NavLink>

@@ -167,6 +167,7 @@ const ProductsSection: React.FC = () => {
                 pressure: "8000",
                 phValue: "2 - 12"
               },
+              
             },
             {
               name: "FLOJET - PA (PURE ARAMID)",

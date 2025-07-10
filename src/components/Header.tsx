@@ -10,7 +10,6 @@ const Header: React.FC = () => {
   const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [showFloatingMenu, setShowFloatingMenu] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
 
   const location = useLocation();
@@ -52,7 +51,7 @@ const Header: React.FC = () => {
       {/* Animated header entrance */}
       <motion.header
         ref={headerRef}
-        className="py-4 px-4 md:px-8 bg-white shadow-2xl border-b-0 relative"
+        className="py-4 px-4 md:px-8 bg-white text-gray-800 shadow-2xl border-b-0 relative"
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
@@ -78,7 +77,7 @@ const Header: React.FC = () => {
 
         {/* Mobile Menu Toggle */}
         <div className="w-full flex justify-end md:hidden mt-2">
-          <button onClick={toggleMenu} aria-label="Toggle menu" className="text-gray-700 focus:outline-none">
+          <button onClick={toggleMenu} aria-label="Toggle menu" className="text-white focus:outline-none">
             {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
@@ -128,7 +127,7 @@ const Header: React.FC = () => {
             <NavLink to="/contact" onClick={() => setIsMenuOpen(false)} className={mobileNavLinkClass}>Contact</NavLink>
             <NavLink to="/certificates" onClick={() => setIsMenuOpen(false)} className={mobileNavLinkClass}>Certificates</NavLink>
             <NavLink to="/contact" onClick={() => setIsMenuOpen(false)}>
-              <Button className="bg-gradient-to-r from-red-500 via-yellow-400 to-yellow-300 text-white hover:from-yellow-400 hover:to-red-500 w-full py-2 rounded-xl shadow-lg font-bold border-0">
+              <Button className="bg-blue-500 text-white hover:from-yellow-400 hover:to-red-500 w-full py-2 rounded-xl shadow-lg font-bold border-0">
                 Get a Quote
               </Button>
             </NavLink>
