@@ -167,7 +167,6 @@ const ProductsSection: React.FC = () => {
                 pressure: "8000",
                 phValue: "2 - 12"
               },
-              documentFile: "1698389411.pdf"
             },
             {
               name: "FLOJET - PA (PURE ARAMID)",
@@ -242,7 +241,7 @@ const ProductsSection: React.FC = () => {
                 pressure: "7000",
                 phValue: "2- 12"
               },
-              documentFile: "1673599701.pdf"
+              
             },
             {
               name: "FLOJET- TG (100% GFO)",

@@ -5,7 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { motion } from 'framer-motion';
 import emailjs from 'emailjs-com';
-import { MapPinnedIcon, PhoneIcon, Mail, LucideClock9 } from 'lucide-react';
+import { MapPinnedIcon, PhoneIcon, Mail, LucideClock9, Star } from 'lucide-react';
 
 const underlineVariants = {
   hidden: { scaleX: 0, opacity: 0 },
@@ -205,93 +205,128 @@ const ContactSection: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Contact Info & FAQ */}
+          {/* Contact Info */}
           <motion.div
-            className="space-y-8 flex flex-col justify-between"
+            className="bg-white/90 p-10 rounded-2xl shadow-2xl border border-gray-100 backdrop-blur-md flex flex-col justify-between h-full"
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              className="bg-white/90 p-10 rounded-2xl shadow-xl border border-gray-200 backdrop-blur-md transition duration-200 flex-1"
-            >
-              <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">Get In Touch</h3>
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <motion.div initial={{ opacity: 0, rotate: -10 }} whileInView={{ opacity: 1, rotate: 0 }} transition={{ duration: 0.4 }}>
-                    <MapPinnedIcon className="text-red-500 mt-1" size={28} />
-                  </motion.div>
-                  <div>
-                    <h4 className="font-semibold text-gray-700">Address</h4>
-                    <p className="text-gray-600">
-                      31, At End of, Rd Number 2, Sardar Estate,<br />
-                      Sayaji Park Society, Vadodara, Gujarat 390019
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <PhoneIcon className="text-red-500 mt-1" size={28} />
-                  <div>
-                    <h4 className="font-semibold text-gray-700">Phone</h4>
-                    <p className="text-gray-600">+91 9824037632 / +91 9376222520</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <Mail className="text-red-500 mt-1" size={28} />
-                  <div>
-                    <h4 className="font-semibold text-gray-700">Email</h4>
-                    <a href="mailto:sales@flojet21.com" className="text-gray-600 hover:text-blue-500">
-                      sales@flojet21.com
-                    </a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <LucideClock9 className="text-red-500 mt-1" size={28} />
-                  <div>
-                    <h4 className="font-semibold text-gray-700">Business Hours</h4>
-                    <p className="text-gray-600">
-                      Monday - Saturday: 9:00 AM - 6:00 PM <br />
-                      Sunday: Closed
-                    </p>
-                  </div>
+            <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">Get In Touch</h3>
+            <div className="space-y-6">
+              <div className="flex items-start gap-4">
+                <motion.div initial={{ opacity: 0, rotate: -10 }} whileInView={{ opacity: 1, rotate: 0 }} transition={{ duration: 0.4 }}>
+                  <MapPinnedIcon className="text-red-500 mt-1" size={28} />
+                </motion.div>
+                <div>
+                  <h4 className="font-semibold text-gray-700">Address</h4>
+                  <p className="text-gray-600">
+                    31, At End of, Rd Number 2, Sardar Estate,<br />
+                    Sayaji Park Society, Vadodara, Gujarat 390019
+                  </p>
                 </div>
               </div>
-            </motion.div>
+              <div className="flex items-start gap-4">
+                <PhoneIcon className="text-red-500 mt-1" size={28} />
+                <div>
+                  <h4 className="font-semibold text-gray-700">Phone</h4>
+                  <p className="text-gray-600">+91 9824037632 / +91 9376222520</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <Mail className="text-red-500 mt-1" size={28} />
+                <div>
+                  <h4 className="font-semibold text-gray-700">Email</h4>
+                  <a href="mailto:sales@flojet21.com" className="text-gray-600 hover:text-blue-500">
+                    sales@flojet21.com
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <LucideClock9 className="text-red-500 mt-1" size={28} />
+                <div>
+                  <h4 className="font-semibold text-gray-700">Business Hours</h4>
+                  <p className="text-gray-600">
+                    Monday - Saturday: 9:00 AM - 6:00 PM <br />
+                    Sunday: Closed
+                  </p>
+                </div>
+              </div>
+            </div>
 
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              className="bg-white/90 p-10 rounded-2xl shadow-xl border border-gray-200 backdrop-blur-md transition duration-200 flex-1"
-            >
-              <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">Frequently Asked Questions</h3>
-              <div className="space-y-4">
-                <div>
-                  <h4 className="font-semibold text-gray-700">How can I contact your team?</h4>
-                  <p className="text-gray-600">
-                    You can reach us via the contact form, email at <a href="mailto:sales@flojet21.com" className="text-blue-500 hover:underline">sales@flojet21.com</a>, or call us at +91 9824037632 / +91 9376222520.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-gray-700">What is your response time?</h4>
-                  <p className="text-gray-600">We aim to respond to all inquiries within 24 hours during business days.</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-gray-700">Can I visit your office?</h4>
-                  <p className="text-gray-600">
-                    Yes, you can visit us at our office in Vadodara. Please schedule an appointment in advance.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-gray-700">What services do you offer?</h4>
-                  <p className="text-gray-600">
-                    We provide custom sealing solutions, technical support, and a wide range of high-quality industrial products.
-                  </p>
-                </div>
-              </div>
-            </motion.div>
+            {/* Additional Content */}
+            <div className="mt-8">
+              <h4 className="text-xl font-bold text-gray-800 mb-4">Why Choose Us?</h4>
+              <ul className="list-disc list-inside text-gray-600 space-y-2">
+                <li>Over 35 years of expertise in sealing solutions.</li>
+                <li>ISO-certified products ensuring top-notch quality.</li>
+                <li>Dedicated customer support for all your queries.</li>
+                <li>Custom solutions tailored to your industrial needs.</li>
+              </ul>
+            </div>
           </motion.div>
         </div>
+
+        {/* FAQ Section */}
+        <motion.div
+          className="mt-16 bg-white/90 p-10 rounded-2xl shadow-2xl border border-gray-100 backdrop-blur-md"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">Frequently Asked Questions</h3>
+          <div className="space-y-4">
+            <div>
+              <h4 className="font-semibold text-gray-700">How can I contact your team?</h4>
+              <p className="text-gray-600">
+                You can reach us via the contact form, email at <a href="mailto:sales@flojet21.com" className="text-blue-500 hover:underline">sales@flojet21.com</a>, or call us at +91 9824037632 / +91 9376222520.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold text-gray-700">What is your response time?</h4>
+              <p className="text-gray-600">We aim to respond to all inquiries within 24 hours during business days.</p>
+            </div>
+            <div>
+              <h4 className="font-semibold text-gray-700">Can I visit your office?</h4>
+              <p className="text-gray-600">
+                Yes, you can visit us at our office in Vadodara. Please schedule an appointment in advance.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold text-gray-700">What services do you offer?</h4>
+              <p className="text-gray-600">
+                We provide custom sealing solutions, technical support, and a wide range of high-quality industrial products.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Location Map Section */}
+        <motion.div
+          className="mt-16 bg-white/90 p-10 rounded-2xl shadow-2xl border border-gray-100 backdrop-blur-md"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          <h3 className="text-3xl font-bold text-gray-800 mb-6 text-center">Our Location</h3>
+          <div className="rounded-md overflow-hidden shadow-md">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d842.6401162726459!2d73.23243271244249!3d22.31547672808382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fcf9ccd817a9f%3A0x26ad116ba404a026!2sFlojet%20Engineers%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1747251043459!5m2!1sen!2sin"
+              width="100%"
+              height="400"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+          <p className="text-center text-gray-600 mt-4">
+            Visit us at our office in Vadodara, Gujarat, India.
+          </p>
+        </motion.div>
       </div>
     </motion.section>
   );
