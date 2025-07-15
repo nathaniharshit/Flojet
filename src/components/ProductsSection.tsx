@@ -167,7 +167,7 @@ const ProductsSection: React.FC = () => {
                 pressure: "8000",
                 phValue: "2 - 12"
               },
-              
+              documentFile: "https://drive.google.com/file/d/1IivgsBMigLZeLra9xgu354MpYpsPRpxF/view?usp=sharing"
             },
             {
               name: "FLOJET - PA (PURE ARAMID)",
@@ -192,7 +192,7 @@ const ProductsSection: React.FC = () => {
                 pressure: "8000",
                 phValue: "3 - 12"
               },
-              documentFile: "1660813073.pdf"
+              documentFile: "https://drive.google.com/file/d/1yvXoILNHHEbmhhNc3r7Ti77HOnZqIpV_/view?usp=sharing"
             },
             {
               name: "FLOJET - PT (PURE PTFE)",
@@ -217,7 +217,7 @@ const ProductsSection: React.FC = () => {
                 pressure: "5000",
                 phValue: "0 - 14"
               },
-              documentFile: "1663324350.pdf"
+              documentFile: "https://drive.google.com/file/d/1gEhnugdakE7-QiAqxtN4M002iJNV4dji/view?usp=sharing"
             },
             {
               name: "FLOJET-TA (PTFE/ARAMID)",
@@ -242,7 +242,7 @@ const ProductsSection: React.FC = () => {
                 pressure: "7000",
                 phValue: "2- 12"
               },
-              
+              documentFile: "https://drive.google.com/file/d/1g5Op33AKpH9x_QsIhYPNhTn_l-uzBex2/view?usp=sharing"
             },
             {
               name: "FLOJET- TG (100% GFO)",
@@ -928,7 +928,7 @@ const ProductsSection: React.FC = () => {
             compound: "TROWEL APPLIED Heat Resistance @ 250° C",
             recommendedApplications: "Parts and equipment rebuilt with Flojet 500 can be easily machined back to their original dimensions. Worn bearing housings, damaged keyways, stripped threads, scored hydraulic rams, worn shafts, valve and pump components. For repairing cracks in engine blocks and sealing leaks in tanks, radiators, condensers, heat exchangers, pipes and flanges. Also, ideal for chocking and levelling machinery and other uneven surfaces."
           },
-          documentFile: "1667290932.pdf"
+          documentFile: "https://drive.google.com/file/d/1SRBlkyuteEful3-Ynrrbo4NJQFjd7g4h/view?usp=sharing"
         },
         {
           name: "FLOJET - 600",
@@ -964,7 +964,7 @@ const ProductsSection: React.FC = () => {
             compound: "POLY CERAMIC For abrasion, corrosion, erosion, cavitation, and frictional wear resistance. O Heat Resistance @ 250° C",
             recommendedApplications: "Ball and gate valves, valve stems. Pump cases, impellers, feed chutes, liners, hoppers, slurry lines, pipe elbows, mixing equipment paddles, feed screws, augers, cyclones, and fan blades. Ship hull and propeller maintenance. Lining tanks and surface areas that are too thin to be welded"
           },
-          documentFile: "1667290893.pdf"
+          documentFile: "https://drive.google.com/file/d/1YeQl_z_rRVHVfbiR_V_PqgOoKW3XbmbN/view?usp=sharing"
         },
         {
           name: "FLOJET - 800",
@@ -981,7 +981,7 @@ const ProductsSection: React.FC = () => {
             compound: "PERISHABLE CERAMIC For abrasion, corrosion, erosion, cavitation, and frictional wear resistance. O Heat Resistance @ 250° C",
             recommendedApplications: "Has uniform consistency for coating pumps, valves, slurry lines, augers, feed screws, flue gas scrubbers, demineralizing beds, vacuum pumps, salt spreaders, exhaust fans, fertilizer dryers, heat exchanges, impellers, and chemical tanks. Ideal final coat for FLOJET 700"
           },
-          documentFile: "1667291013.pdf"
+          documentFile: "https://drive.google.com/file/d/16WToARk-ia0baWDzHIVfjB4_ub2_UTxt/view?usp=sharing"
         },
         {
           name: "FLOJET - MULTICHEM (GL)",
@@ -1029,7 +1029,7 @@ const ProductsSection: React.FC = () => {
               description: "A soft expanded PTFE used for filling holes and gaps on which flojet compounds are to be applied."
             }
           ],
-          documentFile: "1665040587.pdf"
+          documentFile: "https://drive.google.com/file/d/11PoaScVQwRa4WhvQBYrk-EaVaKgtbtAu/view?usp=sharing"
         }
       ],
       image: "https://github.com/nathaniharshit/Flojet/blob/main/images/4.jpeg?raw=true"
@@ -1889,6 +1889,30 @@ const ProductsSection: React.FC = () => {
                       </tbody>
                     </table>
                   </div>
+                </div>
+              )}
+
+              {/* Document Section */}
+              {selectedProductDetail.documentFile && (
+                <div className="mb-8">
+                  <h3 className="text-2xl font-bold text-red-600 mb-4">DOCUMENT</h3>
+                  <p className="text-gray-700 mb-4">
+                    View the detailed product document for more information.
+                  </p>
+                  <Button
+                    className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg"
+                    onClick={() => {
+                      // Check if it's already a full URL (for Google Drive links)
+                      if (selectedProductDetail.documentFile.startsWith('https://')) {
+                        window.open(selectedProductDetail.documentFile, '_blank');
+                      } else {
+                        // Use the server path for PDF files
+                        window.open(`https://drive.google.com/file/d/1gEhnugdakE7-QiAqxtN4M002iJNV4dji/view?usp=sharing${selectedProductDetail.documentFile}`, '_blank');
+                      }
+                    }}
+                  >
+                    View PDF
+                  </Button>
                 </div>
               )}
 
