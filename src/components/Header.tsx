@@ -51,13 +51,13 @@ const Header: React.FC = () => {
       {/* Animated header entrance */}
       <motion.header
         ref={headerRef}
-        className="py-4 px-4 md:px-8 bg-white text-gray-800 shadow-2xl border-b-0 relative"
+        className="py-4 px-4 md:px-8 bg-white-50 text-gray-800 shadow-lg border-b-0 relative"
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
         {/* Gradient accent border */}
-        <div className="absolute left-0 right-0 bottom-0 h-1 bg-gradient-to-r from-primary via-pink-400 to-blue-400 opacity-80 rounded-b-xl pointer-events-none" />
+        <div className="absolute left-0 right-0 bottom-0 h-1 bg-gradient-to-r from-blue-500 to-red-500 opacity-70 rounded-b-xl pointer-events-none animate-pulse" />
         <div className="container-custom flex flex-col items-center md:items-start">
           <div className="w-full flex justify-between items-center mb-4">
             <NavLink to="/" className="flex-shrink-0 flex items-center gap-2" onClick={() => setIsMenuOpen(false)}>
@@ -77,7 +77,7 @@ const Header: React.FC = () => {
 
         {/* Mobile Menu Toggle */}
         <div className="w-full flex justify-end md:hidden mt-2">
-          <button onClick={toggleMenu} aria-label="Toggle menu" className="text-white focus:outline-none">
+          <button onClick={toggleMenu} aria-label="Toggle menu" className="text-gray-800 focus:outline-none">
             {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>

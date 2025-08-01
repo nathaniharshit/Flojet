@@ -2,6 +2,8 @@ import React from 'react';
 import ImageCarousel from './ImageCarousel';
 import { CheckCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
+import CountUp from 'react-countup';
+import VisibilitySensor from 'react-visibility-sensor';
 
 const underlineVariants = {
   hidden: { scaleX: 0, opacity: 0 },
@@ -197,6 +199,90 @@ const Hero: React.FC = () => {
                 alt="Why Choose Us"
                 className="max-w-[650px] w-full h-auto"
               />
+            </motion.div>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Animated Counters Section */}
+      <motion.section
+        id="counters"
+        className="py-16 bg-gray-100 text-gray-800"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        viewport={{ once: true }}
+      >
+        <div className="container-custom px-4 md:px-8 max-w-6xl mx-auto">
+          <motion.h2
+            className="text-4xl font-extrabold text-gray-900 mb-4 text-center"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
+            Our Achievements
+          </motion.h2>
+          <motion.div
+            className="w-20 h-1 bg-red-500 rounded mb-6 mx-auto"
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            viewport={{ once: true }}
+          />
+          <div className="grid md:grid-cols-3 gap-8 text-center">
+            {/* Counter 1 */}
+            <motion.div
+              className="p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-3xl font-bold text-blue-600 mb-2">
+                <VisibilitySensor partialVisibility reset>
+                  {({ isVisible }) => (
+                    <CountUp start={0} end={1000} duration={5} suffix="+" delay={isVisible ? 0 : null} />
+                  )}
+                </VisibilitySensor>
+              </h3>
+              <p className="text-lg text-gray-700">Satisfied Customers</p>
+            </motion.div>
+
+            {/* Counter 2 */}
+            <motion.div
+              className="p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-3xl font-bold text-blue-600 mb-2">
+                <VisibilitySensor partialVisibility reset>
+                  {({ isVisible }) => (
+                    <CountUp start={0} end={40} duration={7} suffix="+" delay={isVisible ? 0 : null} />
+                  )}
+                </VisibilitySensor>
+              </h3>
+              <p className="text-lg text-gray-700">Years in the Market</p>
+            </motion.div>
+
+            {/* Counter 3 */}
+            <motion.div
+              className="p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-3xl font-bold text-blue-600 mb-2">
+                <VisibilitySensor partialVisibility reset>
+                  {({ isVisible }) => (
+                    <CountUp start={0} end={2000} duration={5} suffix="+" delay={isVisible ? 0 : null} />
+                  )}
+                </VisibilitySensor>
+              </h3>
+              <p className="text-lg text-gray-700">Projects Completed</p>
             </motion.div>
           </div>
         </div>

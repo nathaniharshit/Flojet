@@ -1,14 +1,23 @@
 import React from 'react';
+import CountUp from 'react-countup';
 import { LifeBuoy, Settings, Zap, Truck, BadgeDollarSign, Factory } from 'lucide-react'; 
 import { TrendingUp, Users, Award, Store, ShieldCheck, Lightbulb } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const AboutSection: React.FC = () => {
   return (
-    <main className="bg-gray-50 min-h-screen py-16 px-6 sm:px-12 md:px-20">
+    <main className="relative overflow-hidden bg-gradient-to-b from-blue-50 to-red-50 min-h-screen py-16 px-6 sm:px-12 md:px-20">
+      {/* Subtle background pattern */}
+      <div 
+        className="absolute inset-0 z-0" 
+        style={{
+          backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(0,0,0,0.04) 1px, transparent 0)',
+          backgroundSize: '20px 20px',
+        }}
+      ></div>
       
       {/* About Us */}
-      <section id="about" className="max-w-4xl mx-auto mb-20 scroll-mt-24 mb-16">
+      <section id="about" className="relative max-w-4xl mx-auto mb-20 scroll-mt-24 mb-16">
         <motion.h1
           className="text-4xl font-extrabold text-gray-900 mb-4"
           initial={{ opacity: 0, y: 40 }}
@@ -29,13 +38,13 @@ const AboutSection: React.FC = () => {
           {/* First section with text and image side by side */}
           <div className="grid md:grid-cols-2 gap-8 items-start">
             <div className="space-y-6">
-              <p className="text-lg text-gray-700 text-justify tect-center leading-relaxed">
+              <p className="text-lg text-gray-700 text-justify text-center leading-relaxed">
                 The company in the year 1996 went into manufacturing and a new mission was set, a mission fuelled by
                 inspiration and established a wide-ranging pilot plant set-up on which every application is tried and studied
                 deeply. Each of the analysis is confirmed by technically qualified, experienced and committed professionals from
                 the particular key areas.
               </p>
-              <p className="text-lg text-gray-700 leading-relaxed">
+              <p className="text-lg text-gray-700 text-justify text-center leading-relaxed">
                 "Flojet®" products are being manufactured through the world's best technology, most modern machines
                 developed with the help of research, applied science, specialized technical knowledge and innovative skilled
                 experienced technocrats, with firm belief in 'Investment for the future' by continuously upgrading facility.
@@ -54,19 +63,19 @@ const AboutSection: React.FC = () => {
           
           {/* Remaining text in full width below the image */}
           <div className="space-y-6">
-            <p className="text-lg text-gray-700 leading-relaxed">
+            <p className="text-lg text-gray-700 text-justify text-center leading-relaxed">
               Company is always engaged in buying good and new technology products and then developing and inspecting at every step which
               make "FLOJET®"- A PRODUCT UNIQUE. Moreover, we believe that THIS SMALL MAINTENANCE PRODUCTS
               needs to be dealt with the special care, if it needs to be HIGHLY RELIABLE AND DURABLE.
             </p>
-            <p className="text-lg text-gray-700 leading-relaxed">
+            <p className="text-lg text-gray-700 text-justify text-center leading-relaxed">
               We, at Flojet Engineers Pvt. Ltd., are actively engaged in R&D to expand and upgrade the existing line
               of sealing method in the Indian industries.
               The moving force behind FEPL'S success is its decentralized management philosophy. A profit center
               approach to branch management, allows on the spot decision making, trained and experienced sales field force
               and dedicated and committed employees.
             </p>
-            <p className="text-lg text-gray-700 leading-relaxed">
+            <p className="text-lg text-gray-700 text-justify text-center leading-relaxed">
               Presently, "Flojet®" is supplying their products to more than 1000 Satisfied Customers in all Segments
               such as Refinery, Petrochemicals, Chemicals, Dyes-Intermediates, Fertilizer, Pharmaceuticals, Engineering,
               Food, Gas and Oil Extraction, Sugar, Steel, Pulp & Paper, Power Generation, Marine etc.
@@ -76,7 +85,7 @@ const AboutSection: React.FC = () => {
       </section>
 
       {/* Background */}
-      <section id="background" className="max-w-4xl mx-auto mb-20 scroll-mt-24">
+      <section id="background" className="relative max-w-4xl mx-auto mb-20 scroll-mt-24">
         <motion.h1
           className="text-4xl font-extrabold text-gray-900 mb-4"
           initial={{ opacity: 0, y: 40 }}
@@ -99,7 +108,7 @@ const AboutSection: React.FC = () => {
             alt="Flojet Engineers Pvt. Ltd. - A Journey Through Time"
             className="float-right ml-8 mb-6 w-full h-auto max-w-md opacity-90 transition-opacity duration-300 hover:opacity-100 md:w-1/2 lg:w-2/5"
           />
-          <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
+          <div className="space-y-6 text-lg text-gray-700 text-justify text-center leading-relaxed">
             <p>
               Location: R.R. Engineers then was established in the year 1985 with limited activities of marketing maintenance
               products in South Gujarat only for In-situ Epoxy repair solution and asbestos free sealing products in a highly
@@ -117,7 +126,7 @@ const AboutSection: React.FC = () => {
       </section>
 
       {/* We Are There For You */}
-      <section id="we-are-there-for-you" className="max-w-4xl mx-auto mb-20 scroll-mt-24">
+      <section id="we-are-there-for-you" className="relative max-w-4xl mx-auto mb-20 scroll-mt-24">
         <motion.h1
           className="text-4xl font-extrabold text-gray-900 mb-4"
           initial={{ opacity: 0, y: 40 }}
@@ -134,7 +143,7 @@ const AboutSection: React.FC = () => {
           transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
           viewport={{ once: true }}
         />
-        <p className="text-lg text-gray-700 leading-relaxed">
+        <p className="text-lg text-gray-700 text-justify text-center leading-relaxed">
           Flojet intrinsic strength is that it is the Company which offers after sales courteous visit services
           for products sold by it. Our Engineers, visit, studies and discusses problems faced in different
           application of sealing, which gives us in person feedback to upgrade our systems.
@@ -144,7 +153,7 @@ const AboutSection: React.FC = () => {
       </section>
 
       {/* Our Vision */}
-      <section id="our-vision" className="max-w-4xl mx-auto mb-20 scroll-mt-24">
+      <section id="our-vision" className="relative max-w-4xl mx-auto mb-20 scroll-mt-24">
     <motion.h2
       className="text-4xl font-extrabold text-gray-900 mb-4"
       initial={{ opacity: 0, y: 40 }}
@@ -217,7 +226,7 @@ const AboutSection: React.FC = () => {
 </section>
 
       {/* Why Us */}
-      <section id="why-us" className="max-w-4xl mx-auto mb-24 scroll-mt-24">
+      <section id="why-us" className="relative max-w-4xl mx-auto mb-24 scroll-mt-24">
       <motion.h1
         className="text-4xl font-extrabold text-gray-900 mb-4"
         initial={{ opacity: 0, y: 40 }}
@@ -302,7 +311,6 @@ const AboutSection: React.FC = () => {
     </div>
   </div>
 </section>
-
     </main>
   );
 };

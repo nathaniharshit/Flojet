@@ -2,24 +2,59 @@ import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { ShieldCheck, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { motion } from 'framer-motion';
 
 const Certificates: React.FC = () => {
   return (
-<section id="certificates" className="bg-white py-20">
-      <div className="container-custom">
+<section id="certificates" className="relative overflow-hidden bg-gradient-to-b from-blue-50 to-red-50 py-20">
+      <div 
+        className="absolute inset-0 z-0" 
+        style={{
+          backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(0,0,0,0.04) 1px, transparent 0)',
+          backgroundSize: '20px 20px',
+        }}
+      ></div>
+      <div className="container-custom relative z-10">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Quality Certifications</h2>
-          <div className="w-24 h-1 bg-primary mx-auto mb-6 animate-scaleIn origin-left"></div>
+          <motion.h2
+            className="text-3xl md:text-4xl font-bold mb-4"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
+            Quality Certifications
+          </motion.h2>
+          <motion.div
+            className="w-24 h-1 bg-primary mx-auto mb-6"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            viewport={{ once: true }}
+            style={{ originX: 0.5 }}
+          />
           <div className="flex items-center justify-center gap-2 mb-4">
           </div>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <motion.p
+            className="text-gray-600 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
             Our commitment to quality and excellence is backed by prestigious industry certifications,
             ensuring our products meet the highest standards.
-          </p>
+          </motion.p>
         </div>
 
         {/* ISO Certificate */}
-        <div className="max-w-4xl mx-auto mb-16">
+        <motion.div
+          className="max-w-4xl mx-auto mb-16"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
           <Card className="border-2 border-gray-200 hover:shadow-lg transition-all">
             <CardContent className="p-6 md:p-8">
               <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -67,10 +102,16 @@ const Certificates: React.FC = () => {
               </div>
             </CardContent>
           </Card>
-        </div>
+        </motion.div>
 
         {/* MSME Certificate */}
-        <div className="max-w-4xl mx-auto">
+        <motion.div
+          className="max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
           <Card className="border-2 border-gray-200 hover:shadow-lg transition-all">
             <CardContent className="p-6 md:p-8">
               <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -118,10 +159,16 @@ const Certificates: React.FC = () => {
               </div>
             </CardContent>
           </Card>
-        </div>
+        </motion.div>
 
         {/* Company registration Certificate */}
-        <div className="max-w-4xl mx-auto">
+        <motion.div
+          className="max-w-4xl mx-auto mt-16"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
           <Card className="border-2 border-gray-200 hover:shadow-lg transition-all">
             <CardContent className="p-6 md:p-8">
               <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -168,10 +215,16 @@ const Certificates: React.FC = () => {
               </div>
             </CardContent>
           </Card>
-        </div>
+        </motion.div>
 
         {/* Company Pan Card */}
-        <div className="max-w-4xl mx-auto">
+        <motion.div
+          className="max-w-4xl mx-auto mt-16"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.5, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
           <Card className="border-2 border-gray-200 hover:shadow-lg transition-all">
             <CardContent className="p-6 md:p-8">
               <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -218,7 +271,7 @@ const Certificates: React.FC = () => {
               </div>
             </CardContent>
           </Card>
-        </div>
+        </motion.div>
 
       </div>
     </section>

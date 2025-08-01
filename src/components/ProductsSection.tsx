@@ -19,7 +19,7 @@ class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { has
   render() {
     if (this.state.hasError) {
       return (
-        <div className="p-8 bg-red-50 text-red-700 rounded-lg my-8">
+        <div className="p-8 bg-red-50 to blue-100 text-red-700 rounded-lg my-8">
           <h2 className="text-2xl font-bold mb-2">Something went wrong.</h2>
           <p>{this.state.error?.message || "An unexpected error occurred."}</p>
         </div>
@@ -267,7 +267,7 @@ const ProductsSection: React.FC = () => {
                 pressure: "5000",
                 phValue: "0- 14"
               },
-              documentFile: "1663324367.pdf"
+              documentFile: "https://drive.google.com/file/d/1sAfYwPrZ1fMac6NIezPizios2Hlh_CIb/view?usp=sharing"
             },
             {
               name: "FLOJET - TG (SP) (PTFE / GRAPHITE)",
@@ -305,7 +305,7 @@ const ProductsSection: React.FC = () => {
                 pressure: "5000",
                 phValue: "0- 14"
               },
-              documentFile: "1663324396.pdf"
+              documentFile: "https://drive.google.com/file/d/18P8l4jCCfnBu_h9ziybMPyLtZcerkARz/view?usp=sharing"
             },
             {
               name: "FLOJET - GT (GRAPH. TEXTURED TAPE)",
@@ -343,7 +343,7 @@ const ProductsSection: React.FC = () => {
                 pressure: "5000",
                 phValue: "0- 14"
               },
-              documentFile: "PG_datasheet.pdf"
+              documentFile: "https://drive.google.com/file/d/12Ij11tcX39U7blM933Qz7JGP6Nrwcz1R/view?usp=sharing"
             },
             {
               name: "FLOJET - PC (PURE CARBON)",
@@ -368,7 +368,7 @@ const ProductsSection: React.FC = () => {
                 pressure: "3000",
                 phValue: "0- 14"
               },
-              documentFile: "1663324267.pdf"
+              documentFile: "https://drive.google.com/file/d/1NfbFjh8yHVZm89IAq3Cn1G518TzQkTih/view?usp=sharing"
             },
             {
               name: "FLOJET - CI (CARBON INCONEL)",
@@ -393,7 +393,7 @@ const ProductsSection: React.FC = () => {
                 pressure: "10000",
                 phValue: "1- 11"
               },
-              documentFile: "1663324282.pdf"
+              documentFile: "https://drive.google.com/file/d/1NwmUn_7zSBi5T0LX5MBBliXduoT142O7/view?usp=sharing"
             },
             {
               name: "FLOJET - GN (GRAPHITE NATURAL FOIL)",
@@ -406,7 +406,7 @@ const ProductsSection: React.FC = () => {
                 pressure: "4000",
                 phValue: "0-14"
               },
-              documentFile: "1663324297.pdf"
+              documentFile: "https://drive.google.com/file/d/1Fn5XIlu8cDsOncnFHGLb1pW1qoFCaMfw/view?usp=sharing"
             }
           ]
         },
@@ -425,6 +425,7 @@ const ProductsSection: React.FC = () => {
                 pressure: "1200 PSI",
                 phValue: "0 to 14"
               },
+              documentFile: "https://drive.google.com/file/d/1_yTgylv1n-qLXppZ021pr4fkNXvUDY3H/view?usp=sharing"
             },
             {
               name: "FLOJET - Style-2 (EP.T.F.E I Aramid Packing)",
@@ -436,7 +437,7 @@ const ProductsSection: React.FC = () => {
                 pressure: "2500 PSI",
                 phValue: "2 to 12"
               },
-              documentFile: "1663325629.pdf"
+              documentFile: "https://drive.google.com/file/d/1OGfN7418fN0htQ--GJfoG4lBU-EtGYrS/view?usp=sharing"
             },
             {
               name: "FLOJET - Style-3 (EP.T.F.E Packing)",
@@ -448,7 +449,7 @@ const ProductsSection: React.FC = () => {
                 pressure: "2500 PSI",
                 phValue: "0 to 14"
               },
-              documentFile: "1666068348.pdf"
+              documentFile: "https://drive.google.com/file/d/1m6muC3OWPODoptpndRfmYmvgoWkrh537/view?usp=sharing"
             },
             {
               name: "FLOJET - Style-4 (02 P.T.F.E Packing)",
@@ -460,7 +461,7 @@ const ProductsSection: React.FC = () => {
                 pressure: "Rotary -100 bars, Reciprocating -17 Bars, Valves-150 Bars",
                 phValue: "0 to 14"
               },
-              documentFile: "1666068552.pdf"
+              documentFile: "https://drive.google.com/file/d/1R-rZacry94ZMwjIopRKEy6Y4_FfCeeca/view?usp=sharing"
             },
             {
               name: "FLOJET - Style-5 (Dry P.T.F.E Packing)",
@@ -472,7 +473,6 @@ const ProductsSection: React.FC = () => {
                 pressure: "4000 PSI",
                 phValue: "0 to 14"
               },
-              documentFile: "1666068708.pdf"
             },
             {
               name: "FLOJET - Style-6 (EP.T.F.E/Graphite Packing)",
@@ -484,7 +484,7 @@ const ProductsSection: React.FC = () => {
                 pressure: "3250 PSI",
                 phValue: "0 to 14"
               },
-              documentFile: "1666068806.pdf"
+              documentFile: "https://drive.google.com/file/d/1QYy0i7fIvJ90FMqh0Lo1B3kJy_FFI7Kp/view?usp=sharing"
             },
             {
               name: "FLOJET - Style-7 (Gore's P.T.F.E/Graphite Packing)",
@@ -496,7 +496,7 @@ const ProductsSection: React.FC = () => {
                 pressure: "3625 PSI",
                 phValue: "@ 0 to 14 except strong oxidizers, aqua Regina, fuming Nitric, fluorine, oleum etc. Does not hydrolyze."
               },
-              documentFile: "1666069401.pdf"
+              documentFile: "https://drive.google.com/file/d/1FSjWxwKNqEk9rA5AYSPphD6QX89JIM2d/view?usp=sharing"
             },
             {
               name: "FLOJET - Style-8 (P.T.F.E/Graphite Packing)",
@@ -508,7 +508,7 @@ const ProductsSection: React.FC = () => {
                 pressure: "2700 PSI",
                 phValue: "0 to 14"
               },
-              documentFile: "1666069679.pdf"
+              documentFile: "https://drive.google.com/file/d/1HQUcYlyfFOnjS734LVtEe4S9mq2Mgskb/view?usp=sharing"
             },
             {
               name: "FLOJET - Style-9 (Graphite / Carbon Packing)",
@@ -520,7 +520,6 @@ const ProductsSection: React.FC = () => {
                 pressure: "4000 PSI",
                 phValue: "0 to 14"
               },
-              documentFile: "1666069954.pdf"
             },
             {
               name: "FLOJET - Style-10 (Carbon/Flexible Graphite Packing)",
@@ -532,7 +531,6 @@ const ProductsSection: React.FC = () => {
                 pressure: "3500 PSI",
                 phValue: "0 to 14"
               },
-              documentFile: "1666070018.pdf"
             },
             {
               name: "FLOJET - Style-11 (Ultra Graphite Packing)",
@@ -544,7 +542,6 @@ const ProductsSection: React.FC = () => {
                 pressure: "@2500 PSI",
                 phValue: "0 to 14"
               },
-              documentFile: "1666070087.pdf"
             },
             {
               name: "FLOJET - Style-12 (Graphite/Flexible Graphite Packing)",
@@ -556,7 +553,6 @@ const ProductsSection: React.FC = () => {
                 pressure: "4000 PSI",
                 phValue: "0 to 14"
               },
-              documentFile: "1666070861.pdf"
             },
             {
               name: "FLOJET - Style-13 (Carbon & Flexible Graphite Inconel Wire Packing)",
@@ -568,7 +564,6 @@ const ProductsSection: React.FC = () => {
                 pressure: "6000 PSI",
                 phValue: "0 to 14"
               },
-              documentFile: "1666071012.pdf"
             },
             {
               name: "FLOJET - Style-14 (Carbon P.T.F.E Impregnated Packing)",
@@ -580,7 +575,7 @@ const ProductsSection: React.FC = () => {
                 pressure: "@ 3000 PSI",
                 phValue: "0 to 14"
               },
-              documentFile: "1666071120.pdf"
+              documentFile: "https://drive.google.com/file/d/176vIj3Y2YX8JElQU5sgiY52l70OtFcpR/view?usp=sharing"
             },
             {
               name: "FLOJET - Style-15 (Expanded Graphite P.T.F.E Impregnated Packing)",
@@ -592,7 +587,7 @@ const ProductsSection: React.FC = () => {
                 pressure: "@ 3000 PSI",
                 phValue: "0 to 14"
               },
-              documentFile: "1666071196.pdf"
+              documentFile: "https://drive.google.com/file/d/1zfm2y7MhzZG9TXuuvA1j9_KbA7bM-NuB/view?usp=sharing"
             },
             {
               name: "FLOJET - Style-16 (Glass Fiber Packing)",
@@ -604,7 +599,7 @@ const ProductsSection: React.FC = () => {
                 pressure: "6000 PSI",
                 phValue: "0 to 14"
               },
-              documentFile: "1666071250.pdf"
+              documentFile: "https://drive.google.com/file/d/1Z1r0CO2UqTd7_GWm0wAwqekyTfiZbQjS/view?usp=sharing"
             },
             {
               name: "FLOJET - Style-17 (Graphite Glass Fiber Packing)",
@@ -616,7 +611,7 @@ const ProductsSection: React.FC = () => {
                 pressure: "6000 PSI",
                 phValue: "0 to 14"
               },
-              documentFile: "1666071285.pdf"
+              documentFile: "https://drive.google.com/file/d/1L3xqsswM6tp_BnUMXEpiHyNm5XPWcbF9/view?usp=sharing"
             },
             {
               name: "FLOJET - Style-18 (Inconel Wire Reinforced Glass Fiber PTFE Treated Packing)",
@@ -628,7 +623,6 @@ const ProductsSection: React.FC = () => {
                 pressure: "7000 PSI",
                 phValue: "0 to 14"
               },
-              documentFile: "1666071450.pdf"
             },
             {
               name: "FLOJET - Style-19 (Expanded Graphite Inconel Wire Reinforced Packing)",
@@ -640,7 +634,7 @@ const ProductsSection: React.FC = () => {
                 pressure: "4500 PSI",
                 phValue: "0 to 14"
               },
-              documentFile: "1666071497.pdf"
+              documentFile: "https://drive.google.com/file/d/13F05cKfuciZ7vTahieUiJhox8EhWUk0S/view?usp=sharing"
             },
             {
               name: "FLOJET - Style-20 (PTFE/Graphite Packing)",
@@ -652,7 +646,7 @@ const ProductsSection: React.FC = () => {
                 pressure: "2700 PSI",
                 phValue: "0 to 14"
               },
-              documentFile: "1666071536.pdf"
+              documentFile: "https://drive.google.com/file/d/1LKa3oOwmaBew2dulyd0PUOLUyqMXZmde/view?usp=sharing"
             },
             {
               name: "FLOJET - Style-21 (Aramid & PTFE/Graphite Packing)",
@@ -664,7 +658,7 @@ const ProductsSection: React.FC = () => {
                 pressure: "6000 PSI",
                 phValue: "2 to 12"
               },
-              documentFile: "1666071573.pdf"
+              documentFile: "https://drive.google.com/file/d/1_7bqLZN95xHjLmVijNALNDnrMcbarZOk/view?usp=sharing"
             }
           ]
         }
@@ -841,7 +835,7 @@ const ProductsSection: React.FC = () => {
             "Apply sealant by crossing ends slightly overlap end to form a continuous seal (For Fragile application - form scarfed joints, for high stress-make wavy, for high irregulars - high built-up)",
             "Tighten the bolts with proper torque till leakage stops. in proper sequences."
           ],
-          documentFile: "1667295580.pdf"
+          documentFile: "https://drive.google.com/file/d/1yqswnouxRFA1P2hL3xoDbovb7in4dJhV/view?usp=sharing"
         },
         {
           name: "FLOJET - SHEET GASKETING",
@@ -854,8 +848,8 @@ const ProductsSection: React.FC = () => {
             "Good 8exi",
             "Compressibility - @66%(ASTM)\\",
             "Recovery - 166(ASTM F36)",
-            "Service pressure from vacuum to 3000 psi Temperature from :- 240",
-            "deg C to 280 deg C. pH range 0 ~ 14.",
+            "Service pressure from vacuum to 3000 psi",
+            "Temperature from :- 240 deg C to 280 deg C. pH range 0 ~ 14.",
             "Easy to cut and install"
           ],
           applications: [
@@ -868,7 +862,7 @@ const ProductsSection: React.FC = () => {
             { thickness: "1.5mm & 3mm", sheetSize: "500mm x 500mm" },
             { thickness: "1.5mm & 3mm", sheetSize: "1500mm x 1500mm" }
           ],
-          documentFile: "1667295615.pdf"
+          documentFile: "https://drive.google.com/file/d/12KDPWqrV9ysVujeE5O-RU19hM0ouZySi/view?usp=sharing"
         },
         {
           name: "FLOJET - GENERAL PURPOSE SELF FORMING PTFE STEM PACKING",
@@ -895,7 +889,6 @@ const ProductsSection: React.FC = () => {
             { valveSize: "14\" TO 16\"", metPerSpool: "5 Mtrs", recommendedSizes: "16.0 mm Dia" }
           ],
           note: "Actual size of packing will vary with valve manufactura.",
-          documentFile: "1667295639.pdf"
         }
       ],
       image: "https://github.com/nathaniharshit/Flojet/blob/main/images/3.jpeg?raw=true"
@@ -1047,8 +1040,15 @@ const ProductsSection: React.FC = () => {
 
   return (
     <ErrorBoundary>
-      <section id="products" className="section bg-white">
-        <div className="container-custom">
+      <section id="products" className="relative overflow-hidden bg-gradient-to-b from-blue-50 to-red-50 py-20">
+        <div 
+          className="absolute inset-0 z-0" 
+          style={{
+            backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(0,0,0,0.04) 1px, transparent 0)',
+            backgroundSize: '20px 20px',
+          }}
+        ></div>
+        <div className="container-custom relative z-10">
           {/* Main Products Screen */}
           {currentScreen === 'main' && (
             <>
