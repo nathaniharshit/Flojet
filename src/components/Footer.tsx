@@ -1,6 +1,7 @@
 import React from 'react';
 import { MapPin, Phone, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 
 const Footer: React.FC = () => {
@@ -98,29 +99,24 @@ const Footer: React.FC = () => {
               </div>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Standard Carbon Gaskets
-                  </a>
+                  <Link to="/products/generations" className="hover:text-primary transition-colors">
+                    Non Asbestos Braided Gland Packing Rope & Rings
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    High-Pressure Gaskets
-                  </a>
+                  <Link to="/products/regular/2" className="hover:text-primary transition-colors">
+                    Expanded Graphite Sealing Products
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Corrosion-Resistant Gaskets
-                  </a>
+                  <Link to="/products/regular/3" className="hover:text-primary transition-colors">
+                    100% Expanded Pure PTFE Products
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Custom Solutions
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Technical Specifications
-                  </a>
+                  <Link to="/products/regular/4" className="hover:text-primary transition-colors">
+                    Cold Welding Epoxy Compounds
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -149,29 +145,29 @@ const Footer: React.FC = () => {
               </div>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <a href="#about" className="hover:text-primary transition-colors">
+                  <Link to="/about#about" className="hover:text-primary transition-colors">
                     About Us
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Our Team
-                  </a>
+                  <Link to="/about#background" className="hover:text-primary transition-colors">
+                    Background
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Careers
-                  </a>
+                  <Link to="/about#we-are-there-for-you" className="hover:text-primary transition-colors">
+                    We are there for you
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    News
-                  </a>
+                  <Link to="/about#our-vision" className="hover:text-primary transition-colors">
+                    Our Vision
+                  </Link>
                 </li>
                 <li>
-                  <a href="#contact" className="hover:text-primary transition-colors">
-                    Contact
-                  </a>
+                  <Link to="/about#why-us" className="hover:text-primary transition-colors">
+                    Why Us?
+                  </Link>
                 </li>
               </ul>
             </div>
